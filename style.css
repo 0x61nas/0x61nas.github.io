@@ -1,0 +1,255 @@
+:root {
+	--link-color: #212288;
+	--link-hover-color: #112288;
+}
+
+html {
+	cursor: url(./assets/Kobayashi.cur), default;
+}
+
+body {
+	background-image: linear-gradient(to bottom, rgba(80, 136, 168, 0) 40%, rgb(255, 255, 255) 100%), url("./patterns/greenblocks.png");
+	background-attachment: fixed;
+	/* background-color: #c3e0e5; */
+	/* A repeating grid image like in the sample */
+	font-family: "Comic Sans MS", sans-serif;
+	color: #000;
+}
+
+.scroll-diag {
+	animation: diag 60s linear infinite;
+}
+
+
+@keyframes diag {
+	0% {
+		background-position-x: 0%;
+		background-position-y: 0%;
+	}
+
+	100% {
+		background-position-x: 100%;
+		background-position-y: 100%;
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin: 0 auto;
+	border: 2px solid #333;
+	background-image: url(./patterns/Fiesta_Bkgrd.jpg);
+	background-color: #ffffff;
+	padding: 10px;
+	position: relative;
+}
+
+header {
+	text-align: center;
+	padding: 10px;
+}
+
+.top-banner {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+marquee {
+	background-color: black;
+	font-size: 20px;
+	color: #dddddd;
+	margin-bottom: 10px;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: min-content;
+	background-color: #fbfafc;
+	padding: 15px;
+	border-right: 2px solid #000;
+	margin-right: 20px;
+}
+
+.sidebar-section {
+	display: block;
+	margin-top: 20px;
+	position: relative;
+	/* top: 10px; */
+	width: 238px;
+	background-image: url("./patterns/wood.gif");
+	border-radius: 16px;
+	box-shadow: rgb(0, 0, 0) 0px 0px 12px;
+	border: 1px solid black;
+	user-select: text;
+}
+
+.sidebar .inner {
+	display: block;
+	margin: 8px;
+	width: 220px;
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid black;
+	user-select: text;
+	text-align: center;
+}
+
+.profile-pic {
+	margin-bottom: 1em;
+}
+
+.profile-pic .inner {
+	border: none;
+}
+
+.profile-pic img {
+	width: 100%;
+	border-radius: 8px;
+	border: 1px solid black;
+}
+
+.link-tree ul li::before {
+	content: "/";
+	position: absolute;
+	left: -10px;
+
+}
+
+.link-tree ul {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+.link-tree ul li {
+	font-size: 18px;
+	margin: 10px 0;
+}
+
+.contact-me h2 {
+	margin: inherit;
+}
+
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--link-hover-color);
+	text-decoration: underline;
+}
+
+.counter {
+	width: 97%;
+	margin-top: 20px;
+	font-size: 16px;
+	color: #ff0000;
+	text-align: center;
+}
+
+.counter img {
+	width: 100%;
+}
+
+.sidebar-waifu {
+	width: 238px;
+	height: 471px;
+	margin-top: 10em;
+	overflow: hidden;
+	display: block;
+}
+
+.sidebar-waifu img {
+	width: 209%;
+	object-fit: cover;
+	object-position: -10em -3em;
+}
+
+main {
+	flex: 1;
+	padding: 10px;
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: rgb(0, 0, 0) 0px 0px 8px;
+}
+
+figure {
+	width: 75%;
+	border: 1px solid black;
+}
+
+figure img {
+	width: 100%;
+}
+
+figcaption {
+	text-align: center;
+}
+
+.welcome-text h1 {
+	font-size: 30px;
+	color: #ff6600;
+	text-shadow: 2px 2px 2px #333;
+}
+
+.welcome-text p {
+	font-size: 18px;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+.blog-posts h2 {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+.blog-posts ul {
+	list-style-type: square;
+	padding-left: 20px;
+}
+
+.badges {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.badges h2 {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+.badge-row {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.badge-row img {
+	width: 88px;
+	height: 31px;
+	border: 2px solid #333;
+}
+
+audio {
+	filter: invert(100%);
+	background-color: white;
+	border-radius: 25px;
+	width: 100%;
+	height: 30px;
+	margin: 10px 0;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+.badge-botton {
+	display: block;
+	margin: 1em;
+}
