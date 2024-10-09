@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: update-og-updated-time
+        name: Update og:updated_time meta tag
+        entry: bash ./update-timestamp.sh
+        language: system
+        files: index.html
+        stages: [commit]
