@@ -6,4 +6,4 @@ repos:
         entry: bash ./update-timestamp.sh
         language: system
         files: index.html
-        stages: [commit]
+        stages: [push]
