@@ -71,6 +71,16 @@ marquee {
 	margin-bottom: 10px;
 }
 
+.marq-sep {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin: 0 10px;
+	background-image: url(./gifs/petit.gif);
+	background-position: center;
+	background-size: cover;
+}
+
 .sidebar {
 	display: flex;
 	flex-direction: column;
