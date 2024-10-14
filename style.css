@@ -8,12 +8,27 @@ html {
 }
 
 body {
-	background-image: linear-gradient(to bottom, rgba(80, 136, 168, 0) 40%, rgb(255, 255, 255) 100%), url("./patterns/greenblocks.png");
+	text-rendering: optimizeLegibility;
+	background-image: linear-gradient(to bottom, rgba(80, 136, 168, 0) 40%, rgb(255, 255, 255) 100%), url("./assets/patterns/greenblocks.png");
 	background-attachment: fixed;
 	/* background-color: #c3e0e5; */
 	/* A repeating grid image like in the sample */
 	font-family: "Comic Sans MS", sans-serif;
 	color: #000;
+}
+
+.pixlated {
+	image-rendering: pixelated;
+}
+
+.blink_me {
+	animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
 }
 
 .scroll-diag {
@@ -43,7 +58,7 @@ body {
 	flex-direction: column;
 	padding: 20px 30px;
 	border: 2px solid #333;
-	background-image: url(./patterns/Fiesta_Bkgrd.jpg);
+	background-image: url(./assets/patterns/Fiesta_Bkgrd.jpg);
 	background-color: #ffffff;
 	/* padding: 10px; */
 	position: relative;
@@ -76,7 +91,7 @@ marquee {
 	width: 1em;
 	height: 1em;
 	margin: 0 10px;
-	background-image: url(./gifs/petit.gif);
+	background-image: url(./static/imgs/petit.gif);
 	background-position: center;
 	background-size: cover;
 }
@@ -98,7 +113,7 @@ marquee {
 	position: relative;
 	/* top: 10px; */
 	width: 238px;
-	background-image: url("./patterns/wood.gif");
+	background-image: url("./assets/patterns/wood.gif");
 	border-radius: 16px;
 	box-shadow: rgb(0, 0, 0) 0px 0px 12px;
 	border: 1px solid black;
