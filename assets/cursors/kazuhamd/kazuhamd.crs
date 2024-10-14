@@ -1,0 +1,51 @@
+﻿[UpArrow]
+Path=Alternate Select.cur
+
+[Wait]
+Path=Busy.ani
+
+[SizeNWSE]
+Path=Diagonal Rezise 1.ani
+
+[SizeNESW]
+Path=Diagonal Rezise 2.ani
+
+[Crosshair]
+Path=Precision Select .cur
+
+[IBeam]
+Path=Text Select.cur
+
+[No]
+Path=Unavailable .cur
+
+[NWPen]
+Path=Handwriting.ani
+
+[Help]
+Path=Help Select.ani
+
+[SizeWE]
+Path=Horizontal Resize.ani
+
+[Hand]
+Path=Link Select.cur
+
+[Pin]
+Path=Location Select.cur
+
+[SizeAll]
+Path=Move.ani
+
+[Arrow]
+Path=Normal Select.ani
+
+[Person]
+Path=Person Select.cur
+
+[SizeNS]
+Path=Vertical Resize.ani
+
+[AppStarting]
+Path=working in background.ani
+

@@ -1,0 +1,45 @@
+﻿[Arrow]
+Path=Hu Tao Normal Select.cur
+
+[Help]
+Path=Hu Tao Help.cur
+
+[AppStarting]
+Path=Hu Tao Working in Background.cur
+
+[Wait]
+Path=Hu Tao Busy.cur
+
+[Crosshair]
+Path=Hu Tao Precision Select.cur
+
+[IBeam]
+Path=Hu Tao Text Select.cur
+
+[NWPen]
+Path=Hu Tao Handwriting.cur
+
+[No]
+Path=Hu Tao Unavailable.cur
+
+[SizeNS]
+Path=Hu Tao Vertical Resize .cur
+
+[SizeWE]
+Path=Hu Tao Horizontal Resize .cur
+
+[SizeNWSE]
+Path=Hu Tao Diagonal Resize 1.cur
+
+[SizeNESW]
+Path=Hu Tao Diagonal Resize 2.cur
+
+[SizeAll]
+Path=Hu Tao Move.cur
+
+[UpArrow]
+Path=Hu Tao Alternate Select.cur
+
+[Hand]
+Path=Hu Tao Link Select.cur
+

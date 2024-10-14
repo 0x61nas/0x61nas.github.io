@@ -1,0 +1,45 @@
+﻿[Arrow]
+Path=Xiao Normal Select.cur
+
+[Help]
+Path=Xiao Help.cur
+
+[AppStarting]
+Path=Xiao Working in Background.cur
+
+[Wait]
+Path=Xiao Busy.cur
+
+[Crosshair]
+Path=Xiao Precision Select.cur
+
+[IBeam]
+Path=Xiao Text Select.cur
+
+[NWPen]
+Path=Xiao Handwriting.cur
+
+[No]
+Path=Xiao Unavailable.cur
+
+[SizeNS]
+Path=Xiao Vertical Resize.cur
+
+[SizeWE]
+Path=Xiao Horizontal Resize.cur
+
+[SizeNWSE]
+Path=Xiao Diagonal Resize 1.cur
+
+[SizeNESW]
+Path=Xiao Diagonal Resize 2.cur
+
+[SizeAll]
+Path=Xiao Move.cur
+
+[UpArrow]
+Path=Xiao Alternate Select.cur
+
+[Hand]
+Path=Xiao Link Select.cur
+
