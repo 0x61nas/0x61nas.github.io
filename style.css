@@ -21,8 +21,8 @@ body {
 	image-rendering: pixelated;
 }
 
-.blink_me {
-	animation: blinker 1s linear infinite;
+.blink-me {
+	animation: blinker 0.3s linear infinite;
 }
 
 @keyframes blinker {
@@ -312,4 +312,16 @@ audio {
 
 .big-emote {
 	width: 2.5em;
+}
+
+.sidebar-ad-section {
+	display: block;
+}
+
+.sidebar-ad-section h2 {
+	margin-bottom: unset;
+}
+
+code {
+	display: block;
 }
