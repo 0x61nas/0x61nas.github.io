@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/0x61nas
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://0x61nas.github.io
+  * I am 0x61nas (https://keybase.io/0x61nas) on keybase.
+  * I have a public key ASDu-AHXG_UcBSLhrfGh0MaZTl5oY297NfSNxXch1epWIwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120c8783ecbc343c619ac073e3f92a6a0c067da635c56bd50619c404b82d2eb90800a",
+      "host": "keybase.io",
+      "kid": "0120eef801d71bf51c0522e1adf1a1d0c6994e5e68636f7b35f48dc57721d5ea56230a",
+      "uid": "204526c38793accd3a9d93eec564d719",
+      "username": "0x61nas"
+    },
+    "merkle_root": {
+      "ctime": 1735951336,
+      "hash": "3299b2492b48090eb86523b1877aa3eb182e4a3c2efee0f0d9fc256ef82bb4d6663394de2ffdc95860adfb1397d1c0105164834abe9020cce279d21d7367f230",
+      "hash_meta": "81ccb65097795ce80b611cd8c521ba7423abe548bac3ceb66b01ead6db3eac0d",
+      "seqno": 26423345
+    },
+    "service": {
+      "entropy": "IspLYOKMc8bnXg8UaOtM62fL",
+      "hostname": "0x61nas.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.4.0"
+  },
+  "ctime": 1735951364,
+  "expire_in": 504576000,
+  "prev": "0f545f1a9145eed2681a241a061594494484256fa9aafbed159b7252118afe41",
+  "seqno": 31,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEg7vgB1xv1HAUi4a3xodDGmU5eaGNvezX0jcV3IdXqViMKp3BheWxvYWTESpcCH8QgD1RfGpFF7tJoGiQaBhWUSUSEJW+pqvvtFZtyUhGK/kHEICz9/hg62PvBG1f2fr9LKccEdeTYP0R4CGX8yDwwfymzAgHCo3NpZ8RAmgxHXpVoi4EpAPC3JtxY46OEwDLTKIG9bYTHXEF+EMuw7iselTf5kkmJHXiCg0PxwILai4yVrz9WyeRGi4QVAKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIEe/imW5zldUegTflDIl2b71ZapESPGVB1g5pYuEDBQbo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/0x61nas
+
+==================================================================
