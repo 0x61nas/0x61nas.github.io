@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Java Cute Comment</title>
+	<link rel="stylesheet" href="../../assets/style/colors/gruvbox.css">
+	<link rel="stylesheet" href="../../assets/style/article.css">
+</head>
+
+<body>
+	<div class="article-container">
+		<header class="article-header">
+			<h1 class="article-title">Java Cute Comment<span class="cursor">_</span></h1>
+			<div class="article-meta">Posted on: April 09, 2025</div>
+			<!-- <div class="visitor-counter">Visitors: 001337</div> -->
+		</header>
+		<div class="article-content">
+			<p>Hey fellow code-slingers! Ever wondered if you could execute code from inside a comment? Sounds wild,
+				right? But with Java nothing is "impassable", and it's *adorably* dangerous 🥺</p>
+
+			<h2>The Secret Unicode Escape Hatch</h2>
+
+			<p>So here's the deal. Java lets you use Unicode escapes literally *anywhere* in your source code. That includes
+				places where you'd never expect them to do anything... like inside a one-line comment!</p>
+
+			<p>For example, check this out:</p>
+
+			<pre>
+				// \u000d System.out.println("Surprise! This runs.");
+			</pre>
+
+			<p>Yup. That <code>\u000d</code> is the Unicode escape for a carriage return (same effect as a new line). So what
+				happens?</p>
+
+			<p>Well, the Java compiler sees that line and, thanks to Unicode processing that happens *before* parsing, it
+				becomes:</p>
+
+			<pre>
+				//
+				System.out.println("Surprise! This runs.");
+			</pre>
+
+			<p>So the comment ends early, and your sneaky little code line executes. Nifty? Terrifying? Maybe a bit of both.
+			</p>
+
+			<blockquote>
+				"It's not a bug, it's a feature (with side effects)." - Senior Java Developer
+			</blockquote>
+
+			<p>This works because Java compilers treat Unicode escapes as literal characters *before* any actual parsing or
+				comment stripping happens. That's why you can even name your variables in Japanese, Arabic, or Klingon if you're
+				feeling bold.<span class="cursor">█</span></p>
+
+		</div>
+
+		<footer class="article-footer">
+			<p>© 2025 0x61nas | Best viewed with Netscape Navigator at 800×600</p>
+		</footer>
+	</div>
+</body>
+
+</html>
