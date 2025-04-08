@@ -1,0 +1,48 @@
+/* BEGIN assets/style/colors/gruvbox.css */
+:root {
+	/* gruvbox dark */
+	--ansi00: #282828;
+	--ansi00-hard: #1d2021;
+	--ansi00-soft: #32302f;
+	--ansi01: #cc241d;
+	--ansi02: #98971a;
+	--ansi03: #d79921;
+	--ansi04: #458588;
+	--ansi05: #b16286;
+	--ansi06: #689d6a;
+	--ansi07: #a89984;
+	--ansi08: #928374;
+	--ansi09: #fb4934;
+	--ansi10: #b8bb26;
+	--ansi11: #fabd2f;
+	--ansi12: #83a598;
+	--ansi13: #d3869b;
+	--ansi14: #8ec07c;
+	--ansi15: #ebdbb2;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		/* gruvbox light */
+		--ansi00: #fbf1c7;
+		--ansi00-hard: #f9f5d7;
+		--ansi00-soft: #f2e5bc;
+		--ansi01: #cc241d;
+		--ansi02: #98971a;
+		--ansi03: #d79921;
+		--ansi04: #458588;
+		--ansi05: #b16286;
+		--ansi06: #689d6a;
+		--ansi07: #7c6f64;
+		--ansi08: #928374;
+		--ansi09: #9d0006;
+		--ansi10: #79740e;
+		--ansi11: #b57614;
+		--ansi12: #076678;
+		--ansi13: #8f3f71;
+		--ansi14: #427b58;
+		--ansi15: #3c3836;
+	}
+}
+
+/* END assets/style/colors/gruvbox.css */
