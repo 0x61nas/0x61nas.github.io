@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Java Cute Comment</title>
+	<link rel="stylesheet" href="../../assets/style/colors/gruvbox.css">
+	<link rel="stylesheet" href="../../assets/style/article.css">
+</head>
+
+<body>
+	<div class="article-container">
+		<header class="article-header">
+			<h1 class="article-title">I can fix her<span class="cursor">_</span></h1>
+			<div class="article-meta">Posted on: April 09, 2025</div>
+			<!-- <div class="visitor-counter">Visitors: 001337</div> -->
+		</header>
+		<div class="article-content">
+			<p>Now, we are fixing Java...</p>
+
+			<p>After I made <a href="https://0x61nas.github.io/articles/java-comments-r-cute/" target="_blank">that post</a>,
+				I got really curious—like, “hacker-in-a-dark-room-at-2am” curious—about what the cause</p>
+
+
+			<p>So what did I do? I cloned the OpenJDK source code, obviously. And then I went full gremlin mode: grep here,
+				trace there, follow function calls like a bloodhound with caffeine dependency… until I stumbled into the
+				compiler’s belly.</p>
+
+			<p>Turns out the culprit is a method called <code>skipToEOLN</code>. It’s basically a while loop that munches
+				characters until it finds a newline… and then munches that too. Classic compiler behavior.</p>
+
+			<pre class="code-snippet">
+				/**
+				* Skip to end of line.
+				*/
+				protected void skipToEOLN() {
+				while (isAvailable()) {
+				if (isEOLN()) {
+				break;
+				}
+
+				next();
+				}
+				}
+			</pre>
+
+			<p>But here’s the twist—by the time we even get to <code>skipToEOLN</code>, the input stream has already been
+				preprocessed. That sneaky <code>"\u000d"</code>? It’s no longer a string. It’s already transformed into the raw
+				<code>'\r'</code> character. The lexer doesn’t need to be Unicode-aware—it’s just chugging ASCII at this point
+				like it’s 1999.
+			</p>
+
+			<h2>Okay, but can we fix that?</h2>
+
+			<p>Actually... yes.</p>
+
+			<p>However! The lexer still remembers where that character came from. It actually knows which characters were
+				originally Unicode escapes. So with a tiny bit of asking nicely (read: poking internal flags), we can detect and
+				block this behavior.</p>
+
+			<figure class="center">
+				<img src="./the-result.pn" alt="My modified JDK vs the officail one">
+				<<figcaption>My cursed creation Vs the Official one</figcaption>
+			</figure>
+
+			<p>And Voilà—I got my very own JDK 😎</p>
+
+			<blockquote>
+				"Why? Because it’s there." – Some compiler nerd, probably
+			</blockquote>
+
+			<p>The patch: <a
+					href="https://gist.github.com/0x61nas/f82e7cef3fe1af4ffdfeb33c76ab72dc">https://gist.github.com/0x61nas/f82e7cef3fe1af4ffdfeb33c76ab72dc</a>
+			</p>
+
+			<p>Bye..<span class="cursor">█</span></p>
+
+		</div>
+
+		<footer class="article-footer">
+			<p>© 2025 0x61nas | Best viewed with Netscape Navigator at 800×600</p>
+		</footer>
+	</div>
+</body>
+
+</html>
