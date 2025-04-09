@@ -18,11 +18,11 @@
 			<p>Now, we are fixing Java...</p>
 
 			<p>After I made <a href="https://0x61nas.github.io/articles/java-comments-r-cute/" target="_blank">that post</a>,
-				I got really curious—like, “hacker-in-a-dark-room-at-2am” curious—about what the cause</p>
+				I got really curious—like, “hacker-in-a-dark-room-at-2am” curious—about what makes javac do that</p>
 
 
-			<p>So what did I do? I cloned the OpenJDK source code, obviously. And then I went full gremlin mode: grep here,
-				trace there, follow function calls like a bloodhound with caffeine dependency… until I stumbled into the
+			<p>So I cloned the OpenJDK source code, then I went full gremlin mode: grep here,
+				trace there, follow function calls like a bloodhound with caffeine dependency :p until I stumbled into the
 				compiler’s belly.</p>
 
 			<p>Turns out the culprit is a method called <code>skipToEOLN</code>. It’s basically a while loop that munches
