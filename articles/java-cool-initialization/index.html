@@ -1,0 +1,557 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Java Dorble-Brace Initialization</title>
+        <link rel="stylesheet" href="../../assets/style/colors/gruvbox.css" />
+        <link rel="stylesheet" href="../../assets/style/article.css" />
+    </head>
+
+    <body>
+        <div class="article-container">
+            <header class="article-header">
+                <h1 class="article-title">
+                    Double Brace Initialization<span class="cursor">_</span>
+                </h1>
+                <div class="article-meta">Posted on: April 10, 2025</div>
+                <!-- <div class="visitor-counter">Visitors: 001337</div> -->
+            </header>
+            <div class="article-content">
+                <p>The (double) {{cool}} initialization in Java...</p>
+
+                <p>
+                    If you've been in the industry long enough, you might have
+                    encountered some "cool" engineers who use a little trick
+                    called Double-Brace initialization in their Java code – or
+                    you might be one of them.
+                </p>
+
+                <h2>Double-Brace What?</h2>
+
+                <p>
+                    In case you don't know, Double-Brace initialization is a
+                    technique that initializes objects inline by creating an
+                    anonymous subclass. This is particularly helpful when you
+                    need to modify a new object immediately after its creation.
+                </p>
+
+                <p>
+                    The most popular use case for Double-Brace initialization is
+                    with collections:
+                </p>
+
+                <pre class="code-snippet">
+final var array = new ArrayList&LT;String&GT;(){{
+	add("Anas");
+	add("cat");
+	add("Rust");
+}};
+			</pre
+                >
+
+                <p>
+                    But it isn't limited to collections, you can use
+                    Double-Brace initialization _virtually_ with any class
+                </p>
+
+                <pre class="code-snippet">
+public class CustomDoubleBraceInitialization {
+	private static class Thing {
+		String name;
+		int id;
+
+		void setName(final String n) { this.name = n; }
+
+		@Override
+		public String toString() { return "The thing name: " + name + ", ID: " + id; }
+	}
+
+	public static void main(String[] args) {
+			final var thing = new Thing() {{
+			setName("Anas");
+			id = 1;
+			}};
+			System.out.println(thing);
+		}
+}
+			</pre
+                >
+
+                <p>Cool, right?</p>
+
+                <h2>But what's the catch?</h2>
+
+                <p>
+                    As you know, as a software engineers, we can't just live
+                    like that and like: Okay cool trick and continue our life,
+                    so... Let's dive deeper
+                </p>
+
+                <p>First, let's examine how the normal (boring) way works:</p>
+
+                <pre class="code-snippet">
+import java.util.ArrayList;
+
+public class NormalInitialization {
+    public static void main(String[] args) {
+   	    final var array = new ArrayList&LT;String&GT;();
+        array.add("Anas");
+       	array.add("cat");
+       	array.add("Rust");
+
+       	System.out.println(array);
+    }
+}
+			</pre
+                >
+
+                <p>
+                    Yew, boring; but let's not let the outside fool us, we all
+                    know that the real beauty is from the inside right? Right?
+                </p>
+                <p>
+                    when we compile this, javac will give us _one_
+                    <code>.class</code> file, and when we use javap on that file
+                    we get something like:
+                </p>
+
+                <pre class="code-snippet">
+{
+public NormalInitialization();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+    stack=1, locals=1, args_size=1
+        0: aload_0
+        1: invokespecial #1                  // Method java/util/ArrayList."&LT;init&GT;":()V
+        4: return
+    LineNumberTable:
+        line 3: 0
+
+public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+    stack=2, locals=2, args_size=1
+        0: new           #7                  // class java/util/ArrayList
+        3: dup
+        4: invokespecial #9                  // Method java/util/ArrayList."&LT;init&GT;":()V
+        7: astore_1
+        8: aload_1
+        9: ldc           #10                 // String Anas
+        11: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        14: pop
+        15: aload_1
+        16: ldc           #16                 // String cat
+        18: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        21: pop
+        22: aload_1
+        23: ldc           #18                 // String Rust
+        25: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        28: pop
+        29: getstatic     #20                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        32: aload_1
+        33: invokevirtual #26                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        36: return
+    LineNumberTable:
+        line 5: 0
+        line 6: 8
+        line 7: 15
+        line 8: 22
+        line 10: 29
+        line 11: 36
+}
+SourceFile: "NormalInitialization.java"
+			</pre
+                >
+
+                <p>
+                    You might be wondering, "WTF is this?" Well, this is our
+                    glorious <code>bytecode</code> in its textual representation
+                    – the actual code that gets executed in the JVM. Let's
+                    examine it more closely.
+                </p>
+                <p>
+                    First, let's focus on the relevant part – the code inside
+                    our <code>main</code> method:
+                </p>
+
+                <pre class="code-snippet">
+...
+    Code:
+    stack=2, locals=2, args_size=1
+        0: new           #7                  // class java/util/ArrayList
+        3: dup
+        4: invokespecial #9                  // Method java/util/ArrayList."&LT;init&GT;":()V
+        7: astore_1
+        8: aload_1
+        9: ldc           #10                 // String Anas
+        11: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        14: pop
+        15: aload_1
+        16: ldc           #16                 // String cat
+        18: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        21: pop
+        22: aload_1
+        23: ldc           #18                 // String Rust
+        25: invokevirtual #12                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        28: pop
+    ...
+			</pre
+                >
+
+                <p>
+                    Much cleaner. Now let's examine these instructions one by
+                    one.
+                </p>
+
+                <div class="note">
+                    First, an important note: The JVM is a stack-based machine.
+                    Instead of registers, it uses a stack where we perform
+                    <code>push</code> and <code>pop</code> operations to make
+                    the JVM work its magic.
+                </div>
+
+                <p>Let's break down the bytecode instructions:</p>
+                <ol>
+                    <li>
+                        <code>0: new #7</code> - Creates new _uninitialized_
+                        ArrayList object on top of the stack (push)
+                    </li>
+                    <li>
+                        <code>3: dup</code> - Duplicates the top stack value,
+                        which its our ArrayList object that we've just created
+                        (push)
+                    </li>
+                    <li>
+                        <code>4: invokespecial #9</code> - Calls the constructor
+                        (a.k.a. <code>init</code> function), thats consumes the
+                        top value on the stack to construct our object (pop)
+                    </li>
+                    <li>
+                        <code>7: astore_1</code> - Stores the remaining
+                        reference in local variable slot 1 (pop)
+                    </li>
+                    <li>
+                        <code>8: aload_1</code> - Loads the ArrayList reference
+                        (from local variable 1) onto the stack. (push)
+                    </li>
+                    <li>
+                        <code>9: ldc #10</code> - Loads the String constant
+                        "Anas" (from constant pool entry #10) onto the stack
+                        (push)
+                    </li>
+                    <li>
+                        <code>11: invokevirtual #12</code> - Calls
+                        ArrayList.add(Object) (constant pool entry #12), it
+                        consumes the first two items on the stack(this, and
+                        Oblect) and it pushes one (the returned boolean) (pop,
+                        pop, push)
+                    </li>
+                    <li>
+                        <code>14: pop</code> - discards the boolean result
+                        (since we don’t use it).
+                    </li>
+                    <li>
+                        And just like that the rest instruction do the same
+                        operation to add the rest items
+                    </li>
+                </ol>
+
+                <p>
+                    Pretty simple bytecode. Now, let's peel back the layers of
+                    our 'clever' double-brace initialization and see if it's
+                    truly as elegant as it appears.
+                </p>
+
+                <pre class="code-snippet">
+import java.util.ArrayList;
+
+public class DoubleBraceInitialization {
+   	public static void main(String[] args) {
+  		final var array = new ArrayList&LT;String&GT;() {
+ 			{
+    				add("Anas");
+    				add("cat");
+    				add("Rust");
+ 			}
+  		};
+
+  		System.out.println(array);
+   	}
+}
+			</pre
+                >
+
+                <p>Awww, so aduorable :3, let's see its bytecode</p>
+
+                <pre class="code-snippet">
+Classfile /tmp/java-lab/DoubleBraceInitialization.class
+  Last modified Apr 10, 2025; size 542 bytes
+  SHA-256 checksum c6e4084b962996a9c42ffdccc26e129f429ebcb21020e7f1ff70e86c3d018faf
+  Compiled from "DoubleBraceInitialization.java"
+public class DoubleBraceInitialization
+  minor version: 0
+  major version: 68
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #22                         // DoubleBraceInitialization
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 0, methods: 2, attributes: 3
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."&LT;init&GT;":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "&LT;init&GT;":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               &LT;init&GT;
+   #6 = Utf8               ()V
+   #7 = Class              #8             // DoubleBraceInitialization$1
+   #8 = Utf8               DoubleBraceInitialization$1
+   #9 = Methodref          #7.#3          // DoubleBraceInitialization$1."&LT;init&GT;":()V
+  #10 = Fieldref           #11.#12        // java/lang/System.out:Ljava/io/PrintStream;
+  #11 = Class              #13            // java/lang/System
+  #12 = NameAndType        #14:#15        // out:Ljava/io/PrintStream;
+  #13 = Utf8               java/lang/System
+  #14 = Utf8               out
+  #15 = Utf8               Ljava/io/PrintStream;
+  #16 = Methodref          #17.#18        // java/io/PrintStream.println:(Ljava/lang/Object;)V
+  #17 = Class              #19            // java/io/PrintStream
+  #18 = NameAndType        #20:#21        // println:(Ljava/lang/Object;)V
+  #19 = Utf8               java/io/PrintStream
+  #20 = Utf8               println
+  #21 = Utf8               (Ljava/lang/Object;)V
+  #22 = Class              #23            // DoubleBraceInitialization
+  #23 = Utf8               DoubleBraceInitialization
+  #24 = Utf8               Code
+  #25 = Utf8               LineNumberTable
+  #26 = Utf8               main
+  #27 = Utf8               ([Ljava/lang/String;)V
+  #28 = Utf8               SourceFile
+  #29 = Utf8               DoubleBraceInitialization.java
+  #30 = Utf8               NestMembers
+  #31 = Utf8               InnerClasses
+{
+  public DoubleBraceInitialization();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."&LT;init&GT;":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: new           #7                  // class DoubleBraceInitialization$1
+         3: dup
+         4: invokespecial #9                  // Method DoubleBraceInitialization$1."&LT;init&GT;":()V
+         7: astore_1
+         8: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        11: aload_1
+        12: invokevirtual #16                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        15: return
+      LineNumberTable:
+        line 5: 0
+        line 13: 8
+        line 14: 15
+}
+SourceFile: "DoubleBraceInitialization.java"
+NestMembers:
+  DoubleBraceInitialization$1
+InnerClasses:
+  #7;                                     // class DoubleBraceInitialization$1
+
+			 </pre
+                >
+
+                <p>
+                    The reason that i bought the full output of javap command
+                    this time that because their's some magek happening here
+                </p>
+
+                <div class="info">
+                    The constant pool is a fundamental part of the Java Virtual
+                    Machine (JVM) architecture. It's a runtime data structure
+                    that stores various constants and symbolic references needed
+                    for class execution.
+                </div>
+
+                <p>
+                    So, let's analyze this bytecode more closely. We'll focus on
+                    three key sections: the <code>Constant pool</code>, the
+                    <code>Code</code> segment, and the sneaky
+                    <code>InnerClasses</code> declaration. First, we'll examine
+                    the <code>Code</code> section.
+                </p>
+
+                <pre class="code-snippet">
+...
+    Code:
+      stack=2, locals=2, args_size=1
+         0: new           #7                  // class DoubleBraceInitialization$1
+         3: dup
+         4: invokespecial #9                  // Method DoubleBraceInitialization$1."&LT;init&GT;":()V
+         7: astore_1
+         8: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        11: aload_1
+        12: invokevirtual #16                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        15: return
+...
+			 </pre
+                >
+
+                <p>
+                    Notice something interesting here? Unlike our previous
+                    example where we saw explicit <code>add()</code> method
+                    calls or any mention to our strings
+                </p>
+                <p>
+                    Instead we're creating a mysterious
+                    <code>DoubleBraceInitialization$1</code> class:
+                </p>
+
+                <pre class="code-snippet">
+...
+         0: new           #7                  // class DoubleBraceInitialization$1
+         3: dup
+         4: invokespecial #9                  // Method DoubleBraceInitialization$1."&LT;init&GT;":()V
+         7: astore_1
+...
+			 </pre
+                >
+
+                <p>
+                    This is the anonymous subclass that double-brace
+                    initialization creates behind the scenes.
+                </p>
+
+                <p>
+                    Looking at the <code>InnerClasses</code> section confirms
+                    this:
+                </p>
+                <pre class="code-snippet">
+ InnerClasses: #7; // class DoubleBraceInitialization$1
+                </pre>
+
+                <p>
+                    This shows that our double-brace initialization actually
+                    creates a new anonymous inner class that extends ArrayList.
+                    The initialization block (the second set of braces) becomes
+                    the instance initializer for this anonymous class.
+                </p>
+
+                <p>
+                    If we examine the generated
+                    <code>DoubleBraceInitialization$1.class</code> file, we’ll
+                    see the true cost of double-brace initialization: it
+                    secretly creates an anonymous inner class that extends
+                    <code>ArrayList</code>. The second set of braces—the
+                    initialization block—becomes an instance initializer in this
+                    anonymous class, containing all our
+                    <code>add()</code> calls.
+                </p>
+
+                <pre class="code-snippet">
+...
+    Code:
+        stack=2, locals=1, args_size=1
+            0: aload_0
+            1: invokespecial #1                  // Method java/util/ArrayList."&Lt;init&GT;":()V
+            4: aload_0
+            5: ldc           #7                  // String Anas
+            7: invokevirtual #9                  // Method add:(Ljava/lang/Object;)Z
+        10: pop
+        11: aload_0
+        12: ldc           #15                 // String cat
+        14: invokevirtual #9                  // Method add:(Ljava/lang/Object;)Z
+        17: pop
+        18: aload_0
+        19: ldc           #17                 // String Rust
+        21: invokevirtual #9                  // Method add:(Ljava/lang/Object;)Z
+        24: pop
+        25: return
+        ...
+                </pre>
+
+                <p>
+                    This is why the main class’s bytecode appears simpler: the
+                    initialization logic is offloaded to the hidden class.
+                </p>
+
+                <h2>Isn't that a good thing?</h2>
+
+                <p>No.</p>
+
+                <p>
+                    By using double-brace initializtion you'r adding complixty,
+                    increasing memory usage, leaking memory, making
+                    serialization/deserialization harder, killing kittens, and
+                    frocing Java to be someone she's clearly isn't.
+                </p>
+                
+                <p>Each time you use double brace initialisation a new class is made</p>
+                
+                <pre class="code-snippet">
+Map source = new HashMap(){{
+    put("firstName", "John");
+    put("lastName", "Smith");
+    put("organizations", new HashMap(){{
+        put("0", new HashMap(){{
+            put("id", "1234");
+        }});
+        put("abc", new HashMap(){{
+            put("id", "5678");
+        }});
+    }});
+}};
+                </pre>
+                
+                <p>... will produce these classes:</p>
+                
+                <pre class="code-snippet">
+Test$1$1$1.class
+Test$1$1$2.class
+Test$1$1.class
+Test$1.class
+Test.class
+                </pre>
+                
+                <p>Just immagen being the poor JVM, who has to load all these classes and execute them and keeping track of them.</p>
+                
+
+
+                <p>
+                    and that's an prove that what matters most is the inside,
+                    not the outside
+                </p>
+
+                <blockquote>
+                    "Double braces: because sometimes you want to feel like a
+                    Java wizard, even if you're just creating memory leaks with
+                    style."
+                </blockquote>
+
+                <blockquote>
+                    "Every time someone uses double brace initialisation, a
+                    kitten gets killed." –
+                    <a
+                        href="https://stackoverflow.com/questions/1958636/what-is-double-brace-initialization-in-java/27521360#27521360"
+                        >Anonymous Stack Overflow comment</a
+                    >
+                </blockquote>
+
+                <p>Bye..<span class="cursor">█</span></p>
+            </div>
+
+            <footer class="article-footer">
+                <p>
+                    © 2025 0x61nas | Best viewed with Netscape Navigator at
+                    800×600
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>
