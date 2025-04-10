@@ -29,9 +29,8 @@
 
                 <p>
                     In case you don't know, Double-Brace initialization is a
-                    technique that initializes objects inline by creating an
-                    anonymous subclass. This is particularly helpful when you
-                    need to modify a new object immediately after its creation.
+                    technique that initializes objects inline by doing some
+                    *black magek* to make our Java code look cool.
                 </p>
 
                 <p>
@@ -384,7 +383,81 @@ InnerClasses:
                     three key sections: the <code>Constant pool</code>, the
                     <code>Code</code> segment, and the sneaky
                     <code>InnerClasses</code> declaration. First, we'll examine
-                    the <code>Code</code> section.
+                    the <code>Cnstant pool</code> section.
+                </p>
+
+                <pre class="code-snippet">
+...
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."&LT;init&GT;":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "&LT;init&GT;":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               &LT;init&GT;
+   #6 = Utf8               ()V
+   #7 = Class              #8             // DoubleBraceInitialization$1
+   #8 = Utf8               DoubleBraceInitialization$1
+   #9 = Methodref          #7.#3          // DoubleBraceInitialization$1."&LT;init&GT;":()V
+  #10 = Fieldref           #11.#12        // java/lang/System.out:Ljava/io/PrintStream;
+  #11 = Class              #13            // java/lang/System
+  #12 = NameAndType        #14:#15        // out:Ljava/io/PrintStream;
+  #13 = Utf8               java/lang/System
+  #14 = Utf8               out
+  #15 = Utf8               Ljava/io/PrintStream;
+  #16 = Methodref          #17.#18        // java/io/PrintStream.println:(Ljava/lang/Object;)V
+  #17 = Class              #19            // java/io/PrintStream
+  #18 = NameAndType        #20:#21        // println:(Ljava/lang/Object;)V
+  #19 = Utf8               java/io/PrintStream
+  #20 = Utf8               println
+  #21 = Utf8               (Ljava/lang/Object;)V
+  #22 = Class              #23            // DoubleBraceInitialization
+  #23 = Utf8               DoubleBraceInitialization
+  #24 = Utf8               Code
+  #25 = Utf8               LineNumberTable
+  #26 = Utf8               main
+  #27 = Utf8               ([Ljava/lang/String;)V
+  #28 = Utf8               SourceFile
+  #29 = Utf8               DoubleBraceInitialization.java
+  #30 = Utf8               NestMembers
+  #31 = Utf8               InnerClasses
+  ....
+
+			 </pre
+                >
+
+                <p>
+                    Wait a sec, where is our strings? isn't those supposed to be
+                    constants?
+                </p>
+                <p>
+                    Actually, yes, any hard code value should end in the
+                    constant pool, but where is our strings then?
+                </p>
+                <p>
+                    and if we lock closer we'll spot a strange line in our pool,
+                    actually *lines*
+                </p>
+
+                <pre class="code-snippet">
+...
+   #7 = Class              #8             // DoubleBraceInitialization$1
+   #8 = Utf8               DoubleBraceInitialization$1
+  ...
+  #30 = Utf8               NestMembers
+  #31 = Utf8               InnerClasses
+  ....
+
+			 </pre
+                >
+
+                <p>
+                    I don't remember having an inner class in our code, where
+                    that comes from?
+                </p>
+
+                <p>
+                    Hmm.. let's look at the code section, maybe it explains
+                    something
                 </p>
 
                 <pre class="code-snippet">
@@ -405,8 +478,8 @@ InnerClasses:
 
                 <p>
                     Notice something interesting here? Unlike our previous
-                    example there's no explicit <code>add()</code> method
-                    calls or any mention to our strings
+                    example there's no explicit <code>add()</code> method calls
+                    or any mention to our strings
                 </p>
                 <p>
                     Instead we're creating a mysterious
@@ -491,9 +564,12 @@ InnerClasses:
                     serialization/deserialization harder, killing kittens, and
                     frocing Java to be someone she's clearly isn't.
                 </p>
-                
-                <p>Each time you use double brace initialisation a new class is made</p>
-                
+
+                <p>
+                    Each time you use double brace initialisation a new class is
+                    made
+                </p>
+
                 <pre class="code-snippet">
 Map source = new HashMap(){{
     put("firstName", "John");
@@ -508,9 +584,9 @@ Map source = new HashMap(){{
     }});
 }};
                 </pre>
-                
+
                 <p>... will produce these classes:</p>
-                
+
                 <pre class="code-snippet">
 Test$1$1$1.class
 Test$1$1$2.class
@@ -518,10 +594,11 @@ Test$1$1.class
 Test$1.class
 Test.class
                 </pre>
-                
-                <p>Just immagen being the poor JVM, who has to load all these classes and execute them and keeping track of them.</p>
-                
 
+                <p>
+                    Just immagen being the poor JVM, who has to load all these
+                    classes and execute them and keeping track of them.
+                </p>
 
                 <p>
                     and that's an prove that what matters most is the inside,
