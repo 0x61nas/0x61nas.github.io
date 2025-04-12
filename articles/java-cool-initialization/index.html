@@ -44,8 +44,7 @@ final var array = new ArrayList&LT;String&GT;(){{
 	add("cat");
 	add("Rust");
 }};
-			</pre
-                >
+			</pre>
 
                 <p>
                     But it isn't limited to collections, you can use
@@ -109,11 +108,12 @@ public class NormalInitialization {
                 </p>
                 <p>
                     when we compile this, javac will give us _one_
-                    <code>.class</code> file, and when we use javap on that file
+                    <code>.class</code> file, and when we use <code>javap</code> on that file
                     we get something like:
                 </p>
 
                 <pre class="code-snippet">
+...
 {
 public NormalInitialization();
     descriptor: ()V
@@ -204,10 +204,9 @@ SourceFile: "NormalInitialization.java"
                 </p>
 
                 <div class="note">
-                    Before getting our hands dirty, an important note: The JVM is a stack-based machine.
-                    Instead of registers, it uses a stack where we perform
-                    <code>push</code> and <code>pop</code> operations to make
-                    the JVM work its magic.
+                    Before getting our hands dirty, an important note: The JVM is a simple stack-based machine.
+                    Instead of registers, we have the stack where we perform
+                    <code>push</code> and <code>pop</code> operations and the locals array to store our variables.
                 </div>
 
                 <p>Let's break down the bytecode instructions:</p>
@@ -367,7 +366,7 @@ InnerClasses:
                 >
 
                 <p>
-                    The reason that i bought the full output of javap command
+                    The reason that i bought the full output of <code>javap</code> command
                     this time that because their's some magek happening here
                 </p>
 
@@ -482,7 +481,7 @@ Constant pool:
                     or any mention to our strings
                 </p>
                 <p>
-                    Instead we're creating a mysterious
+                    Instead we're creating an instance from a mysterious
                     <code>DoubleBraceInitialization$1</code> class:
                 </p>
 
@@ -519,20 +518,62 @@ Constant pool:
                 <p>
                     If we examine the generated
                     <code>DoubleBraceInitialization$1.class</code> file, we’ll
-                    see the true cost of double-brace initialization: it
-                    secretly creates an anonymous inner class that extends
-                    <code>ArrayList</code>. The second set of braces—the
-                    initialization block—becomes an instance initializer in this
-                    anonymous class, containing all our
-                    <code>add()</code> calls.
+                    see the true cost of double-brace initialization:
                 </p>
 
                 <pre class="code-snippet">
-...
+Classfile /tmp/java-lab/DoubleBraceInitialization$1.class
+    Last modified Apr 10, 2025; size 545 bytes
+    SHA-256 checksum b2aea284a68cf6aa5d97dcbc1c5bb12915db8cb6e8f1bbfe3fc152873aa7cc53
+    Compiled from "DoubleBraceInitialization.java"
+class DoubleBraceInitialization$1 extends java.util.ArrayList&LT;java.lang.String&GT;
+    minor version: 0
+    major version: 68
+    flags: (0x0020) ACC_SUPER
+    this_class: #10                         // DoubleBraceInitialization$1
+    super_class: #2                         // java/util/ArrayList
+    interfaces: 0, fields: 0, methods: 1, attributes: 5
+Constant pool:
+    #1 = Methodref          #2.#3          // java/util/ArrayList."&LT;init&GT;":()V
+    #2 = Class              #4             // java/util/ArrayList
+    #3 = NameAndType        #5:#6          // "&LT;init&GT;":()V
+    #4 = Utf8               java/util/ArrayList
+    #5 = Utf8               &LT;init&GT;
+    #6 = Utf8               ()V
+    #7 = String             #8             // Anas
+    #8 = Utf8               Anas
+    #9 = Methodref          #10.#11        // DoubleBraceInitialization$1.add:(Ljava/lang/Object;)Z
+    #10 = Class              #12            // DoubleBraceInitialization$1
+    #11 = NameAndType        #13:#14        // add:(Ljava/lang/Object;)Z
+    #12 = Utf8               DoubleBraceInitialization$1
+    #13 = Utf8               add
+    #14 = Utf8               (Ljava/lang/Object;)Z
+    #15 = String             #16            // cat
+    #16 = Utf8               cat
+    #17 = String             #18            // Rust
+    #18 = Utf8               Rust
+    #19 = Utf8               Code
+    #20 = Utf8               LineNumberTable
+    #21 = Utf8               Signature
+    #22 = Utf8               Ljava/util/ArrayList&LT;Ljava/lang/String;&GT;;
+    #23 = Utf8               SourceFile
+    #24 = Utf8               DoubleBraceInitialization.java
+    #25 = Utf8               EnclosingMethod
+    #26 = Class              #27            // DoubleBraceInitialization
+    #27 = Utf8               DoubleBraceInitialization
+    #28 = NameAndType        #29:#30        // main:([Ljava/lang/String;)V
+    #29 = Utf8               main
+    #30 = Utf8               ([Ljava/lang/String;)V
+    #31 = Utf8               NestHost
+    #32 = Utf8               InnerClasses
+{
+    DoubleBraceInitialization$1();
+    descriptor: ()V
+    flags: (0x0000)
     Code:
         stack=2, locals=1, args_size=1
             0: aload_0
-            1: invokespecial #1                  // Method java/util/ArrayList."&Lt;init&GT;":()V
+            1: invokespecial #1                  // Method java/util/ArrayList."&LT;init&GT;":()V
             4: aload_0
             5: ldc           #7                  // String Anas
             7: invokevirtual #9                  // Method add:(Ljava/lang/Object;)Z
@@ -546,14 +587,38 @@ Constant pool:
         21: invokevirtual #9                  // Method add:(Ljava/lang/Object;)Z
         24: pop
         25: return
-        ...
+        LineNumberTable:
+        line 5: 0
+        line 7: 4
+        line 8: 11
+        line 9: 18
+        line 1: 25
+}
+Signature: #22                          // Ljava/util/ArrayList&LT;Ljava/lang/String;&GT;;
+SourceFile: "DoubleBraceInitialization.java"
+EnclosingMethod: #26.#28                // DoubleBraceInitialization.main
+NestHost: class DoubleBraceInitialization
+InnerClasses:
+    #10;                                    // class DoubleBraceInitialization$1
                 </pre>
+                
+                <p>Noticed the class definition?</p>
+                
+                <pre class="code-snippet">
+class DoubleBraceInitialization$1 extends java.util.ArrayList&LT;java.lang.String&GT;
+                </pre>
+                
+                <p>it secretly creates an anonymous inner class that extends
+                <code>ArrayList</code>. The second set of braces—the
+                initialization block—becomes an instance initializer in this
+                anonymous class, containing all our
+                <code>add()</code> calls.</p>
 
                 <p>
                     This is why the main class’s bytecode appears simpler: the
                     initialization logic is offloaded to the hidden class.
                 </p>
-
+                
                 <h2>Isn't that a good thing?</h2>
 
                 <p>No.</p>
@@ -599,17 +664,40 @@ Test.class
                     Just immagen being the poor JVM, who has to load all these
                     classes and execute them and keeping track of them.
                 </p>
+                
+                <h2>The complete story</h2>
+                
+                <p>So, with some compiler hacking we can see what's the final code after the <code>annotation</code> stage or desuggring if we can say</p>
+                
+                <pre class="code-snippet">
+public class DoubleBraceInitialization {
+
+    public DoubleBraceInitialization() {
+        super();
+    }
+
+    public static void main(String[] args) {
+        final DoubleBraceInitialization$1 array = new ArrayList&LT;String&GT;(){
+
+            () {
+                super();
+            }
+            {
+                add("Anas");
+                add("cat");
+                add("Rust");
+            }
+        };
+        System.out.println(array);
+    }
+}
+                </pre>
 
                 <p>
                     and that's an prove that what matters most is the inside,
                     not the outside
                 </p>
 
-                <blockquote>
-                    "Double braces: because sometimes you want to feel like a
-                    Java wizard, even if you're just creating memory leaks with
-                    style."
-                </blockquote>
 
                 <blockquote>
                     "Every time someone uses double brace initialisation, a
