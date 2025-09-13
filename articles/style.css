@@ -1,0 +1,172 @@
+:root {
+            background-color: var(--ansi00);
+            font: message-box;
+            padding-inline: 2em;
+            color-scheme: light dark;
+            color: var(--ansi07);
+        }
+
+        body {
+            border: 1px solid var(--ansi08);
+            border-radius: 10px;
+            padding: 3em;
+            min-width: 30em;
+            max-width: 65em;
+            margin: 4em auto;
+            background-color: var(--ansi00-soft);
+            color: var(--ansi07);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin: 0 0 0.8em;
+            border-bottom: 2px solid var(--ansi12);
+            padding-bottom: 0.3em;
+            font-weight: 600;
+            color: var(--ansi14);
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--ansi12);
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: var(--ansi04);
+        }
+
+        /* ensure multiple spaces are shown correctly. */
+        td:first-child > a {
+            white-space: pre;
+        }
+
+        p {
+            font-size: 110%;
+            line-height: 1.5;
+            color: var(--ansi07);
+        }
+
+        table {
+            clear: both;
+            width: 100%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        thead {
+            font-size: 1.1em;
+            background-color: var(--ansi00-hard);
+            border-bottom: 2px solid var(--ansi12);
+        }
+
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            color: var(--ansi14);
+            font-weight: 600;
+        }
+
+        /* last modified */
+        th:last-child {
+            text-align: center;
+        }
+
+        th:hover > a {
+            text-decoration: underline;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--ansi00-hard);
+        }
+
+        td {
+            padding: 12px 15px;
+            color: var(--ansi07);
+        }
+
+        /* let 'Size' and 'Last Modified' take only as much space as they need and 'Name' all the rest */
+        td:not(:first-child) {
+            width: 0;
+            white-space: nowrap;
+        }
+
+        .up {
+            padding: 0 0.5em;
+            margin-inline-start: 20px;
+            font-weight: bold;
+            color: var(--ansi10);
+        }
+
+        .up::before {
+            content: "↟";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-inline: -20px 4px;
+            vertical-align: middle;
+            font-size: 1.2em;
+            color: var(--ansi10);
+        }
+
+        .dir::before {
+            content: "📁";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            font-size: 1.1em;
+        }
+
+        .file::before {
+            content: "📄";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            font-size: 1.1em;
+        }
+
+        /* Breadcrumb navigation */
+        .breadcrumb {
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: var(--ansi00-hard);
+            border-radius: 5px;
+            font-size: 0.95em;
+        }
+
+        .breadcrumb a {
+            color: var(--ansi12);
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--ansi08);
+            text-align: center;
+            color: var(--ansi08);
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5em;
+                margin: 2em auto;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            td, th {
+                padding: 8px 10px;
+            }
+        }
