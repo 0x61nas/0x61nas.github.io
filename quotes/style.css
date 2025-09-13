@@ -1,0 +1,44 @@
+body {
+		margin: 0 auto;
+		padding: 20px;
+		background-color: var(--ansi00);
+		color: var(--ansi07);
+		line-height: 1.6;
+}
+.container {
+		background-color: var(--ansi00-soft);
+		border-radius: 8px;
+		padding: 25px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.example {
+		margin-bottom: 30px;
+		padding: 15px;
+		border-left: 4px solid var(--ansi12);
+		background-color: var(--ansi00-hard);
+}
+blockquote {
+		margin: 20px 0;
+		padding: 15px 20px;
+		background-color: var(--ansi00-hard);
+		border-left: 5px solid var(--ansi12);
+		font-style: italic;
+}
+q {
+		color: var(--ansi15);
+		quotes: "“" "”" "‘" "’";
+}
+q::before {
+		content: open-quote;
+}
+q::after {
+		content: close-quote;
+}
+.citation {
+		display: block;
+		text-align: right;
+		font-style: normal;
+		font-weight: bold;
+		color: var(--ansi08);
+		margin-top: 10px;
+}
