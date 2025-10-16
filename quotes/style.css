@@ -1,9 +1,21 @@
+@font-face {
+	font-family: 'FixederSys2X';
+	src: url('../assets/fonts/FixederSys2x.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 		margin: 0 auto;
 		padding: 20px;
 		background-color: var(--ansi00);
+		/* background-image: url(../assets/patterns/movestarbackground_black.webp); */
 		color: var(--ansi07);
 		line-height: 1.6;
+		/* font-size: 32px; */
+		/* font-family: FixederSys2X, Helvetica; */
+		/* font-synthesis: none; */
+		font-family: 'Nimbus Sans', Verdana, Geneva, Tahoma, sans-serif;
 }
 .container {
 		background-color: var(--ansi00-soft);
