@@ -12,6 +12,8 @@ body {
 	text-rendering: optimizeLegibility;
 	font-family: "Comic Sans MS", sans-serif;
 	color: #000;
+	background-image: url(/assets/patterns/Fiesta_Bkgrd.jpg);
+	background-color: #ffffff;
 }
 
 .pixlated {
@@ -53,9 +55,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	padding: 20px 30px;
-	border: 2px solid #333;
-	background-image: url(/assets/patterns/Fiesta_Bkgrd.jpg);
-	background-color: #ffffff;
 	/* padding: 10px; */
 	position: relative;
 }
