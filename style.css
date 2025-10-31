@@ -169,7 +169,7 @@ audio {
 .badges {
   flex: 0 0 80%;
   background-color: #32313157;
-  font-size: 20px;
+  font-size: 0.8rem;
   color: #dddddd;
   image-rendering: pixelated;
 }
@@ -215,19 +215,6 @@ audio {
 	margin: 1em;
 }
 
-.webbutton {
-  image-rendering: pixelated;
-  transition-duration: 1s !important;
-  transition-delay: 0s !important;
-  box-shadow: #0000 0px 0px 5px 5px;
-  background: #0000;
-}
-
-.webbutton:hover {
-	transition-delay: 1.5s !important;
-  transform: scale(3);
-}
-
 .center {
 	margin-left: auto;
 	margin-right: auto;
@@ -239,14 +226,6 @@ audio {
 
 .big-emote {
 	width: 2.5em;
-}
-
-.sidebar-ad-section {
-	display: block;
-}
-
-.sidebar-ad-section h2 {
-	margin-bottom: unset;
 }
 
 code {
