@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>How to get the memory information on Linux</title>
+		<link href="/assets/style/reset.css" rel="stylesheet">
+    <style>
+      code { display: block; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <h2>dmidecode</h2>
+    <code>
+       doas dmidecode -t 17
+    </code>
+    <img src="./dmidecode-output.png" />
+    <hr>
+    <h2>lshw</h2>
+    <code>
+      doas lshw -short -C memory
+    </code>
+    <img src="./lshw-short-output.png" />
+    <hr>
+    <h2>lshw with more information</h2>
+    <code>
+      doas lshw -c memory
+    </code>
+    <img src="./lshw-class-output.png" />
+</body>
+</html>
