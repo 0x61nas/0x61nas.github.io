@@ -1,0 +1,25 @@
+From 3e25fdacf2ac06d7fe4f787765ed5eb819f373b8 Mon Sep 17 00:00:00 2001
+From: Anas Elgarhy <anas.elgarhy.dev@gmail.com>
+Date: Wed, 9 Apr 2025 11:05:45 +0200
+Subject: [PATCH] fix(jdk.compiler)!: ignore the Unicode escape when eating single-line comments
+
+---
+ .../share/classes/com/sun/tools/javac/parser/UnicodeReader.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/jdk.compiler/share/classes/com/sun/tools/javac/parser/UnicodeReader.java b/src/jdk.compiler/share/classes/com/sun/tools/javac/parser/UnicodeReader.java
+index c78694082..910526992 100644
+--- a/src/jdk.compiler/share/classes/com/sun/tools/javac/parser/UnicodeReader.java
++++ b/src/jdk.compiler/share/classes/com/sun/tools/javac/parser/UnicodeReader.java
+@@ -554,7 +554,7 @@ protected boolean isEOLN() {
+      */
+     protected void skipToEOLN() {
+         while (isAvailable()) {
+-            if (isEOLN()) {
++            if (!this.wasUnicodeEscape && isEOLN()) {
+                 break;
+             }
+
+--
+2.49.0
+

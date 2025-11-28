@@ -1,0 +1,272 @@
+ .../com/sun/net/httpserver/SimpleFileServer.java   | 24 +++++++-----
+ .../httpserver/simpleserver/FileServerHandler.java | 43 +++++++++++-----------
+ .../simpleserver/SimpleFileServerImpl.java         |  9 ++++-
+ .../simpleserver/resources/simpleserver.properties |  7 +++-
+ 4 files changed, 48 insertions(+), 35 deletions(-)
+
+diff --git a/src/jdk.httpserver/share/classes/com/sun/net/httpserver/SimpleFileServer.java b/src/jdk.httpserver/share/classes/com/sun/net/httpserver/SimpleFileServer.java
+index 551f24d3c..a07aa3959 100644
+--- a/src/jdk.httpserver/share/classes/com/sun/net/httpserver/SimpleFileServer.java
++++ b/src/jdk.httpserver/share/classes/com/sun/net/httpserver/SimpleFileServer.java
+@@ -180,9 +180,11 @@ public enum OutputLevel {
+      * {@code System.out}. If {@link OutputLevel#NONE OutputLevel.NONE} is
+      * given, no log messages are printed.
+      *
+-     * @param addr          the address to listen on
+-     * @param rootDirectory the root directory to be served, must be an absolute path
+-     * @param outputLevel   the log message output level
++     * @param addr            the address to listen on
++     * @param rootDirectory   the root directory to be served, must be an absolute
++     *                        path
++     * @param resolveSymLinks resolve symbolic-links if true
++     * @param outputLevel     the log message output level
+      * @return an HttpServer
+      * @throws IllegalArgumentException if root does not exist, is not absolute,
+      *         is not a directory, or is not readable
+@@ -190,13 +192,14 @@ public enum OutputLevel {
+      * @throws NullPointerException if any argument is null
+      */
+     public static HttpServer createFileServer(InetSocketAddress addr,
+-                                              Path rootDirectory,
+-                                              OutputLevel outputLevel) {
++            Path rootDirectory,
++            boolean resolveSymLinks,
++            OutputLevel outputLevel) {
+         Objects.requireNonNull(addr);
+         Objects.requireNonNull(rootDirectory);
+         Objects.requireNonNull(outputLevel);
+         try {
+-            var handler = FileServerHandler.create(rootDirectory, MIME_TABLE);
++            var handler = FileServerHandler.create(rootDirectory, resolveSymLinks, MIME_TABLE);
+             if (outputLevel.equals(OutputLevel.NONE))
+                 return HttpServer.create(addr, 0, "/", handler);
+             else
+@@ -225,15 +228,18 @@ public static HttpServer createFileServer(InetSocketAddress addr,
+      * method, and will reply with a {@code 405} response code for requests with
+      * any other method.
+      *
+-     * @param rootDirectory the root directory to be served, must be an absolute path
++     * @param rootDirectory   the root directory to be served, must be an absolute
++     *                        path
++     * @param resolveSymLinks resolve symbolic-links if true
++     *
+      * @return a file handler
+      * @throws IllegalArgumentException if rootDirectory does not exist,
+      *         is not absolute, is not a directory, or is not readable
+      * @throws NullPointerException if the argument is null
+      */
+-    public static HttpHandler createFileHandler(Path rootDirectory) {
++    public static HttpHandler createFileHandler(Path rootDirectory, boolean resolveSymLinks) {
+         Objects.requireNonNull(rootDirectory);
+-        return FileServerHandler.create(rootDirectory, MIME_TABLE);
++        return FileServerHandler.create(rootDirectory, resolveSymLinks, MIME_TABLE);
+     }
+ 
+     /**
+diff --git a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/FileServerHandler.java b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/FileServerHandler.java
+index 6e2683737..09bbb3b0c 100644
+--- a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/FileServerHandler.java
++++ b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/FileServerHandler.java
+@@ -61,10 +61,11 @@ public final class FileServerHandler implements HttpHandler {
+     private static final String FAVICON_LAST_MODIFIED = "Mon, 23 May 1995 11:11:11 GMT";
+ 
+     private final Path root;
++    private final boolean resolveSymLinks;
+     private final UnaryOperator<String> mimeTable;
+     private final Logger logger;
+ 
+-    private FileServerHandler(Path root, UnaryOperator<String> mimeTable) {
++    private FileServerHandler(Path root, boolean resolveSymLinks, UnaryOperator<String> mimeTable) {
+         root = root.normalize();
+         if (!Files.exists(root))
+             throw new IllegalArgumentException("Path does not exist: " + root);
+@@ -75,6 +76,7 @@ private FileServerHandler(Path root, UnaryOperator<String> mimeTable) {
+         if (!Files.isReadable(root))
+             throw new IllegalArgumentException("Path is not readable: " + root);
+         this.root = root;
++        this.resolveSymLinks = resolveSymLinks;
+         this.mimeTable = mimeTable;
+         this.logger = System.getLogger("com.sun.net.httpserver");
+     }
+@@ -85,14 +87,14 @@ private FileServerHandler(Path root, UnaryOperator<String> mimeTable) {
+     private static final HttpHandler METHOD_NOT_ALLOWED_HANDLER =
+             HttpHandlers.of(405, Headers.of("Allow", "HEAD, GET"), "");
+ 
+-    public static HttpHandler create(Path root, UnaryOperator<String> mimeTable) {
++    public static HttpHandler create(Path root, boolean resolveSymLinks, UnaryOperator<String> mimeTable) {
+         var fallbackHandler = HttpHandlers.handleOrElse(
+                 r -> UNSUPPORTED_METHODS.contains(r.getRequestMethod()),
+                 METHOD_NOT_ALLOWED_HANDLER,
+                 NOT_IMPLEMENTED_HANDLER);
+         return HttpHandlers.handleOrElse(
+                 r -> SUPPORTED_METHODS.contains(r.getRequestMethod()),
+-                new FileServerHandler(root, mimeTable), fallbackHandler);
++                new FileServerHandler(root, resolveSymLinks, mimeTable), fallbackHandler);
+     }
+ 
+     private void handleHEAD(HttpExchange exchange, Path path) throws IOException {
+@@ -209,9 +211,9 @@ private static String relativeRequestPath(HttpExchange exchange) {
+         return request.substring(context.length());
+     }
+ 
+-    private Path mapToPath(HttpExchange exchange, Path root) {
++    private Path mapToPath(HttpExchange exchange, Path root, boolean resolveSymLinks) {
+         try {
+-            assert root.isAbsolute() && Files.isDirectory(root);  // checked during creation
++            assert root.isAbsolute() && Files.isDirectory(root); // checked during creation
+             String uriPath = relativeRequestPath(exchange);
+             String[] pathSegment = uriPath.split("/");
+ 
+@@ -219,11 +221,11 @@ private Path mapToPath(HttpExchange exchange, Path root) {
+             Path path = root;
+             for (var segment : pathSegment) {
+                 if (!URIPathSegment.isSupported(segment)) {
+-                    return null;  // stop resolution, null results in 404 response
++                    return null; // stop resolution, null results in 404 response
+                 }
+                 path = path.resolve(segment);
+-                if (!Files.isReadable(path) || isHiddenOrSymLink(path)) {
+-                    return null;  // stop resolution
++                if (!isServeable(path, resolveSymLinks)) {
++                    return null; // stop resolution
+                 }
+             }
+             path = path.normalize();
+@@ -290,7 +292,7 @@ private void listFiles(HttpExchange exchange, Path path, boolean writeBody)
+         var respHdrs = exchange.getResponseHeaders();
+         respHdrs.set("Content-Type", "text/html; charset=UTF-8");
+         respHdrs.set("Last-Modified", getLastModified(path));
+-        var bodyBytes = dirListing(exchange, path).getBytes(UTF_8);
++        var bodyBytes = dirListing(exchange, path, resolveSymLinks).getBytes(UTF_8);
+         if (writeBody) {
+             exchange.sendResponseHeaders(200, bodyBytes.length);
+             try (OutputStream os = exchange.getResponseBody()) {
+@@ -324,7 +326,7 @@ private static String hrefListItemFor(URI uri) {
+         return hrefListItemTemplate.formatted(uri.toASCIIString(), sanitize.apply(uri.getPath()));
+     }
+ 
+-    private static String dirListing(HttpExchange exchange, Path path) throws IOException {
++    private static String dirListing(HttpExchange exchange, Path path, boolean resolveSymLinks) throws IOException {
+         String dirListing = ResourceBundleHelper.getMessage("html.dir.list");
+         var sb = new StringBuilder(openHTML
+                 + "<h1>" + dirListing + " "
+@@ -332,9 +334,9 @@ private static String dirListing(HttpExchange exchange, Path path) throws IOExce
+                 + "</h1>\n"
+                 + "<ul>\n");
+         try (var paths = Files.list(path)) {
+-            paths.filter(p -> Files.isReadable(p) && !isHiddenOrSymLink(p))
+-                 .map(p -> path.toUri().relativize(p.toUri()))
+-                 .forEach(uri -> sb.append(hrefListItemFor(uri)));
++            paths.filter(p -> isServeable(p, resolveSymLinks))
++                    .map(p -> path.toUri().relativize(p.toUri()))
++                    .forEach(uri -> sb.append(hrefListItemFor(uri)));
+         }
+         sb.append("</ul>\n");
+         sb.append(closeHTML);
+@@ -348,12 +350,9 @@ private static String getLastModified(Path path) throws IOException {
+                 .format(DateTimeFormatter.RFC_1123_DATE_TIME);
+     }
+ 
+-    private static boolean isHiddenOrSymLink(Path path) {
+-        try {
+-            return Files.isHidden(path) || Files.isSymbolicLink(path);
+-        } catch (IOException e) {
+-            throw new UncheckedIOException(e);
+-        }
++    private static boolean isServeable(Path path, boolean resolveSymLinks) {
++        var isSym = Files.isSymbolicLink(path);
++        return Files.isReadable(path) && (isSym && resolveSymLinks || !isSym);
+     }
+ 
+     // Default for unknown content types, as per RFC 2046
+@@ -388,10 +387,10 @@ public void handle(HttpExchange exchange) throws IOException {
+         try (exchange) {
+             discardRequestBody(exchange);
+             boolean isHeadRequest = exchange.getRequestMethod().equals("HEAD");
+-            Path path = mapToPath(exchange, root);
++            Path path = mapToPath(exchange, root, resolveSymLinks);
+             if (path != null) {
+-                exchange.setAttribute("request-path", path.toString());  // store for OutputFilter
+-                if (!Files.exists(path) || !Files.isReadable(path) || isHiddenOrSymLink(path)) {
++                exchange.setAttribute("request-path", path.toString()); // store for OutputFilter
++                if (!Files.exists(path) || !isServeable(path, resolveSymLinks)) {
+                     handleNotFound(exchange);
+                 } else if (isHeadRequest) {
+                     handleHEAD(exchange, path);
+diff --git a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/SimpleFileServerImpl.java b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/SimpleFileServerImpl.java
+index e61dc027f..9200f783c 100644
+--- a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/SimpleFileServerImpl.java
++++ b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/SimpleFileServerImpl.java
+@@ -91,6 +91,7 @@ static int start(PrintWriter writer, String launcher, String[] args) {
+         InetAddress addr = LOOPBACK_ADDR;
+         int port = DEFAULT_PORT;
+         Path root = DEFAULT_ROOT;
++        boolean resolveSym = DEFAULT_RESOLVE_SYMLINKS;
+         OutputLevel outputLevel = DEFAULT_OUTPUT_LEVEL;
+ 
+         // parse options
+@@ -120,6 +121,8 @@ static int start(PrintWriter writer, String launcher, String[] args) {
+                                 (optionArg = options.next()).toUpperCase(Locale.ROOT));
+                     case "-p", "--port" ->
+                         port = Integer.parseInt(optionArg = options.next());
++                    case "-s", "--resolve-sym" ->
++                        resolveSym = true;
+                     default -> throw new AssertionError();
+                 }
+             }
+@@ -143,7 +146,7 @@ static int start(PrintWriter writer, String launcher, String[] args) {
+         try {
+             root = realPath(root);
+             var socketAddr = new InetSocketAddress(addr, port);
+-            var server = SimpleFileServer.createFileServer(socketAddr, root, outputLevel);
++            var server = SimpleFileServer.createFileServer(socketAddr, root, resolveSym, outputLevel);
+             server.start();
+             out.printStartMessage(root, server);
+         } catch (Throwable t) {
+@@ -228,7 +231,9 @@ void showOption(String option) {
+                 case "-o", "--output" ->
+                         writer.println(ResourceBundleHelper.getMessage("opt.output"));
+                 case "-p", "--port" ->
+-                        writer.println(ResourceBundleHelper.getMessage("opt.port"));
++                    writer.println(ResourceBundleHelper.getMessage("opt.port"));
++                case "-s", "--resolve-sym" ->
++                    writer.println(ResourceBundleHelper.getMessage("opt.resolve-sym"));
+             }
+         }
+ 
+diff --git a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/resources/simpleserver.properties b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/resources/simpleserver.properties
+index fc5a9ec60..abeb3711c 100644
+--- a/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/resources/simpleserver.properties
++++ b/src/jdk.httpserver/share/classes/sun/net/httpserver/simpleserver/resources/simpleserver.properties
+@@ -24,12 +24,12 @@
+ #
+ 
+ usage.java=\
+-Usage: java -m jdk.httpserver [-b bind address] [-p port] [-d directory]\n\
++Usage: java -m jdk.httpserver [-b bind address] [-p port] [-d directory] [-s]\n\
+ \                              [-o none|info|verbose] [-h to show options]\n\
+ \                              [-version to show version information]
+ 
+ usage.jwebserver=\
+-Usage: jwebserver [-b bind address] [-p port] [-d directory]\n\
++Usage: jwebserver [-b bind address] [-p port] [-d directory] [-s]\n\
+ \                  [-o none|info|verbose] [-h to show options]\n\
+ \                  [-version to show version information]
+ 
+@@ -43,6 +43,7 @@ Options:\n\
+ -d, --directory       - Directory to serve. Default: current directory.\n\
+ -o, --output          - Output format. none|info|verbose. Default: info.\n\
+ -p, --port            - Port to listen on. Default: 8000.\n\
++-s, --resolve-sym     - Resolve the symbolic-links. \n\
+ -h, -?, --help        - Prints this help message and exits.\n\
+ -version, --version   - Prints version information and exits.\n\
+ To stop the server, press Ctrl + C.
+@@ -56,6 +57,8 @@ opt.output=\
+ -o, --output          - Output format. none|info|verbose. Default: info.
+ opt.port=\
+ -p, --port            - Port to listen on. Default: 8000.
++opt.resolve-sym=\
++-s, --resolve-sym     - Resolve the symbolic-links. \n\
+ 
+ loopback.info=\
+ Binding to loopback by default. For all interfaces use "-b 0.0.0.0" or "-b ::".
