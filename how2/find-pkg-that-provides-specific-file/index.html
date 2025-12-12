@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>How to find the package that have a specific file</title>
+		<link href="/assets/style/reset.css" rel="stylesheet">
+    <style>
+      code { display: block; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+    <h2>pacman</h2>
+    <p>First update the information database</p>
+    <code>
+       doas pacman -Fy
+    </code>
+    <p>Then you can search for the file with</p>
+    <code>
+       pacman -F $filename
+    </code>
+    <p>To search with a regular exepretion use: </p>
+    <code>
+       pacman -Fx $expr
+    </code>
+    <p>the google way: </p>
+    <code>
+      site:www.archlinux.org/packages/ bin/filename
+    </code>
+    <p>and in case it is in AUR instead of an official package: </p>
+    <code>
+      site:aur.archlinux.org/packages/ bin/filename
+    </code>
+    <hr>
+
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://wiki.archlinux.org/title/Pacman/Rosetta">pacman/Rosetta</a></li>
+    </ul>
+</body>
+</html>
