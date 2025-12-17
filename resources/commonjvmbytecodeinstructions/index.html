@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Common Bytecode Instructions table</title>
+    <style>
+    body {padding: 0; margin: 0; width: 100vw; height: 100vh; font-family: Lora Variable,serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji; text-underline-offset: 3px; font-size: 1.125rem;}
+    th, td { border: 1px solid rgb(180,166,155); }
+    th { background-color: rgba(0,0,0,.03); font-weight: 700; }
+    thead tr:last-child th { border-bottom-color: rgb(112,97,86); }
+    </style>
+  </head>
+  <body>
+    <h1>Common Bytecode Instructions</h1>
+    <table>
+      <thead>
+        <tr>
+          <th><strong>Category</strong></th>
+          <th><strong>Instruction</strong></th>
+          <th><strong>Description</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Control Flow</td>
+          <td><code>tableswitch</code></td>
+          <td><code>switch</code> jump table</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>lookupswitch</code></td>
+          <td><code>switch</code> lookup table</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>goto</code></td>
+          <td>Unconditional jump to an offset</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>if_icmpeq</code>/<code>if_icmpne</code></td>
+          <td>Branching based on integer comparison</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>ifeq</code>, <code>ifne</code></td>
+          <td>Branching based on comparison with <code>0</code></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Arithmetic</td>
+          <td><code>iadd</code>, <code>isub</code></td>
+          <td>Add/subtract two integers from the operand stack</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>imul</code>, <code>idiv</code></td>
+          <td>Multiply/divide two integers from the operand stack</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>iinc</code></td>
+          <td>Increment a local variable by a constant value</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Stack Operations</td>
+          <td><code>nop</code></td>
+          <td>No operation</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>dup</code></td>
+          <td>Duplicate the top value</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>pop</code></td>
+          <td>Remove the top value</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>swap</code></td>
+          <td>Swap the top two values</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Variable Access</td>
+          <td><code>aload</code></td>
+          <td>Load a reference onto the stack from a local variable</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>astore</code></td>
+          <td>Store a reference from the stack into a local variable</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>iload</code></td>
+          <td>Load an integer from a local variable onto the stack</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>istore</code></td>
+          <td>Store an integer from the stack into a local variable</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Constants</td>
+          <td><code>ldc</code></td>
+          <td>Load a value from the constant pool</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>bipush</code></td>
+          <td>Push a single-byte integer onto the stack</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>sipush</code></td>
+          <td>Push a short-integer onto the stack</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>aconst_null</code></td>
+          <td>Pushes a <code>null</code> reference onto the stack</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Method Invocation</td>
+          <td><code>invokevirtual</code></td>
+          <td>Call a virtual (instance) method</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>invokestatic</code></td>
+          <td>Call a static method</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>invokespecial</code></td>
+          <td>Call a private or superclass method, or constructor</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>invokedynamic</code></td>
+          <td>Dynamically resolve method calls at runtime</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Memory Management</td>
+          <td><code>new</code></td>
+          <td>Allocate memory for an object</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>dup</code></td>
+          <td>Duplicate a reference for use in constructors</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>monitorenter</code></td>
+          <td>Acquire a monitor (used for <code>synchronized</code> blocks)</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><code>monitorexit</code></td>
+          <td>Release a monitor</td> 
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td></td>
+          <td></td>
+          </tr>
+        <tr>
+          <td>Exceptions Handling</td>
+          <td><code>athrow</code></td>
+          <td>Throw an exception</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p>These are not all the available 201 Bytecode instructions, although some are just variations, like iload_&lt;n&gt;.</p>
+    <p>The complete list of instructions is available in <a href="https://docs.oracle.com/javase/specs/jvms/se23/html/jvms-6.html">chapter 6 of the JVM Specification.</a></p>
+  </body>
+</html>
