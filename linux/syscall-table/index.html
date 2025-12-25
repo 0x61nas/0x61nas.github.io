@@ -160,7 +160,7 @@
                 <article role="article">
                     <h1 class="entry-title">Searchable Linux Syscall Table</h1>
 
-                    <p>This table is derived from the <a href="https://github.com/torvalds/linux/blob/v6.18-rc5/arch/x86/entry/syscalls/syscall_64.tbl"><code>syscall_64.tbl</code> file</a> in the <strong>Linux 6.18-rc5 kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v6.18-rc5/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
+                    <p>This table is derived from the <a href="https://github.com/torvalds/linux/blob/v6.19-rc2/arch/x86/entry/syscalls/syscall_64.tbl"><code>syscall_64.tbl</code> file</a> in the <strong>Linux 6.19-rc2 kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v6.19-rc2/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
 
                     <p>Syscalls are implemented in functions named as in the <em>Entry point</em> column, generated with <code>DEFINE_SYSCALLx</code> macros. For more information, see <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">Documentation/process/adding-syscalls.rst</a>.</p>
 
@@ -14684,6 +14684,50 @@
                                             <td>size_t usize</td>
                                             
                                             <td>unsigned int at_flags</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        
+                        
+                        </tr>
+
+                        
+
+                        <tr class="tbls-entry-collapsed">
+                            <td>470</td>
+                            <td>listns</td>
+                            <td><a href="https://manpages.debian.org/unstable/manpages-dev/listns.2.en.html" target="_blank">listns(2)</a>, <a href="https://man7.org/linux/man-pages/man2/listns.2.html" target="_blank">listns(2)</a></td>
+                            <td><a href="https://github.com/search?q=repo%3Atorvalds%2Flinux+%2FSYSCALL_DEFINE%5B%5E%2C%5D*%5Cblistns%5Cb%2F&type=code" target="_blank">sys_listns</a></td>
+                        </tr>
+
+                        <tr class="tbls-arguments-collapsed">
+                        
+                        
+                            <td colspan="4">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            
+                                            <td>%rdi</td>
+                                            
+                                            <td>%rsi</td>
+                                            
+                                            <td>%rdx</td>
+                                            
+                                            <td>%r10</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td>const struct ns_id_req *req</td>
+                                            
+                                            <td>u64 *ns_ids</td>
+                                            
+                                            <td>size_t nr_ns_ids</td>
+                                            
+                                            <td>unsigned int flags</td>
                                             
                                         </tr>
                                     </tbody>
