@@ -4,4 +4,5 @@ push FLAGS="-u" BRANSH="aurora":
     git push {{FLAGS}} codeberg {{BRANSH}} 
     git push {{FLAGS}} disroot {{BRANSH}} 
     git push {{FLAGS}} tangled {{BRANSH}} 
+    git push {{FLAGS}} codefloe {{BRANSH}} 
     git push {{FLAGS}} gitea {{BRANSH}} 
