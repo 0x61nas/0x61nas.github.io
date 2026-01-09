@@ -1,6 +1,7 @@
 push FLAGS="-u" BRANSH="aurora":
     git push {{FLAGS}} origin {{BRANSH}} 
     git push {{FLAGS}} gitlab {{BRANSH}} 
-    git push {{FLAGS}} gitea {{BRANSH}} 
     git push {{FLAGS}} codeberg {{BRANSH}} 
     git push {{FLAGS}} disroot {{BRANSH}} 
+    git push {{FLAGS}} tangled {{BRANSH}} 
+    git push {{FLAGS}} gitea {{BRANSH}} 
