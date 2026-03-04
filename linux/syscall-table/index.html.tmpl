@@ -6,9 +6,9 @@
     <title>{{ .Title }} </title>
     <meta name="author" content="Anas Elgarhy">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A searchable Linux system call table for the x86-64 architecture, with arguments and links to manual and implementation.">
+    <meta name="description" content="A searchable Linux system call table for the {{ .Name }} architecture, with arguments and links to manual and implementation.">
 
-    <link rel="canonical" href="https://thatsillyman.win/linux/syscall-table/">
+    <link rel="canonical" href="{{ .PageURL }}">
     <link href="screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -139,23 +139,25 @@
         <div id="content">
             <div>
                 <article role="article">
-                    <h1 class="entry-title">Searchable Linux Syscall Table</h1>
+                    <h1 class="entry-title">Searchable Linux Syscall Table <small>{{ .Name }}</small></h1>
 
-                    <p>This table is derived from the <a href="https://github.com/torvalds/linux/blob/v{{ .Version }}/arch/x86/entry/syscalls/syscall_64.tbl"><code>syscall_64.tbl</code> file</a> in the <strong>Linux {{ .Version }} kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v{{ .Version }}/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
+                    <p>This table is derived from the <a href="{{ .TableURL }}"><code>{{ .TableName }}</code> file</a> in the <strong>Linux {{ .Version }} kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v{{ .Version }}/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
 
                     <p>Syscalls are implemented in functions named as in the <em>Entry point</em> column, generated with <code>DEFINE_SYSCALLx</code> macros. For more information, see <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">Documentation/process/adding-syscalls.rst</a>.</p>
 
                     <p>To learn more, read the <a href="https://manpages.debian.org/unstable/manpages-dev/syscall.2.en.html"><code>syscall(2)</code></a> and <a href="https://manpages.debian.org/unstable/manpages-dev/syscalls.2.en.html"><code>syscalls(2)</code></a> man pages.</p>
 
-                    <p><strong>Click on a row</strong> to reveal the arguments list. Search using the fuzzy filter box.</p>
+                    <p>This table is available for <a href="https://thatsillyman.win/linux/syscall-table/x86_64/"><code>X86-64</code></a>, <a href="https://thatsillyman.win/linux/syscall-table/arm64/"><code>ARM64</code></a>, and <a href="https://thatsillyman.win/linux/syscall-table/riscv/"><code>RISCV</code></a>.</p>
+
+                    <p><strong>Click on a row</strong> to reveal the arguments list. Search using the fuzzy filter box or the Ctrl+F.</p>
 
                     <p class="tbls-filter">Filter: <input type="text"></p>
 
-                    <p>The <strong>return value</strong> is placed in <code>%rax</code>.</p>
+                    <p>The <strong>return value</strong> is placed in <code>{{ .ReturnReg }}</code>.</p>
 
                     <div class="tbls-table">
                         <div class="tbls-row tbls-header">
-                            <div>%rax</div>
+                            <div>{{ .SyscallReg }}</div>
                             <div>Name</div>
                             <div>Manual</div>
                             <div>Entry point</div>
