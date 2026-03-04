@@ -1,7 +1,6 @@
 :root {
 	--link-color: #212288;
 	--link-hover-color: #112288;
-  --marquee-duration: 45s;
 }
 
 html {
@@ -10,7 +9,7 @@ html {
 
 body {
 	text-rendering: optimizeLegibility;
-	font-family: "Comic Sans MS", sans-serif;
+	font-family: sans-serif;
 	color: #000;
 	background-image: url(/assets/patterns/Fiesta_Bkgrd.jpg);
 	background-color: #ffffff;
@@ -158,15 +157,6 @@ audio {
 	background-color: white;
 }
 
-.floating-panel {
-  position: sticky;
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  height: 30px;
-  bottom: 0;
-  z-index: 1000;
-}
 
 .badges {
   flex: 0 0 80%;
@@ -174,42 +164,6 @@ audio {
   font-size: 0.8rem;
   color: #dddddd;
   image-rendering: pixelated;
-}
-
-.marquee {
-  overflow: hidden;
-}
-
-.marquee::after {
-  position: absolute;
-  left: 100%;
-}
-
-/* Track: holds two identical copies side-by-side */
-.marquee_track {
-  display: flex;
-  width: max-content;         /* shrink to content width */
-  animation: marquee var(--marquee-duration) linear infinite;
-  will-change: transform;
-}
-
-.marquee_track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(50%); }
-  50%   { transform: translateX(-100%); }
-  100% { transform: translateX(50%); }
-}
-
-.floating-audio {
-  flex: 1;
-  margin-left: 2px;
-  width: 25%;
-  z-index: 1000;
-  background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .badge-botton {
