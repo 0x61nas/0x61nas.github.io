@@ -21,6 +21,7 @@ type syscall struct {
 
 type archConfig struct {
 	Name      string
+	Arch      string
 	Title     string
 	PageURL   string
 	TableURL  string
@@ -45,6 +46,7 @@ func main() {
 	configs := []archConfig{
 		{
 			Name:      "x86_64",
+			Arch:      "x86_64",
 			Title:     "Searchable Linux Syscall Table for x86_64",
 			PageURL:   "https://thatsillyman.win/linux/syscall-table/",
 			TableURL:  KernelBase + "/arch/x86/entry/syscalls/syscall_64.tbl",
@@ -56,6 +58,7 @@ func main() {
 		},
 		{
 			Name:      "arm64",
+			Arch:      "ARM64",
 			Title:     "Searchable Linux Syscall Table for ARM64",
 			PageURL:   "https://thatsillyman.win/linux/syscall-table/arm64",
 			TableURL:  KernelBase + "/include/uapi/asm-generic/unistd.h",
@@ -67,6 +70,7 @@ func main() {
 		},
 		{
 			Name:      "riscv",
+			Arch:      "RISC-V",
 			Title:     "Searchable Linux Syscall Table for RISC-V",
 			PageURL:   "https://thatsillyman.win/linux/syscall-table/riscv",
 			TableURL:  KernelBase + "/include/uapi/asm-generic/unistd.h",
@@ -105,7 +109,8 @@ func generatePage(conf archConfig, headers []byte) {
 	defer f.Close()
 
 	tmpl.Execute(f, map[string]interface{}{
-		"Title":     conf.Title,
+		"Title": conf.Title,
+		"Arch": conf.Arch, 
 		"PageURL": conf.PageURL,
 		"TableURL": conf.TableURL,
 		"TableName": conf.TableName,

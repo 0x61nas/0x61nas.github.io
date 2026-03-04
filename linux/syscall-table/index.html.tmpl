@@ -6,7 +6,7 @@
     <title>{{ .Title }} </title>
     <meta name="author" content="Anas Elgarhy">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A searchable Linux system call table for the {{ .Name }} architecture, with arguments and links to manual and implementation.">
+    <meta name="description" content="A searchable Linux system call table for the {{ .Arch }} architecture, with arguments and links to manual and implementation.">
 
     <link rel="canonical" href="{{ .PageURL }}">
     <link href="screen.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -139,7 +139,7 @@
         <div id="content">
             <div>
                 <article role="article">
-                    <h1 class="entry-title">Searchable Linux Syscall Table <small>{{ .Name }}</small></h1>
+                    <h1 class="entry-title">Searchable Linux Syscall Table <small>{{ .Arch }}</small></h1>
 
                     <p>This table is derived from the <a href="{{ .TableURL }}"><code>{{ .TableName }}</code> file</a> in the <strong>Linux {{ .Version }} kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v{{ .Version }}/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
 
