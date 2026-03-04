@@ -4,11 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Searchable Linux Syscall Table for x86_64</title>
-    <meta name="author" content="Filippo Valsorda">
+    <meta name="author" content="Anas Elgarhy">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A searchable Linux system call table for the x86-64 architecture, with arguments and links to manual and implementation.">
 
-    <link rel="canonical" href="https://filippo.io/linux-syscall-table/">
+    <link rel="canonical" href="https://thatsillyman.win/linux/syscall-table/">
     <link href="screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -160,7 +160,7 @@
                 <article role="article">
                     <h1 class="entry-title">Searchable Linux Syscall Table</h1>
 
-                    <p>This table is derived from the <a href="https://github.com/torvalds/linux/blob/v6.19-rc2/arch/x86/entry/syscalls/syscall_64.tbl"><code>syscall_64.tbl</code> file</a> in the <strong>Linux 6.19-rc2 kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v6.19-rc2/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
+                    <p>This table is derived from the <a href="https://github.com/torvalds/linux/blob/v7.0-rc2/arch/x86/entry/syscalls/syscall_64.tbl"><code>syscall_64.tbl</code> file</a> in the <strong>Linux 7.0-rc2 kernel</strong> source, and the <a href="https://github.com/torvalds/linux/blob/v7.0-rc2/include/linux/syscalls.h"><code>syscalls.h</code> header file</a>. The generator is available <a href="https://github.com/0x61nas/0x61nas.github.io/linux/syscall-table">on GitHub</a>.</p>
 
                     <p>Syscalls are implemented in functions named as in the <em>Entry point</em> column, generated with <code>DEFINE_SYSCALLx</code> macros. For more information, see <a href="https://www.kernel.org/doc/html/latest/process/adding-syscalls.html">Documentation/process/adding-syscalls.rst</a>.</p>
 
@@ -11545,7 +11545,7 @@
                                             
                                             <td>unsigned *node</td>
                                             
-                                            <td>struct getcpu_cache *cache</td>
+                                            <td>void *cache</td>
                                             
                                         </tr>
                                     </tbody>
@@ -14733,6 +14733,23 @@
                                     </tbody>
                                 </table>
                             </td>
+                        
+                        
+                        </tr>
+
+                        
+
+                        <tr class="tbls-entry-collapsed">
+                            <td>471</td>
+                            <td>rseq_slice_yield</td>
+                            <td><a href="https://manpages.debian.org/unstable/manpages-dev/rseq_slice_yield.2.en.html" target="_blank">rseq_slice_yield(2)</a>, <a href="https://man7.org/linux/man-pages/man2/rseq_slice_yield.2.html" target="_blank">rseq_slice_yield(2)</a></td>
+                            <td><a href="https://github.com/search?q=repo%3Atorvalds%2Flinux+%2FSYSCALL_DEFINE%5B%5E%2C%5D*%5Cbrseq_slice_yield%5Cb%2F&type=code" target="_blank">sys_rseq_slice_yield</a></td>
+                        </tr>
+
+                        <tr class="tbls-arguments-collapsed">
+                        
+                        
+                            <td colspan="3">No arguments</td>
                         
                         
                         </tr>
