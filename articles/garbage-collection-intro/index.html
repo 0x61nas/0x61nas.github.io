@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Garbage Collection</title>
+	<link rel="stylesheet" href="../../assets/style/colors/gruvbox.css">
+	<link rel="stylesheet" href="../../assets/style/article.css">
+</head>
+
+<body>
+	<div class="article-container">
+		<header class="article-header">
+			<h1 class="article-title">Garbage Collection<span class="cursor">_</span></h1>
+			<div class="article-meta">Posted on: January 24, 2023</div>
+		</header>
+
+		<div class="article-content">
+
+			<h3 dir="rtl" lang="ar">ايه هي الـ Garbage Collection ؟</h3>
+			<p dir="rtl" lang="ar">
+				الـ Garbage Collection هي عملية إدارة أوتوماتيكية للذاكرة (automatic memory management)،
+				وبتستخدمها معظم لغات البرمجة الحديثة زي Python, Java, Golang..etc
+				عشان تسهل عملية تطوير البرامج من غير ما نهتم بتفاصيل الـ low-level memory.
+			</p>
+
+			<br>
+
+			<h3 dir="rtl" lang="ar">ايه فايدة الـ Garbage Collector</h3>
+
+			<p dir="rtl" lang="ar">
+				فـ لغات زي الـ ++C/C مفيهاش Garbage Collector فالمبرمج بيكون عليه مسؤولية
+				الـ allocation و الـ deallocation للـ memory؛
+				لكن ايه اللي هيحصل لو المبرمج نسي يعمل deallocate للـ variables اللي مبقتش مستخدمة؟
+				أو عمل deallocate بالغلط لـ variable لسا بيستخدم؟
+			</p>
+
+			<h5 dir="rtl" lang="ar">في حال نسيان تنظيف الذاكرة (Forgetting to free the memory):</h5>
+
+			<p dir="rtl" lang="ar">
+				لما ميتمش تنظيف الـ memory بعد استخدامها دا بيأدي لـ
+				<a href="https://en.wikipedia.org/wiki/Memory_leak" target="_blank">memory leaks</a>،
+				يعني تعمل allocate وتنسا تعمل deallocate،
+				وده بيقلل أداء الكمبيوتر لأن مساحة الـ memory بتقل وكمان يخلي البرنامج vulnerable.
+			</p>
+
+			<h5 dir="rtl" lang="ar">في حال التنظيف المبكر للذاكرة (Freeing the memory too soon):</h5>
+
+			<p dir="rtl" lang="ar">
+				لما يتم تنظيف الـ memory وهي مازالت بتستخدم في البرنامج،
+				البرنامج هيـ crash لما يحاول يوصل لقيمة مش موجودة،
+				أو يكون في variables بتشير للـ memory اللي تم تنظيفها،
+				وساعتها يحصل
+				<a href="https://en.wikipedia.org/wiki/Dangling_pointer" target="_blank">dangling pointers</a>
+				(مؤشرات بتشير لمكان غير صالح في الذاكرة).
+			</p>
+
+			<p dir="rtl" lang="ar">
+				المشاكل دي بيحلها الـ Garbage Collector،
+				يعني المبرمج مش محتاج يشيل هم تنظيف الذاكرة بعد الـ allocation
+				لأن النظام بيعمل ده بشكل أوتوماتيكي.
+			</p>
+
+			<br>
+
+			<h3 dir="rtl" lang="ar">تكلفة الـ Garbage Collection</h3>
+
+			<p dir="rtl" lang="ar">
+				الـ Garbage Collection بيحتاج مساحة إضافية عشان يتابع الـ pointers في البرنامج،
+				لأنه مسؤول عن تتبع عدد الـ references لكل object.
+				لو عدد الـ references بقى صفر، يبقى الـ object مش مستخدم،
+				وبالتالي يتم مسحه (freeing).
+			</p>
+
+			<p dir="rtl" lang="ar">
+				أثناء عملية الفحص دي، الـ Garbage Collector ممكن يوقف تنفيذ البرنامج مؤقتًا
+				عشان يمسح الـ objects غير المستخدمة،
+				وده سبب إن الأداء في بعض الأحيان يكون أسرع في اللغات اللي مفيهاش Garbage Collection.
+			</p>
+
+		</div>
+
+		<footer class="article-footer">
+			<p>© 2023 0x61nas</p>
+		</footer>
+	</div>
+</body>
+
+</html>
