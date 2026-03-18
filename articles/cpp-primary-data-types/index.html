@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Primary Data Types in C/C++</title>
+	<link rel="stylesheet" href="../../assets/style/colors/gruvbox.css">
+	<link rel="stylesheet" href="../../assets/style/article.css">
+</head>
+
+<body>
+	<div class="article-container">
+		<header class="article-header">
+			<h1 class="article-title">Primary Data Types in C/C++<span class="cursor">_</span></h1>
+			<div class="article-meta">Posted on: January 22, 2023</div>
+		</header>
+
+		<div class="article-content">
+
+			<p dir="rtl" lang="ar">
+				لغة الـسي بلس بلس
+				<a href="https://en.wikipedia.org/wiki/Strong_and_weak_typing" target="_blank">strongly-typed</a>
+				language، يعني كل variable هـنعملو declaration لازم نحدد الـ data type بتعتو الأول،
+				دا عشان نعرف الـ compiler بالحجم اللي هيحجزو ف الـ memory للـ variable،
+				الحجم هيكون حسب الـ data type لأن كل data type بتاخد مساحة معينة فـ الـ memory،
+				الـ data types فـ الـ ++C ليها أنواع اساسية (Primary)، مشتقة (Derived) و أنواع أحنا بنعملها (User Defined).
+			</p>
+
+			<figure class="center">
+				<img src="C_C++_Data_Types.png" alt="C C++ Data Types">
+			</figure>
+
+			<hr>
+
+			<h2>1. Integer Types</h2>
+
+			<p dir="rtl" lang="ar">
+				لغة الـ ++C عندها أربعة أحجام للـ Integer، كل واحد من الأربعة ممكن يكون signed
+				(سالب أو موجب أو صفر) أو unsigned (موجب بس)، للأختصار ممكن نكتب long بس بدل long int وكذا..
+			</p>
+
+			<figure class="center">
+				<img src="Int_in_cpp.png" alt="Integer Types">
+			</figure>
+
+			<h3>Sizes of Integer Types</h3>
+
+			<figure class="center">
+				<img src="int_type_size.png" alt="Integer Sizes">
+			</figure>
+
+			<h3>Integer Literal Representations</h3>
+
+			<table>
+				<thead>
+					<tr>
+						<th>representation</th>
+						<th>prefix</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>binary</td><td>0b</td></tr>
+					<tr><td>octal</td><td>0</td></tr>
+					<tr><td>decimal</td><td>The default</td></tr>
+					<tr><td>hexadecimal</td><td>0x</td></tr>
+				</tbody>
+			</table>
+
+			<hr>
+
+			<h2>2. Floating-Point Types</h2>
+
+			<p dir="rtl" lang="ar">
+				الأرقام العشرية والجزء الكسري منها مش بيتخزن بشكل كامل فـ الـ Memory لكن بيتخزن بشكل تقريبي،
+				الـ Floating-Point Types بتاخد جزء محدود من الـ Memory بيسمى بـ type’s
+				<a href="https://en.wikipedia.org/wiki/Precision_(computer_science)" target="_blank">precision</a>،
+				لغة الـ ++C ليها ثلاث مستويات precision:
+			</p>
+
+			<ul>
+				<li><b>float</b> → single precision</li>
+				<li><b>double</b> → double precision</li>
+				<li><b>long double</b> → extended precision</li>
+			</ul>
+
+			<h3>Floating-Point Literals</h3>
+
+			<p dir="rtl" lang="ar">
+				الـ default للـ Floating-point
+				<a href="https://en.wikipedia.org/wiki/Literal_(computer_programming)" target="_blank">literals</a>
+				هو double precision، لو عايزين الـ single precision بنستخدم suffix f أو F،
+				و للـ extended precision بنستخدم l أو L.
+			</p>
+
+			<pre class="code-snippet">
+float single_precision = 0.96F;
+double double_precision = 0.256;
+long double extended_precision = 0.85L;
+			</pre>
+
+			<p dir="rtl" lang="ar">
+				ممكن نستخدم Scientific notation:
+			</p>
+
+			<pre class="code-snippet">
+double avogadro_const = 6.022e23;
+double electron_charge = 1.6e-19;
+			</pre>
+
+			<h3>float vs double</h3>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Difference</th>
+						<th>float</th>
+						<th>double</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>IEEE 754</td><td>single</td><td>double</td></tr>
+					<tr><td>bits</td><td>32</td><td>64</td></tr>
+					<tr><td>bytes</td><td>4</td><td>8</td></tr>
+					<tr><td>precision</td><td>7 digits</td><td>15 digits</td></tr>
+				</tbody>
+			</table>
+
+			<figure class="center">
+				<img src="single-precision.png" alt="Single Precision">
+			</figure>
+
+			<figure class="center">
+				<img src="double-precision.png" alt="Double Precision">
+			</figure>
+
+			<hr>
+
+			<h2>3. Booleans</h2>
+
+			<p dir="rtl" lang="ar">
+				الـ Boolean values اتنين بس true أو false، رقم 1 أو أي قيمة غير الصفر = true، و 0 = false.
+			</p>
+
+			<pre class="code-snippet">
+bool i_love_u = true;
+bool i_hate_u = false;
+			</pre>
+
+			<pre class="code-snippet">
+bool answer = 0;
+
+if(answer)
+    std::cout << "Okay let's watch, I love you <3";
+else
+    std::cout << ".. stupid I'll eat all the popcorn alone 💢";
+			</pre>
+
+			<hr>
+
+			<h2>4. Character Types</h2>
+
+			<p dir="rtl" lang="ar">
+				الـ Character Types بتخزن الرموز والحروف:
+			</p>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Size</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>char</td><td>1 byte</td></tr>
+					<tr><td>char16_t</td><td>2 bytes</td></tr>
+					<tr><td>char32_t</td><td>4 bytes</td></tr>
+					<tr><td>signed char</td><td>1 byte</td></tr>
+					<tr><td>unsigned char</td><td>1 byte</td></tr>
+					<tr><td>wchar_t</td><td>largest set</td></tr>
+				</tbody>
+			</table>
+
+			<p dir="rtl" lang="ar">
+				الفرق بين signed و unsigned:
+			</p>
+
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>signed</th>
+						<th>unsigned</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>range</td><td>-128 → 127</td><td>0 → 255</td></tr>
+					<tr><td>bits</td><td>7 + sign</td><td>8</td></tr>
+				</tbody>
+			</table>
+
+			<figure class="center">
+				<img src="signed_char.png" alt="Signed Char">
+			</figure>
+
+			<figure class="center">
+				<img src="unsigned_char.png" alt="Unsigned Char">
+			</figure>
+
+			<hr>
+
+			<h2>5. void</h2>
+
+			<p dir="rtl" lang="ar">
+				بنستخدم void لما الدالة مش بترجع قيمة.
+			</p>
+
+			<pre class="code-snippet">
+void I_dont_return(){
+    std::cout << "I don't return any value.";
+}
+
+int I_return_int_value(){
+    int x = 2, y = 8;
+    return x + y;
+}
+			</pre>
+
+		</div>
+
+		<footer class="article-footer">
+			<p>© 2023 0x61nas</p>
+		</footer>
+	</div>
+</body>
+
+</html>
