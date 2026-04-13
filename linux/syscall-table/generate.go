@@ -32,7 +32,7 @@ type archConfig struct {
 	OutFile   string
 }
 
-const Version = "7.0-rc2"
+const Version = "7.0"
 const KernelBase = "https://raw.githubusercontent.com/torvalds/linux/v" + Version
 
 func main() {
