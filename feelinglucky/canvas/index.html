@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Links on Canvas</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        canvas {
+            border: 1px solid black;
+            background-color: lightgray; /* Add background to see canvas clearly */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="linksCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('linksCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas); // Ensure canvas resizes with window
+
+        const linksData = [];
+
+        // Function to get random position within the canvas
+        function getRandomPosition(maxWidth, maxHeight) {
+            const x = Math.floor(Math.random() * maxWidth);
+            const y = Math.floor(Math.random() * maxHeight);
+            return { x, y };
+        }
+
+        // Function to draw the links on the canvas and store their clickable areas
+        function drawLinks(links) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            linksData.length = 0; // Clear previous link data
+
+            console.log("Drawing links on canvas...");
+
+            links.forEach(link => {
+                const position = getRandomPosition(canvas.width - 100, canvas.height - 20); // Adjust to avoid overflow
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "blue";
+                ctx.fillText(link, position.x, position.y);
+
+                // Measure the text size to calculate the clickable area
+                const textWidth = ctx.measureText(link).width;
+                const textHeight = 20; // Font size as height approximation
+
+                // Store link with its clickable area
+                linksData.push({
+                    link,
+                    x: position.x,
+                    y: position.y - textHeight, // Adjust to fit the clickable area better
+                    width: textWidth,
+                    height: textHeight
+                });
+                console.log(`Link "${link}" drawn at (${position.x}, ${position.y})`);
+            });
+            console.log("Links drawn:", linksData);
+        }
+
+        // Function to fetch and read the text file with links
+        async function fetchLinks() {
+            try {
+                const response = await fetch('/feelingluckylinks.txt');
+                const text = await response.text();
+                const links = text.split(/\r?\n/).filter(link => link.trim() !== ""); // Split and filter empty lines
+                console.log("Links loaded:", links);
+                drawLinks(links);
+            } catch (error) {
+                console.error('Error loading the file:', error);
+            }
+        }
+
+        // Function to detect clicks on the canvas and open the clicked link
+        function handleCanvasClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            // Check if the click is inside any of the link areas
+            linksData.forEach(linkData => {
+                if (
+                    mouseX >= linkData.x &&
+                    mouseX <= linkData.x + linkData.width &&
+                    mouseY >= linkData.y &&
+                    mouseY <= linkData.y + linkData.height
+                ) {
+                    console.log(`Link clicked: ${linkData.link}`);
+                    // Open the link in a new tab
+                    window.open(linkData.link, '_blank');
+                }
+            });
+        }
+
+        // Add click event listener to the canvas
+        canvas.addEventListener('click', handleCanvasClick);
+
+        // Load links when the page is loaded
+        window.onload = fetchLinks;
+    </script>
+</body>
+</html>
