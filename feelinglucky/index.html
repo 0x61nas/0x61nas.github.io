@@ -6,19 +6,19 @@
     <title>RANDOM link</title>
   </head>
   <body>
-  <h1>Hi!</h1>
-  <p style="font-size: 300px; color: transparent;">I'm soo tired, yet still trying</p>
-  <h1>Bye</h1>
-  <script>
-    fetch('/feelingluckylinks.txt')
-      .then(r => r.text())
-      .then(text => {
-        const links = text.trim().split('\n').map(line => {
-          const match = line.match(/^(\d+):\s+(.+)/);
-          return match ? match[2] : line.trim();
-        }).filter(Boolean);
-        window.location.assign(links[Math.floor(Math.random() * links.length)]);
-      });
-  </script>
+    <h1>Hi!</h1>
+    <p style="font-size: 300px; color: transparent;">I'm soo tired, yet still trying</p>
+    <h1>Bye</h1>
+    <script>
+      fetch('/feelinglucky/links.txt')
+        .then(r => r.text())
+        .then(text => {
+          const links = text.trim().split('\n').map(line => {
+            const match = line.match(/^(\d+):\s+(.+)/);
+            return match ? match[2] : line.trim();
+          }).filter(Boolean);
+          window.location.assign(links[Math.floor(Math.random() * links.length)]);
+        });
+    </script>
   </body>
 </html>
