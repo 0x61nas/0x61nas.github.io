@@ -74,7 +74,7 @@
         // Function to fetch and read the text file with links
         async function fetchLinks() {
             try {
-                const response = await fetch('/feelingluckylinks.txt');
+                const response = await fetch('/feelinglucky/links.txt');
                 const text = await response.text();
                 const links = text.split(/\r?\n/).filter(link => link.trim() !== ""); // Split and filter empty lines
                 console.log("Links loaded:", links);
