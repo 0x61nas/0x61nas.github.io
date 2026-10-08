@@ -1,0 +1,76 @@
+:root {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Normal.ani"), auto;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Link.ani"), pointer;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Text.ani"), text;
+}
+
+[aria-busy="true"],
+.busy,
+.loading {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Busy.ani"), wait;
+}
+
+[aria-disabled="true"],
+:disabled,
+.unavailable {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Unavailable.ani"), not-allowed;
+}
+
+[title],
+.help,
+[aria-label*="help" i] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Help.ani"), help;
+}
+
+.resize-horizontal,
+[aria-orientation="horizontal"] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Horizontal.ani"), ew-resize;
+}
+
+.resize-vertical,
+[aria-orientation="vertical"] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Vertical.ani"), ns-resize;
+}
+
+.resize-diagonal-1 {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal1.ani"), nwse-resize;
+}
+
+.resize-diagonal-2 {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal2.ani"), nesw-resize;
+}
+
+.move,
+[draggable="true"] {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Move.ani"), move;
+}
+
+.precision {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Precision.ani"), crosshair;
+}
+
+.handwriting {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Handwriting.ani"), crosshair;
+}
+
+.person {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Person.ani"), default;
+}
+
+.pin {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Pin.ani"), default;
+}
+
+.alternate {
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Alternate.ani"), default;
+}
