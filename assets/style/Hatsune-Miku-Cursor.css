@@ -1,76 +1,76 @@
 :root {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Normal.ani"), auto;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Normal.cur"), auto;
 }
 
 a,
 button,
 [role="button"] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Link.ani"), pointer;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Link.cur"), pointer;
 }
 
 input,
 textarea,
 [contenteditable="true"] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Text.ani"), text;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Text.cur"), text;
 }
 
 [aria-busy="true"],
 .busy,
 .loading {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Busy.ani"), wait;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Busy.cur"), wait;
 }
 
 [aria-disabled="true"],
 :disabled,
 .unavailable {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Unavailable.ani"), not-allowed;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Unavailable.cur"), not-allowed;
 }
 
 [title],
 .help,
 [aria-label*="help" i] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Help.ani"), help;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Help.cur"), help;
 }
 
 .resize-horizontal,
 [aria-orientation="horizontal"] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Horizontal.ani"), ew-resize;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Horizontal.cur"), ew-resize;
 }
 
 .resize-vertical,
 [aria-orientation="vertical"] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Vertical.ani"), ns-resize;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Vertical.cur"), ns-resize;
 }
 
 .resize-diagonal-1 {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal1.ani"), nwse-resize;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal1.cur"), nwse-resize;
 }
 
 .resize-diagonal-2 {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal2.ani"), nesw-resize;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Diagonal2.cur"), nesw-resize;
 }
 
 .move,
 [draggable="true"] {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Move.ani"), move;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Move.cur"), move;
 }
 
 .precision {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Precision.ani"), crosshair;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Precision.cur"), crosshair;
 }
 
 .handwriting {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Handwriting.ani"), crosshair;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Handwriting.cur"), crosshair;
 }
 
 .person {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Person.ani"), default;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Person.cur"), default;
 }
 
 .pin {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Pin.ani"), default;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Pin.cur"), default;
 }
 
 .alternate {
-  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Alternate.ani"), default;
+  cursor: url("/assets/cursors/miku/Hatsune Miku Cursor/Alternate.cur"), default;
 }
