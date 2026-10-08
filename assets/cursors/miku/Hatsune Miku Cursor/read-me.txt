@@ -1,0 +1,11 @@
+How to install custom mouse cursors.
+
+1.Open .zip file with WinRAR or 7Zip.
+2.Move folder with files on desktop or wherever you want.
+3.Open it, right click on Install.inf file and select the Install option.
+4.Go to [Control Panel > Mouse > Pointers] or [Settings > Personalization > Themes > Mouse 5.Cursor > Pointers]
+6.Select the Cursor in the scheme menu.
+
+===========================================================================================
+
+If it doesn't work, go on Mouse Propriets.
