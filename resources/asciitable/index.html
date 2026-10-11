@@ -1,47 +1,366 @@
 <!doctype html>
 <html>
-  <head>
-    <title>ASCII table</title>
-    <style>
-    body {padding: 0; margin: 0; width: 100vw; height: 100vh;}body {font-family: sans-serif;}#contentbox {padding: 0.4em;padding-left: 1em;overflow: scroll;}/*@media (prefers-color-scheme: 9dark) {#contentbox {background-color: #444;color: #ddd;}}*/@media print {#navbox {display: none;}}h1 {margin-block-start:0.7em;margin-block-end:0.1em;}#navbox, #contentbox {overflow: scroll;}.navlink {padding-left: 2em; padding-top: 0.5em; padding-bottom: 0.5em; padding-right: 1em;}
-    </style>
-  </head>
-  <body style="display:flex; flex-direction:row;">
-    <div style="display:flex;flex-direction:column;flex-grow:1;">
-      <div style="flex-grow:1;" id="contentbox">
-        <h1>ASCII table</h1>
-        <pre>
-Dec Hex Oct Esc                                    Dec Hex Oct           Dec Hex Oct           Dec Hex Oct
-  0  00 000 ^@  NUL  Null                           32  20 040 Space      64  40 100 @          96  60 140 `
-  1  01 001 ^A  SOH  Start of Heading               33  21 041 !          65  41 101 A          97  61 141 a
-  2  02 002 ^B  STX  Start of Text                  34  22 042 "          66  42 102 B          98  62 142 b
-  3  03 003 ^C  ETX  End of Text                    35  23 043 #          67  43 103 C          99  63 143 c
-  4  04 004 ^D  EOT  End of Transmission            36  24 044 $          68  44 104 D         100  64 144 d
-  5  05 005 ^E  ENQ  Enquiry                        37  25 045 %          69  45 105 E         101  65 145 e
-  6  06 006 ^F  ACK  Acknowledgement                38  26 046 &amp;          70  46 106 F         102  66 146 f
-  7  07 007 ^G  BEL  Bell                           39  27 047 '          71  47 107 G         103  67 147 g
-  8  08 010 ^H  BS   Backspace                      40  28 050 (          72  48 110 H         104  68 150 h
-  9  09 011 ^I  HTAB Horizontal Tab                 41  29 051 )          73  49 111 I         105  69 151 i
- 10  0a 012 ^J  LF   Line Feed                      42  2a 052 *          74  4a 112 J         106  6a 152 j
- 11  0b 013 ^K  VTAB Vertical Tab                   43  2b 053 +          75  4b 113 K         107  6b 153 k
- 12  0c 014 ^L  FF   Form Feed                      44  2c 054 ,          76  4c 114 L         108  6c 154 l
- 13  0d 015 ^M  CR   Carriage Return                45  2d 055 -          77  4d 115 M         109  6d 155 m
- 14  0e 016 ^N  SO   Shift Out                      46  2e 056 .          78  4e 116 N         110  6e 156 n
- 15  0f 017 ^O  SI   Shift In                       47  2f 057 /          79  4f 117 O         111  6f 157 o
- 16  10 020 ^P  DLE  Data Link Escape               48  30 060 0          80  50 120 P         112  70 160 p
- 17  11 021 ^Q  DC1  Device Control 1 / XON         49  31 061 1          81  51 121 Q         113  71 161 q
- 18  12 022 ^R  DC2  Device Control 2               50  32 062 2          82  52 122 R         114  72 162 r
- 19  13 023 ^S  DC3  Device Control 3 / XOFF        51  33 063 3          83  53 123 S         115  73 163 s
- 20  14 024 ^T  DC4  Device Control 4               52  34 064 4          84  54 124 T         116  74 164 t
- 21  15 025 ^U  NAK  Negative Acknowledgement       53  35 065 5          85  55 125 U         117  75 165 u
- 22  16 026 ^V  SYN  Synchronous Idle               54  36 066 6          86  56 126 V         118  76 166 v
- 23  17 027 ^W  ETB  End of Transmission Block      55  37 067 7          87  57 127 W         119  77 167 w
- 24  18 030 ^X  CAN  Cancel                         56  38 070 8          88  58 130 X         120  78 170 x
- 25  19 031 ^Y  EM   End of Medium                  57  39 071 9          89  59 131 Y         121  79 171 y
- 26  1a 032 ^Z  SUB  Substitute                     58  3a 072 :          90  5a 132 Z         122  7a 172 z
- 27  1b 033 ^[  ESC  Escape                         59  3b 073 ;          91  5b 133 [         123  7b 173 {
- 28  1c 034 ^\  FS   File Separator                 60  3c 074 &lt;          92  5c 134 \         124  7c 174 |
- 29  1d 035 ^]  GS   Group Separator                61  3d 075 =          93  5d 135 ]         125  7d 175 }
- 30  1e 036 ^^  RS   Record Separator               62  3e 076 &gt;          94  5e 136 ^         126  7e 176 ~
- 31  1f 037 ^_  US   Unit Separator                 63  3f 077 ?          95  5f 137 _         127  7f 177 Delete
-</pre></div></div></body></html>
+    <head>
+        <title>ASCII table</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+            }
+            body {
+                font-family: sans-serif;
+            }
+            #contentbox {
+                padding: 0.4em;
+                padding-left: 1em;
+                overflow: scroll;
+            } /*@media (prefers-color-scheme: 9dark) {#contentbox {background-color: #444;color: #ddd;}}*/
+            @media print {
+                #navbox {
+                    display: none;
+                }
+            }
+            h1 {
+                margin-block-start: 0.7em;
+                margin-block-end: 0.1em;
+            }
+            #navbox,
+            #contentbox {
+                overflow: scroll;
+            }
+            .navlink {
+                padding-left: 2em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+                padding-right: 1em;
+            }
+        </style>
+    </head>
+    <body style="display: flex; flex-direction: row">
+        <div style="display: flex; flex-direction: column; flex-grow: 1">
+            <div style="flex-grow: 1" id="contentbox">
+                <h1>ASCII table</h1>
+
+                <div class="ascii-table">
+                    <div class="ascii-group ascii-control">
+                        <div class="ascii-row ascii-header">
+                            <span>Dec</span><span>Hex</span><span>Oct</span><span>Esc</span><span>Code</span
+                            ><span>Description</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>0</span><span>00</span><span>000</span><span>^@</span><span>NUL</span
+                            ><span>Null</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>1</span><span>01</span><span>001</span><span>^A</span><span>SOH</span
+                            ><span>Start of Heading</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>2</span><span>02</span><span>002</span><span>^B</span><span>STX</span
+                            ><span>Start of Text</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>3</span><span>03</span><span>003</span><span>^C</span><span>ETX</span
+                            ><span>End of Text</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>4</span><span>04</span><span>004</span><span>^D</span><span>EOT</span
+                            ><span>End of Transmission</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>5</span><span>05</span><span>005</span><span>^E</span><span>ENQ</span
+                            ><span>Enquiry</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>6</span><span>06</span><span>006</span><span>^F</span><span>ACK</span
+                            ><span>Acknowledgement</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>7</span><span>07</span><span>007</span><span>^G</span><span>BEL</span
+                            ><span>Bell</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>8</span><span>08</span><span>010</span><span>^H</span><span>BS</span
+                            ><span>Backspace</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>9</span><span>09</span><span>011</span><span>^I</span><span>HTAB</span
+                            ><span>Horizontal Tab</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>10</span><span>0a</span><span>012</span><span>^J</span><span>LF</span
+                            ><span>Line Feed</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>11</span><span>0b</span><span>013</span><span>^K</span><span>VTAB</span
+                            ><span>Vertical Tab</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>12</span><span>0c</span><span>014</span><span>^L</span><span>FF</span
+                            ><span>Form Feed</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>13</span><span>0d</span><span>015</span><span>^M</span><span>CR</span
+                            ><span>Carriage Return</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>14</span><span>0e</span><span>016</span><span>^N</span><span>SO</span
+                            ><span>Shift Out</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>15</span><span>0f</span><span>017</span><span>^O</span><span>SI</span
+                            ><span>Shift In</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>16</span><span>10</span><span>020</span><span>^P</span><span>DLE</span
+                            ><span>Data Link Escape</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>17</span><span>11</span><span>021</span><span>^Q</span><span>DC1</span
+                            ><span>Device Control 1 / XON</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>18</span><span>12</span><span>022</span><span>^R</span><span>DC2</span
+                            ><span>Device Control 2</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>19</span><span>13</span><span>023</span><span>^S</span><span>DC3</span
+                            ><span>Device Control 3 / XOFF</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>20</span><span>14</span><span>024</span><span>^T</span><span>DC4</span
+                            ><span>Device Control 4</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>21</span><span>15</span><span>025</span><span>^U</span><span>NAK</span
+                            ><span>Negative Acknowledgement</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>22</span><span>16</span><span>026</span><span>^V</span><span>SYN</span
+                            ><span>Synchronous Idle</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>23</span><span>17</span><span>027</span><span>^W</span><span>ETB</span
+                            ><span>End of Transmission Block</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>24</span><span>18</span><span>030</span><span>^X</span><span>CAN</span
+                            ><span>Cancel</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>25</span><span>19</span><span>031</span><span>^Y</span><span>EM</span
+                            ><span>End of Medium</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>26</span><span>1a</span><span>032</span><span>^Z</span><span>SUB</span
+                            ><span>Substitute</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>27</span><span>1b</span><span>033</span><span>^[</span><span>ESC</span
+                            ><span>Escape</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>28</span><span>1c</span><span>034</span><span>^\</span><span>FS</span
+                            ><span>File Separator</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>29</span><span>1d</span><span>035</span><span>^]</span><span>GS</span
+                            ><span>Group Separator</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>30</span><span>1e</span><span>036</span><span>^^</span><span>RS</span
+                            ><span>Record Separator</span>
+                        </div>
+                        <div class="ascii-row">
+                            <span>31</span><span>1f</span><span>037</span><span>^_</span><span>US</span
+                            ><span>Unit Separator</span>
+                        </div>
+                    </div>
+
+                    <div class="ascii-group">
+                        <div class="ascii-row ascii-header">
+                            <span>Dec</span><span>Hex</span><span>Oct</span><span class="char-heading">Char</span>
+                        </div>
+                        <div class="ascii-row"><span>32</span><span>20</span><span>040</span><span>Space</span></div>
+                        <div class="ascii-row"><span>33</span><span>21</span><span>041</span><span>!</span></div>
+                        <div class="ascii-row"><span>34</span><span>22</span><span>042</span><span>"</span></div>
+                        <div class="ascii-row"><span>35</span><span>23</span><span>043</span><span>#</span></div>
+                        <div class="ascii-row"><span>36</span><span>24</span><span>044</span><span>$</span></div>
+                        <div class="ascii-row"><span>37</span><span>25</span><span>045</span><span>%</span></div>
+                        <div class="ascii-row"><span>38</span><span>26</span><span>046</span><span>&amp;</span></div>
+                        <div class="ascii-row"><span>39</span><span>27</span><span>047</span><span>'</span></div>
+                        <div class="ascii-row"><span>40</span><span>28</span><span>050</span><span>(</span></div>
+                        <div class="ascii-row"><span>41</span><span>29</span><span>051</span><span>)</span></div>
+                        <div class="ascii-row"><span>42</span><span>2a</span><span>052</span><span>*</span></div>
+                        <div class="ascii-row"><span>43</span><span>2b</span><span>053</span><span>+</span></div>
+                        <div class="ascii-row"><span>44</span><span>2c</span><span>054</span><span>,</span></div>
+                        <div class="ascii-row"><span>45</span><span>2d</span><span>055</span><span>-</span></div>
+                        <div class="ascii-row"><span>46</span><span>2e</span><span>056</span><span>.</span></div>
+                        <div class="ascii-row"><span>47</span><span>2f</span><span>057</span><span>/</span></div>
+                        <div class="ascii-row"><span>48</span><span>30</span><span>060</span><span>0</span></div>
+                        <div class="ascii-row"><span>49</span><span>31</span><span>061</span><span>1</span></div>
+                        <div class="ascii-row"><span>50</span><span>32</span><span>062</span><span>2</span></div>
+                        <div class="ascii-row"><span>51</span><span>33</span><span>063</span><span>3</span></div>
+                        <div class="ascii-row"><span>52</span><span>34</span><span>064</span><span>4</span></div>
+                        <div class="ascii-row"><span>53</span><span>35</span><span>065</span><span>5</span></div>
+                        <div class="ascii-row"><span>54</span><span>36</span><span>066</span><span>6</span></div>
+                        <div class="ascii-row"><span>55</span><span>37</span><span>067</span><span>7</span></div>
+                        <div class="ascii-row"><span>56</span><span>38</span><span>070</span><span>8</span></div>
+                        <div class="ascii-row"><span>57</span><span>39</span><span>071</span><span>9</span></div>
+                        <div class="ascii-row"><span>58</span><span>3a</span><span>072</span><span>:</span></div>
+                        <div class="ascii-row"><span>59</span><span>3b</span><span>073</span><span>;</span></div>
+                        <div class="ascii-row"><span>60</span><span>3c</span><span>074</span><span>&lt;</span></div>
+                        <div class="ascii-row"><span>61</span><span>3d</span><span>075</span><span>=</span></div>
+                        <div class="ascii-row"><span>62</span><span>3e</span><span>076</span><span>&gt;</span></div>
+                        <div class="ascii-row"><span>63</span><span>3f</span><span>077</span><span>?</span></div>
+                    </div>
+
+                    <div class="ascii-group">
+                        <div class="ascii-row ascii-header">
+                            <span>Dec</span><span>Hex</span><span>Oct</span><span class="char-heading">Char</span>
+                        </div>
+                        <div class="ascii-row"><span>64</span><span>40</span><span>100</span><span>@</span></div>
+                        <div class="ascii-row"><span>65</span><span>41</span><span>101</span><span>A</span></div>
+                        <div class="ascii-row"><span>66</span><span>42</span><span>102</span><span>B</span></div>
+                        <div class="ascii-row"><span>67</span><span>43</span><span>103</span><span>C</span></div>
+                        <div class="ascii-row"><span>68</span><span>44</span><span>104</span><span>D</span></div>
+                        <div class="ascii-row"><span>69</span><span>45</span><span>105</span><span>E</span></div>
+                        <div class="ascii-row"><span>70</span><span>46</span><span>106</span><span>F</span></div>
+                        <div class="ascii-row"><span>71</span><span>47</span><span>107</span><span>G</span></div>
+                        <div class="ascii-row"><span>72</span><span>48</span><span>110</span><span>H</span></div>
+                        <div class="ascii-row"><span>73</span><span>49</span><span>111</span><span>I</span></div>
+                        <div class="ascii-row"><span>74</span><span>4a</span><span>112</span><span>J</span></div>
+                        <div class="ascii-row"><span>75</span><span>4b</span><span>113</span><span>K</span></div>
+                        <div class="ascii-row"><span>76</span><span>4c</span><span>114</span><span>L</span></div>
+                        <div class="ascii-row"><span>77</span><span>4d</span><span>115</span><span>M</span></div>
+                        <div class="ascii-row"><span>78</span><span>4e</span><span>116</span><span>N</span></div>
+                        <div class="ascii-row"><span>79</span><span>4f</span><span>117</span><span>O</span></div>
+                        <div class="ascii-row"><span>80</span><span>50</span><span>120</span><span>P</span></div>
+                        <div class="ascii-row"><span>81</span><span>51</span><span>121</span><span>Q</span></div>
+                        <div class="ascii-row"><span>82</span><span>52</span><span>122</span><span>R</span></div>
+                        <div class="ascii-row"><span>83</span><span>53</span><span>123</span><span>S</span></div>
+                        <div class="ascii-row"><span>84</span><span>54</span><span>124</span><span>T</span></div>
+                        <div class="ascii-row"><span>85</span><span>55</span><span>125</span><span>U</span></div>
+                        <div class="ascii-row"><span>86</span><span>56</span><span>126</span><span>V</span></div>
+                        <div class="ascii-row"><span>87</span><span>57</span><span>127</span><span>W</span></div>
+                        <div class="ascii-row"><span>88</span><span>58</span><span>130</span><span>X</span></div>
+                        <div class="ascii-row"><span>89</span><span>59</span><span>131</span><span>Y</span></div>
+                        <div class="ascii-row"><span>90</span><span>5a</span><span>132</span><span>Z</span></div>
+                        <div class="ascii-row"><span>91</span><span>5b</span><span>133</span><span>[</span></div>
+                        <div class="ascii-row"><span>92</span><span>5c</span><span>134</span><span>\</span></div>
+                        <div class="ascii-row"><span>93</span><span>5d</span><span>135</span><span>]</span></div>
+                        <div class="ascii-row"><span>94</span><span>5e</span><span>136</span><span>^</span></div>
+                        <div class="ascii-row"><span>95</span><span>5f</span><span>137</span><span>_</span></div>
+                    </div>
+
+                    <div class="ascii-group">
+                        <div class="ascii-row ascii-header">
+                            <span>Dec</span><span>Hex</span><span>Oct</span><span class="char-heading">Char</span>
+                        </div>
+                        <div class="ascii-row"><span>96</span><span>60</span><span>140</span><span>`</span></div>
+                        <div class="ascii-row"><span>97</span><span>61</span><span>141</span><span>a</span></div>
+                        <div class="ascii-row"><span>98</span><span>62</span><span>142</span><span>b</span></div>
+                        <div class="ascii-row"><span>99</span><span>63</span><span>143</span><span>c</span></div>
+                        <div class="ascii-row"><span>100</span><span>64</span><span>144</span><span>d</span></div>
+                        <div class="ascii-row"><span>101</span><span>65</span><span>145</span><span>e</span></div>
+                        <div class="ascii-row"><span>102</span><span>66</span><span>146</span><span>f</span></div>
+                        <div class="ascii-row"><span>103</span><span>67</span><span>147</span><span>g</span></div>
+                        <div class="ascii-row"><span>104</span><span>68</span><span>150</span><span>h</span></div>
+                        <div class="ascii-row"><span>105</span><span>69</span><span>151</span><span>i</span></div>
+                        <div class="ascii-row"><span>106</span><span>6a</span><span>152</span><span>j</span></div>
+                        <div class="ascii-row"><span>107</span><span>6b</span><span>153</span><span>k</span></div>
+                        <div class="ascii-row"><span>108</span><span>6c</span><span>154</span><span>l</span></div>
+                        <div class="ascii-row"><span>109</span><span>6d</span><span>155</span><span>m</span></div>
+                        <div class="ascii-row"><span>110</span><span>6e</span><span>156</span><span>n</span></div>
+                        <div class="ascii-row"><span>111</span><span>6f</span><span>157</span><span>o</span></div>
+                        <div class="ascii-row"><span>112</span><span>70</span><span>160</span><span>p</span></div>
+                        <div class="ascii-row"><span>113</span><span>71</span><span>161</span><span>q</span></div>
+                        <div class="ascii-row"><span>114</span><span>72</span><span>162</span><span>r</span></div>
+                        <div class="ascii-row"><span>115</span><span>73</span><span>163</span><span>s</span></div>
+                        <div class="ascii-row"><span>116</span><span>74</span><span>164</span><span>t</span></div>
+                        <div class="ascii-row"><span>117</span><span>75</span><span>165</span><span>u</span></div>
+                        <div class="ascii-row"><span>118</span><span>76</span><span>166</span><span>v</span></div>
+                        <div class="ascii-row"><span>119</span><span>77</span><span>167</span><span>w</span></div>
+                        <div class="ascii-row"><span>120</span><span>78</span><span>170</span><span>x</span></div>
+                        <div class="ascii-row"><span>121</span><span>79</span><span>171</span><span>y</span></div>
+                        <div class="ascii-row"><span>122</span><span>7a</span><span>172</span><span>z</span></div>
+                        <div class="ascii-row"><span>123</span><span>7b</span><span>173</span><span>{</span></div>
+                        <div class="ascii-row"><span>124</span><span>7c</span><span>174</span><span>|</span></div>
+                        <div class="ascii-row"><span>125</span><span>7d</span><span>175</span><span>}</span></div>
+                        <div class="ascii-row"><span>126</span><span>7e</span><span>176</span><span>~</span></div>
+                        <div class="ascii-row"><span>127</span><span>7f</span><span>177</span><span>Delete</span></div>
+                    </div>
+                </div>
+
+                <style>
+                    .ascii-table {
+                        display: grid;
+                        grid-template-columns: minmax(360px, 2fr) repeat(3, minmax(150px, 1fr));
+                        gap: 1.5rem;
+                        overflow-x: auto;
+                        font: 13px/1.65 monospace;
+                        font-variant-numeric: tabular-nums;
+                    }
+
+                    .ascii-group {
+                        min-width: 0;
+                    }
+
+                    .ascii-row {
+                        display: grid;
+                        grid-template-columns: 3ch 3ch 3ch minmax(2ch, 1fr);
+                        column-gap: 1ch;
+                        white-space: nowrap;
+                        padding: 1px 5px;
+                    }
+
+                    .ascii-control .ascii-row {
+                        grid-template-columns: 3ch 3ch 3ch 3ch 4ch minmax(0, 1fr);
+                        column-gap: 1ch;
+                    }
+
+                    .ascii-header {
+                        font-weight: bold;
+                        border-bottom: 2px solid currentColor;
+                        margin-bottom: 3px;
+                    }
+
+                    .ascii-row:not(.ascii-header):nth-child(even) {
+                        background: color-mix(in srgb, currentColor 6%, transparent);
+                    }
+
+                    .ascii-row:not(.ascii-header):hover {
+                        background: color-mix(in srgb, currentColor 12%, transparent);
+                    }
+
+                    .ascii-row > span:nth-child(-n + 3) {
+                        text-align: right;
+                    }
+
+                    .ascii-row > span:nth-child(4) {
+                        text-align: center;
+                    }
+
+                    .ascii-control .ascii-row > span:nth-child(4),
+                    .ascii-control .ascii-row > span:nth-child(5) {
+                        text-align: left;
+                    }
+
+                    @media (max-width: 1000px) {
+                        .ascii-table {
+                            grid-template-columns: repeat(2, minmax(300px, 1fr));
+                        }
+                    }
+
+                    @media (max-width: 650px) {
+                        .ascii-table {
+                            grid-template-columns: minmax(340px, 1fr);
+                        }
+                    }
+                </style>
+            </div>
+        </div>
+    </body>
+</html>
