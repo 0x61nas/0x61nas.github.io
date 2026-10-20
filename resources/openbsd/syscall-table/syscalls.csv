@@ -1,0 +1,332 @@
+number,name,types,alias,signature,condition,man_url
+0,syscall,UNIMPL,,syscall,,https://man.openbsd.org/OpenBSD-8.0/syscall.9
+1,exit,STD,,sys_exit(int rval),,https://man.openbsd.org/OpenBSD-8.0/exit.2
+2,fork,STD,,sys_fork(void),,https://man.openbsd.org/OpenBSD-8.0/fork.2
+3,read,STD NOLOCK,,"sys_read(int fd, void *buf, size_t nbyte)",,https://man.openbsd.org/OpenBSD-8.0/read.2
+4,write,STD NOLOCK,,"sys_write(int fd, const void *buf, size_t nbyte)",,https://man.openbsd.org/OpenBSD-8.0/write.2
+5,open,STD NOLOCK,,"sys_open(const char *path, int flags, ... mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/open.2
+6,close,STD NOLOCK,,sys_close(int fd),,https://man.openbsd.org/OpenBSD-8.0/close.2
+7,getentropy,STD NOLOCK,,"sys_getentropy(void *buf, size_t nbyte)",,https://man.openbsd.org/OpenBSD-8.0/getentropy.2
+8,__tfork,STD,,"sys___tfork(const struct __tfork *param, size_t psize)",,https://man.openbsd.org/OpenBSD-8.0/__tfork.2
+9,link,STD,,"sys_link(const char *path, const char *link)",,https://man.openbsd.org/OpenBSD-8.0/link.2
+10,unlink,STD,,sys_unlink(const char *path),,https://man.openbsd.org/OpenBSD-8.0/unlink.2
+11,wait4,STD,,"sys_wait4(pid_t pid, int *status, int options, struct rusage *rusage)",,https://man.openbsd.org/OpenBSD-8.0/wait4.2
+12,chdir,STD,,sys_chdir(const char *path),,https://man.openbsd.org/OpenBSD-8.0/chdir.2
+13,fchdir,STD,,sys_fchdir(int fd),,https://man.openbsd.org/OpenBSD-8.0/fchdir.2
+14,mknod,STD,,"sys_mknod(const char *path, mode_t mode, dev_t dev)",,https://man.openbsd.org/OpenBSD-8.0/mknod.2
+15,chmod,STD,,"sys_chmod(const char *path, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/chmod.2
+16,chown,STD,,"sys_chown(const char *path, uid_t uid, gid_t gid)",,https://man.openbsd.org/OpenBSD-8.0/chown.2
+17,obreak,STD,break,sys_obreak(char *nsize),,https://man.openbsd.org/OpenBSD-8.0/obreak.2
+18,getdtablecount,STD NOLOCK,,sys_getdtablecount(void),,https://man.openbsd.org/OpenBSD-8.0/getdtablecount.2
+19,getrusage,STD,,"sys_getrusage(int who, struct rusage *rusage)",,https://man.openbsd.org/OpenBSD-8.0/getrusage.2
+20,getpid,STD NOLOCK,,sys_getpid(void),,https://man.openbsd.org/OpenBSD-8.0/getpid.2
+21,mount,STD,,"sys_mount(const char *type, const char *path, int flags, void *data)",,https://man.openbsd.org/OpenBSD-8.0/mount.2
+22,unmount,STD,,"sys_unmount(const char *path, int flags)",,https://man.openbsd.org/OpenBSD-8.0/unmount.2
+23,setuid,STD,,sys_setuid(uid_t uid),,https://man.openbsd.org/OpenBSD-8.0/setuid.2
+24,getuid,STD NOLOCK,,sys_getuid(void),,https://man.openbsd.org/OpenBSD-8.0/getuid.2
+25,geteuid,STD NOLOCK,,sys_geteuid(void),,https://man.openbsd.org/OpenBSD-8.0/geteuid.2
+26,ptrace,STD,,"sys_ptrace(int req, pid_t pid, caddr_t addr, int data)",PTRACE,https://man.openbsd.org/OpenBSD-8.0/ptrace.2
+27,recvmsg,STD NOLOCK,,"sys_recvmsg(int s, struct msghdr *msg, int flags)",,https://man.openbsd.org/OpenBSD-8.0/recvmsg.2
+28,sendmsg,STD NOLOCK,,"sys_sendmsg(int s, const struct msghdr *msg, int flags)",,https://man.openbsd.org/OpenBSD-8.0/sendmsg.2
+29,recvfrom,STD NOLOCK,,"sys_recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlenaddr)",,https://man.openbsd.org/OpenBSD-8.0/recvfrom.2
+30,accept,STD NOLOCK,,"sys_accept(int s, struct sockaddr *name, socklen_t *anamelen)",,https://man.openbsd.org/OpenBSD-8.0/accept.2
+31,getpeername,STD NOLOCK,,"sys_getpeername(int fdes, struct sockaddr *asa, socklen_t *alen)",,https://man.openbsd.org/OpenBSD-8.0/getpeername.2
+32,getsockname,STD NOLOCK,,"sys_getsockname(int fdes, struct sockaddr *asa, socklen_t *alen)",,https://man.openbsd.org/OpenBSD-8.0/getsockname.2
+33,access,STD,,"sys_access(const char *path, int amode)",,https://man.openbsd.org/OpenBSD-8.0/access.2
+34,chflags,STD,,"sys_chflags(const char *path, u_int flags)",,https://man.openbsd.org/OpenBSD-8.0/chflags.2
+35,fchflags,STD,,"sys_fchflags(int fd, u_int flags)",,https://man.openbsd.org/OpenBSD-8.0/fchflags.2
+36,sync,STD,,sys_sync(void),,https://man.openbsd.org/OpenBSD-8.0/sync.2
+37,msyscall,OBSOL,,msyscall,,https://man.openbsd.org/OpenBSD-8.0/msyscall.2
+38,stat,STD NOLOCK,,"sys_stat(const char *path, struct stat *ub)",,https://man.openbsd.org/OpenBSD-8.0/stat.2
+39,getppid,STD NOLOCK,,sys_getppid(void),,https://man.openbsd.org/OpenBSD-8.0/getppid.2
+40,lstat,STD NOLOCK,,"sys_lstat(const char *path, struct stat *ub)",,https://man.openbsd.org/OpenBSD-8.0/lstat.2
+41,dup,STD NOLOCK,,sys_dup(int fd),,https://man.openbsd.org/OpenBSD-8.0/dup.2
+42,fstatat,STD NOLOCK,,"sys_fstatat(int fd, const char *path, struct stat *buf, int flag)",,https://man.openbsd.org/OpenBSD-8.0/fstatat.2
+43,getegid,STD NOLOCK,,sys_getegid(void),,https://man.openbsd.org/OpenBSD-8.0/getegid.2
+44,oprofil,UNIMPL,,oprofil,,https://man.openbsd.org/OpenBSD-8.0/oprofil.2
+45,ktrace,STD,,"sys_ktrace(const char *fname, int ops, int facs, pid_t pid)",KTRACE,https://man.openbsd.org/OpenBSD-8.0/ktrace.2
+46,sigaction,STD,,"sys_sigaction(int signum, const struct sigaction *nsa, struct sigaction *osa)",,https://man.openbsd.org/OpenBSD-8.0/sigaction.2
+47,getgid,STD NOLOCK,,sys_getgid(void),,https://man.openbsd.org/OpenBSD-8.0/getgid.2
+48,sigprocmask,STD NOLOCK,,"sys_sigprocmask(int how, sigset_t mask)",,https://man.openbsd.org/OpenBSD-8.0/sigprocmask.2
+49,mmap,STD NOLOCK,,"sys_mmap(void *addr, size_t len, int prot, int flags, int fd, off_t pos)",,https://man.openbsd.org/OpenBSD-8.0/mmap.2
+50,setlogin,STD,,sys_setlogin(const char *namebuf),,https://man.openbsd.org/OpenBSD-8.0/setlogin.2
+51,acct,STD,,sys_acct(const char *path),ACCOUNTING,https://man.openbsd.org/OpenBSD-8.0/acct.2
+52,sigpending,STD,,sys_sigpending(void),,https://man.openbsd.org/OpenBSD-8.0/sigpending.2
+53,fstat,STD NOLOCK,,"sys_fstat(int fd, struct stat *sb)",,https://man.openbsd.org/OpenBSD-8.0/fstat.2
+54,ioctl,STD NOLOCK,,"sys_ioctl(int fd, u_long com, ... void *data)",,https://man.openbsd.org/OpenBSD-8.0/ioctl.2
+55,reboot,STD,,sys_reboot(int opt),,https://man.openbsd.org/OpenBSD-8.0/reboot.2
+56,revoke,STD,,sys_revoke(const char *path),,https://man.openbsd.org/OpenBSD-8.0/revoke.2
+57,symlink,STD,,"sys_symlink(const char *path, const char *link)",,https://man.openbsd.org/OpenBSD-8.0/symlink.2
+58,readlink,STD,,"sys_readlink(const char *path, char *buf, size_t count)",,https://man.openbsd.org/OpenBSD-8.0/readlink.2
+59,execve,STD,,"sys_execve(const char *path, char * const *argp, char * const *envp)",,https://man.openbsd.org/OpenBSD-8.0/execve.2
+60,umask,STD NOLOCK,,sys_umask(mode_t newmask),,https://man.openbsd.org/OpenBSD-8.0/umask.2
+61,chroot,STD,,sys_chroot(const char *path),,https://man.openbsd.org/OpenBSD-8.0/chroot.2
+62,getfsstat,STD,,"sys_getfsstat(struct statfs *buf, size_t bufsize, int flags)",,https://man.openbsd.org/OpenBSD-8.0/getfsstat.2
+63,statfs,STD,,"sys_statfs(const char *path, struct statfs *buf)",,https://man.openbsd.org/OpenBSD-8.0/statfs.2
+64,fstatfs,STD,,"sys_fstatfs(int fd, struct statfs *buf)",,https://man.openbsd.org/OpenBSD-8.0/fstatfs.2
+65,fhstatfs,STD,,"sys_fhstatfs(const fhandle_t *fhp, struct statfs *buf)",,https://man.openbsd.org/OpenBSD-8.0/fhstatfs.2
+66,vfork,STD,,sys_vfork(void),,https://man.openbsd.org/OpenBSD-8.0/vfork.2
+67,gettimeofday,STD NOLOCK,,"sys_gettimeofday(struct timeval *tp, struct timezone *tzp)",,https://man.openbsd.org/OpenBSD-8.0/gettimeofday.2
+68,settimeofday,STD NOLOCK,,"sys_settimeofday(const struct timeval *tv, const struct timezone *tzp)",,https://man.openbsd.org/OpenBSD-8.0/settimeofday.2
+69,setitimer,STD NOLOCK,,"sys_setitimer(int which, const struct itimerval *itv, struct itimerval *oitv)",,https://man.openbsd.org/OpenBSD-8.0/setitimer.2
+70,getitimer,STD NOLOCK,,"sys_getitimer(int which, struct itimerval *itv)",,https://man.openbsd.org/OpenBSD-8.0/getitimer.2
+71,select,STD NOLOCK,,"sys_select(int nd, fd_set *in, fd_set *ou, fd_set *ex, struct timeval *tv)",,https://man.openbsd.org/OpenBSD-8.0/select.2
+72,kevent,STD NOLOCK,,"sys_kevent(int fd, const struct kevent *changelist, int nchanges, struct kevent *eventlist, int nevents, const struct timespec *timeout)",,https://man.openbsd.org/OpenBSD-8.0/kevent.2
+73,munmap,STD NOLOCK,,"sys_munmap(void *addr, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/munmap.2
+74,mprotect,STD NOLOCK,,"sys_mprotect(void *addr, size_t len, int prot)",,https://man.openbsd.org/OpenBSD-8.0/mprotect.2
+75,madvise,STD,,"sys_madvise(void *addr, size_t len, int behav)",,https://man.openbsd.org/OpenBSD-8.0/madvise.2
+76,utimes,STD,,"sys_utimes(const char *path, const struct timeval *tptr)",,https://man.openbsd.org/OpenBSD-8.0/utimes.2
+77,futimes,STD,,"sys_futimes(int fd, const struct timeval *tptr)",,https://man.openbsd.org/OpenBSD-8.0/futimes.2
+78,mquery,STD,,"sys_mquery(void *addr, size_t len, int prot, int flags, int fd, off_t pos)",,https://man.openbsd.org/OpenBSD-8.0/mquery.2
+79,getgroups,STD NOLOCK,,"sys_getgroups(int gidsetsize, gid_t *gidset)",,https://man.openbsd.org/OpenBSD-8.0/getgroups.2
+80,setgroups,STD,,"sys_setgroups(int gidsetsize, const gid_t *gidset)",,https://man.openbsd.org/OpenBSD-8.0/setgroups.2
+81,getpgrp,STD,,sys_getpgrp(void),,https://man.openbsd.org/OpenBSD-8.0/getpgrp.2
+82,setpgid,STD,,"sys_setpgid(pid_t pid, pid_t pgid)",,https://man.openbsd.org/OpenBSD-8.0/setpgid.2
+83,futex,STD NOLOCK,,"sys_futex(uint32_t *f, int op, int val, const struct timespec *timeout, uint32_t *g)",,https://man.openbsd.org/OpenBSD-8.0/futex.2
+84,utimensat,STD,,"sys_utimensat(int fd, const char *path, const struct timespec *times, int flag)",,https://man.openbsd.org/OpenBSD-8.0/utimensat.2
+85,futimens,STD,,"sys_futimens(int fd, const struct timespec *times)",,https://man.openbsd.org/OpenBSD-8.0/futimens.2
+86,kbind,STD NOLOCK,,"sys_kbind(const struct __kbind *param, size_t psize, int64_t proc_cookie)",,https://man.openbsd.org/OpenBSD-8.0/kbind.2
+87,clock_gettime,STD NOLOCK,,"sys_clock_gettime(clockid_t clock_id, struct timespec *tp)",,https://man.openbsd.org/OpenBSD-8.0/clock_gettime.2
+88,clock_settime,STD NOLOCK,,"sys_clock_settime(clockid_t clock_id, const struct timespec *tp)",,https://man.openbsd.org/OpenBSD-8.0/clock_settime.2
+89,clock_getres,STD NOLOCK,,"sys_clock_getres(clockid_t clock_id, struct timespec *tp)",,https://man.openbsd.org/OpenBSD-8.0/clock_getres.2
+90,dup2,STD NOLOCK,,"sys_dup2(int from, int to)",,https://man.openbsd.org/OpenBSD-8.0/dup2.2
+91,nanosleep,STD NOLOCK,,"sys_nanosleep(const struct timespec *rqtp, struct timespec *rmtp)",,https://man.openbsd.org/OpenBSD-8.0/nanosleep.2
+92,fcntl,STD NOLOCK,,"sys_fcntl(int fd, int cmd, ... void *arg)",,https://man.openbsd.org/OpenBSD-8.0/fcntl.2
+93,accept4,STD NOLOCK,,"sys_accept4(int s, struct sockaddr *name, socklen_t *anamelen, int flags)",,https://man.openbsd.org/OpenBSD-8.0/accept4.2
+94,__thrsleep,STD NOLOCK,,"sys___thrsleep(const volatile void *ident, clockid_t clock_id, const struct timespec *tp, void *lock, const int *abort)",,https://man.openbsd.org/OpenBSD-8.0/__thrsleep.2
+95,fsync,STD,,sys_fsync(int fd),,https://man.openbsd.org/OpenBSD-8.0/fsync.2
+96,setpriority,STD,,"sys_setpriority(int which, id_t who, int prio)",,https://man.openbsd.org/OpenBSD-8.0/setpriority.2
+97,socket,STD NOLOCK,,"sys_socket(int domain, int type, int protocol)",,https://man.openbsd.org/OpenBSD-8.0/socket.2
+98,connect,STD NOLOCK,,"sys_connect(int s, const struct sockaddr *name, socklen_t namelen)",,https://man.openbsd.org/OpenBSD-8.0/connect.2
+99,getdents,STD,,"sys_getdents(int fd, void *buf, size_t buflen)",,https://man.openbsd.org/OpenBSD-8.0/getdents.2
+100,getpriority,STD,,"sys_getpriority(int which, id_t who)",,https://man.openbsd.org/OpenBSD-8.0/getpriority.2
+101,pipe2,STD NOLOCK,,"sys_pipe2(int *fdp, int flags)",,https://man.openbsd.org/OpenBSD-8.0/pipe2.2
+102,dup3,STD NOLOCK,,"sys_dup3(int from, int to, int flags)",,https://man.openbsd.org/OpenBSD-8.0/dup3.2
+103,sigreturn,STD,,sys_sigreturn(struct sigcontext *sigcntxp),,https://man.openbsd.org/OpenBSD-8.0/sigreturn.2
+104,bind,STD NOLOCK,,"sys_bind(int s, const struct sockaddr *name, socklen_t namelen)",,https://man.openbsd.org/OpenBSD-8.0/bind.2
+105,setsockopt,STD NOLOCK,,"sys_setsockopt(int s, int level, int name, const void *val, socklen_t valsize)",,https://man.openbsd.org/OpenBSD-8.0/setsockopt.2
+106,listen,STD NOLOCK,,"sys_listen(int s, int backlog)",,https://man.openbsd.org/OpenBSD-8.0/listen.2
+107,chflagsat,STD,,"sys_chflagsat(int fd, const char *path, u_int flags, int atflags)",,https://man.openbsd.org/OpenBSD-8.0/chflagsat.2
+108,pledge,STD NOLOCK,,"sys_pledge(const char *promises, const char *execpromises)",,https://man.openbsd.org/OpenBSD-8.0/pledge.2
+109,ppoll,STD NOLOCK,,"sys_ppoll(struct pollfd *fds, u_int nfds, const struct timespec *ts, const sigset_t *mask)",,https://man.openbsd.org/OpenBSD-8.0/ppoll.2
+110,pselect,STD NOLOCK,,"sys_pselect(int nd, fd_set *in, fd_set *ou, fd_set *ex, const struct timespec *ts, const sigset_t *mask)",,https://man.openbsd.org/OpenBSD-8.0/pselect.2
+111,sigsuspend,STD NOLOCK,,sys_sigsuspend(int mask),,https://man.openbsd.org/OpenBSD-8.0/sigsuspend.2
+112,sendsyslog,STD NOLOCK,,"sys_sendsyslog(const char *buf, size_t nbyte, int flags)",,https://man.openbsd.org/OpenBSD-8.0/sendsyslog.2
+113,fktrace,UNIMPL,,fktrace,,https://man.openbsd.org/OpenBSD-8.0/fktrace.2
+114,unveil,STD,,"sys_unveil(const char *path, const char *permissions)",,https://man.openbsd.org/OpenBSD-8.0/unveil.2
+115,__realpath,STD NOLOCK,,"sys___realpath(const char *pathname, char *resolved)",,https://man.openbsd.org/OpenBSD-8.0/__realpath.2
+116,recvmmsg,STD NOLOCK,,"sys_recvmmsg(int s, struct mmsghdr *mmsg, unsigned int vlen, int flags, struct timespec *timeout)",,https://man.openbsd.org/OpenBSD-8.0/recvmmsg.2
+117,sendmmsg,STD NOLOCK,,"sys_sendmmsg(int s, struct mmsghdr *mmsg, unsigned int vlen, int flags)",,https://man.openbsd.org/OpenBSD-8.0/sendmmsg.2
+118,getsockopt,STD NOLOCK,,"sys_getsockopt(int s, int level, int name, void *val, socklen_t *avalsize)",,https://man.openbsd.org/OpenBSD-8.0/getsockopt.2
+119,thrkill,STD,,"sys_thrkill(pid_t tid, int signum, void *tcb)",,https://man.openbsd.org/OpenBSD-8.0/thrkill.2
+120,readv,STD NOLOCK,,"sys_readv(int fd, const struct iovec *iovp, int iovcnt)",,https://man.openbsd.org/OpenBSD-8.0/readv.2
+121,writev,STD NOLOCK,,"sys_writev(int fd, const struct iovec *iovp, int iovcnt)",,https://man.openbsd.org/OpenBSD-8.0/writev.2
+122,kill,STD,,"sys_kill(int pid, int signum)",,https://man.openbsd.org/OpenBSD-8.0/kill.2
+123,fchown,STD,,"sys_fchown(int fd, uid_t uid, gid_t gid)",,https://man.openbsd.org/OpenBSD-8.0/fchown.2
+124,fchmod,STD,,"sys_fchmod(int fd, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/fchmod.2
+125,__pledge_open,STD NOLOCK,,"sys___pledge_open(const char *path, int flags, ... mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/__pledge_open.2
+126,setreuid,STD,,"sys_setreuid(uid_t ruid, uid_t euid)",,https://man.openbsd.org/OpenBSD-8.0/setreuid.2
+127,setregid,STD,,"sys_setregid(gid_t rgid, gid_t egid)",,https://man.openbsd.org/OpenBSD-8.0/setregid.2
+128,rename,STD,,"sys_rename(const char *from, const char *to)",,https://man.openbsd.org/OpenBSD-8.0/rename.2
+129,otruncate,OBSOL,,otruncate,,https://man.openbsd.org/OpenBSD-8.0/otruncate.2
+130,oftruncate,OBSOL,,oftruncate,,https://man.openbsd.org/OpenBSD-8.0/oftruncate.2
+131,flock,STD NOLOCK,,"sys_flock(int fd, int how)",,https://man.openbsd.org/OpenBSD-8.0/flock.2
+132,mkfifo,STD,,"sys_mkfifo(const char *path, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/mkfifo.2
+133,sendto,STD NOLOCK,,"sys_sendto(int s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen)",,https://man.openbsd.org/OpenBSD-8.0/sendto.2
+134,shutdown,STD NOLOCK,,"sys_shutdown(int s, int how)",,https://man.openbsd.org/OpenBSD-8.0/shutdown.2
+135,socketpair,STD NOLOCK,,"sys_socketpair(int domain, int type, int protocol, int *rsv)",,https://man.openbsd.org/OpenBSD-8.0/socketpair.2
+136,mkdir,STD,,"sys_mkdir(const char *path, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/mkdir.2
+137,rmdir,STD,,sys_rmdir(const char *path),,https://man.openbsd.org/OpenBSD-8.0/rmdir.2
+138,t32_utimes,OBSOL,,t32_utimes,,https://man.openbsd.org/OpenBSD-8.0/t32_utimes.2
+139,,OBSOL,,4.2 sigreturn,,
+140,adjtime,STD NOLOCK,,"sys_adjtime(const struct timeval *delta, struct timeval *olddelta)",,https://man.openbsd.org/OpenBSD-8.0/adjtime.2
+141,getlogin_r,STD,,"sys_getlogin_r(char *namebuf, size_t namelen)",,https://man.openbsd.org/OpenBSD-8.0/getlogin_r.2
+142,getthrname,STD,,"sys_getthrname(pid_t tid, char *name, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/getthrname.2
+143,setthrname,STD,,"sys_setthrname(pid_t tid, const char *name)",,https://man.openbsd.org/OpenBSD-8.0/setthrname.2
+144,ogetrlimit,OBSOL,,ogetrlimit,,https://man.openbsd.org/OpenBSD-8.0/ogetrlimit.2
+145,osetrlimit,OBSOL,,osetrlimit,,https://man.openbsd.org/OpenBSD-8.0/osetrlimit.2
+146,pinsyscall,OBSOL,,pinsyscall,,https://man.openbsd.org/OpenBSD-8.0/pinsyscall.2
+147,setsid,STD,,sys_setsid(void),,https://man.openbsd.org/OpenBSD-8.0/setsid.2
+148,quotactl,STD,,"sys_quotactl(const char *path, int cmd, int uid, void *arg)",,https://man.openbsd.org/OpenBSD-8.0/quotactl.2
+149,oquota,OBSOL,,oquota,,https://man.openbsd.org/OpenBSD-8.0/oquota.2
+150,ypconnect,STD NOLOCK,,sys_ypconnect(int type),,https://man.openbsd.org/OpenBSD-8.0/ypconnect.2
+151,,UNIMPL,,,,
+152,,UNIMPL,,,,
+153,,UNIMPL,,,,
+154,,UNIMPL,,,,
+155,nfssvc,STD,,"sys_nfssvc(int flag, void *argp)",defined(NFSCLIENT) || defined(NFSSERVER),https://man.openbsd.org/OpenBSD-8.0/nfssvc.2
+156,ogetdirentries,OBSOL,,ogetdirentries,,https://man.openbsd.org/OpenBSD-8.0/ogetdirentries.2
+157,statfs25,OBSOL,,statfs25,,https://man.openbsd.org/OpenBSD-8.0/statfs25.2
+158,pinsyscalls,STD,,"sys_pinsyscalls(void *base, size_t len, u_int *pins, int npins)",,https://man.openbsd.org/OpenBSD-8.0/pinsyscalls.2
+159,mimmutable,STD,,"sys_mimmutable(void *addr, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/mimmutable.2
+160,waitid,STD,,"sys_waitid(int idtype, id_t id, siginfo_t *info, int options)",,https://man.openbsd.org/OpenBSD-8.0/waitid.2
+161,getfh,STD,,"sys_getfh(const char *fname, fhandle_t *fhp)",,https://man.openbsd.org/OpenBSD-8.0/getfh.2
+162,ogetdomainname,OBSOL,,ogetdomainname,,https://man.openbsd.org/OpenBSD-8.0/ogetdomainname.2
+163,osetdomainname,OBSOL,,osetdomainname,,https://man.openbsd.org/OpenBSD-8.0/osetdomainname.2
+164,__tmpfd,OBSOL,,__tmpfd,,https://man.openbsd.org/OpenBSD-8.0/__tmpfd.2
+165,sysarch,STD,,"sys_sysarch(int op, void *parms)",,https://man.openbsd.org/OpenBSD-8.0/sysarch.2
+166,lseek,STD NOLOCK,,"sys_lseek(int fd, off_t offset, int whence)",,https://man.openbsd.org/OpenBSD-8.0/lseek.2
+167,truncate,STD,,"sys_truncate(const char *path, off_t length)",,https://man.openbsd.org/OpenBSD-8.0/truncate.2
+168,ftruncate,STD,,"sys_ftruncate(int fd, off_t length)",,https://man.openbsd.org/OpenBSD-8.0/ftruncate.2
+169,pread,STD NOLOCK,,"sys_pread(int fd, void *buf, size_t nbyte, off_t offset)",,https://man.openbsd.org/OpenBSD-8.0/pread.2
+170,pwrite,STD NOLOCK,,"sys_pwrite(int fd, const void *buf, size_t nbyte, off_t offset)",,https://man.openbsd.org/OpenBSD-8.0/pwrite.2
+171,preadv,STD NOLOCK,,"sys_preadv(int fd, const struct iovec *iovp, int iovcnt, off_t offset)",,https://man.openbsd.org/OpenBSD-8.0/preadv.2
+172,pwritev,STD NOLOCK,,"sys_pwritev(int fd, const struct iovec *iovp, int iovcnt, off_t offset)",,https://man.openbsd.org/OpenBSD-8.0/pwritev.2
+173,pad_pread,OBSOL,,pad_pread,,https://man.openbsd.org/OpenBSD-8.0/pad_pread.2
+174,pad_pwrite,OBSOL,,pad_pwrite,,https://man.openbsd.org/OpenBSD-8.0/pad_pwrite.2
+175,profil,STD,,"sys_profil(void *buf, size_t buflen, size_t samplesize, u_long offset, u_int scale, int dirfd)",,https://man.openbsd.org/OpenBSD-8.0/profil.2
+176,ntp_adjtime,UNIMPL,,ntp_adjtime,,https://man.openbsd.org/OpenBSD-8.0/ntp_adjtime.2
+177,,UNIMPL,,,,
+178,,UNIMPL,,,,
+179,,UNIMPL,,,,
+180,,UNIMPL,,,,
+181,setgid,STD,,sys_setgid(gid_t gid),,https://man.openbsd.org/OpenBSD-8.0/setgid.2
+182,setegid,STD,,sys_setegid(gid_t egid),,https://man.openbsd.org/OpenBSD-8.0/setegid.2
+183,seteuid,STD,,sys_seteuid(uid_t euid),,https://man.openbsd.org/OpenBSD-8.0/seteuid.2
+184,lfs_bmapv,OBSOL,,lfs_bmapv,,https://man.openbsd.org/OpenBSD-8.0/lfs_bmapv.2
+185,lfs_markv,OBSOL,,lfs_markv,,https://man.openbsd.org/OpenBSD-8.0/lfs_markv.2
+186,lfs_segclean,OBSOL,,lfs_segclean,,https://man.openbsd.org/OpenBSD-8.0/lfs_segclean.2
+187,lfs_segwait,OBSOL,,lfs_segwait,,https://man.openbsd.org/OpenBSD-8.0/lfs_segwait.2
+188,stat35,OBSOL,,stat35,,https://man.openbsd.org/OpenBSD-8.0/stat35.2
+189,fstat35,OBSOL,,fstat35,,https://man.openbsd.org/OpenBSD-8.0/fstat35.2
+190,pathconfat,STD,,"sys_pathconfat(int fd, const char *path, int name, int flag)",,https://man.openbsd.org/OpenBSD-8.0/pathconfat.2
+191,pathconf,STD,,"sys_pathconf(const char *path, int name)",,https://man.openbsd.org/OpenBSD-8.0/pathconf.2
+192,fpathconf,STD,,"sys_fpathconf(int fd, int name)",,https://man.openbsd.org/OpenBSD-8.0/fpathconf.2
+193,swapctl,STD,,"sys_swapctl(int cmd, const void *arg, int misc)",,https://man.openbsd.org/OpenBSD-8.0/swapctl.2
+194,getrlimit,STD NOLOCK,,"sys_getrlimit(int which, struct rlimit *rlp)",,https://man.openbsd.org/OpenBSD-8.0/getrlimit.2
+195,setrlimit,STD NOLOCK,,"sys_setrlimit(int which, const struct rlimit *rlp)",,https://man.openbsd.org/OpenBSD-8.0/setrlimit.2
+196,ogetdirentries48,OBSOL,,ogetdirentries48,,https://man.openbsd.org/OpenBSD-8.0/ogetdirentries48.2
+197,pad_mmap,OBSOL,,pad_mmap,,https://man.openbsd.org/OpenBSD-8.0/pad_mmap.2
+198,__syscall,OBSOL,,__syscall,,https://man.openbsd.org/OpenBSD-8.0/__syscall.2
+199,pad_lseek,OBSOL,,pad_lseek,,https://man.openbsd.org/OpenBSD-8.0/pad_lseek.2
+200,pad_truncate,OBSOL,,pad_truncate,,https://man.openbsd.org/OpenBSD-8.0/pad_truncate.2
+201,pad_ftruncate,OBSOL,,pad_ftruncate,,https://man.openbsd.org/OpenBSD-8.0/pad_ftruncate.2
+202,sysctl,STD NOLOCK,,"sys_sysctl(const int *name, u_int namelen, void *old, size_t *oldlenp, void *new, size_t newlen)",,https://man.openbsd.org/OpenBSD-8.0/sysctl.2
+203,mlock,STD,,"sys_mlock(const void *addr, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/mlock.2
+204,munlock,STD,,"sys_munlock(const void *addr, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/munlock.2
+205,undelete,UNIMPL,,sys_undelete,,https://man.openbsd.org/OpenBSD-8.0/undelete.2
+206,t32_futimes,OBSOL,,t32_futimes,,https://man.openbsd.org/OpenBSD-8.0/t32_futimes.2
+207,getpgid,STD,,sys_getpgid(pid_t pid),,https://man.openbsd.org/OpenBSD-8.0/getpgid.2
+208,nnpfspioctl,OBSOL,,nnpfspioctl,,https://man.openbsd.org/OpenBSD-8.0/nnpfspioctl.2
+209,utrace,STD NOLOCK,,"sys_utrace(const char *label, const void *addr, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/utrace.2
+210,,UNIMPL,,,,
+211,,UNIMPL,,,,
+212,,UNIMPL,,,,
+213,,UNIMPL,,,,
+214,,UNIMPL,,,,
+215,,UNIMPL,,,,
+216,,UNIMPL,,,,
+217,,UNIMPL,,,,
+218,,UNIMPL,,,,
+219,,UNIMPL,,,,
+220,semctl,UNIMPL,,semctl,!SYSVSEM,https://man.openbsd.org/OpenBSD-8.0/semctl.2
+221,semget,STD,,"sys_semget(key_t key, int nsems, int semflg)",SYSVSEM,https://man.openbsd.org/OpenBSD-8.0/semget.2
+222,semop35,OBSOL,,semop35,,https://man.openbsd.org/OpenBSD-8.0/semop35.2
+223,semconfig35,OBSOL,,semconfig35,,https://man.openbsd.org/OpenBSD-8.0/semconfig35.2
+224,msgctl,UNIMPL,,msgctl,!SYSVMSG,https://man.openbsd.org/OpenBSD-8.0/msgctl.2
+225,msgget,STD,,"sys_msgget(key_t key, int msgflg)",SYSVMSG,https://man.openbsd.org/OpenBSD-8.0/msgget.2
+226,msgsnd,STD,,"sys_msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)",SYSVMSG,https://man.openbsd.org/OpenBSD-8.0/msgsnd.2
+227,msgrcv,STD,,"sys_msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)",SYSVMSG,https://man.openbsd.org/OpenBSD-8.0/msgrcv.2
+228,shmat,STD,,"sys_shmat(int shmid, const void *shmaddr, int shmflg)",SYSVSHM,https://man.openbsd.org/OpenBSD-8.0/shmat.2
+229,shmctl,UNIMPL,,shmctl,!SYSVSHM,https://man.openbsd.org/OpenBSD-8.0/shmctl.2
+230,shmdt,STD,,sys_shmdt(const void *shmaddr),SYSVSHM,https://man.openbsd.org/OpenBSD-8.0/shmdt.2
+231,shmget35,OBSOL,,shmget35,,https://man.openbsd.org/OpenBSD-8.0/shmget35.2
+232,t32_clock_gettime,OBSOL,,t32_clock_gettime,,https://man.openbsd.org/OpenBSD-8.0/t32_clock_gettime.2
+233,t32_clock_settime,OBSOL,,t32_clock_settime,,https://man.openbsd.org/OpenBSD-8.0/t32_clock_settime.2
+234,t32_clock_getres,OBSOL,,t32_clock_getres,,https://man.openbsd.org/OpenBSD-8.0/t32_clock_getres.2
+235,timer_create,UNIMPL,,timer_create,,https://man.openbsd.org/OpenBSD-8.0/timer_create.2
+236,timer_delete,UNIMPL,,timer_delete,,https://man.openbsd.org/OpenBSD-8.0/timer_delete.2
+237,timer_settime,UNIMPL,,timer_settime,,https://man.openbsd.org/OpenBSD-8.0/timer_settime.2
+238,timer_gettime,UNIMPL,,timer_gettime,,https://man.openbsd.org/OpenBSD-8.0/timer_gettime.2
+239,timer_getoverrun,UNIMPL,,timer_getoverrun,,https://man.openbsd.org/OpenBSD-8.0/timer_getoverrun.2
+240,t32_nanosleep,OBSOL,,t32_nanosleep,,https://man.openbsd.org/OpenBSD-8.0/t32_nanosleep.2
+241,,UNIMPL,,,,
+242,,UNIMPL,,,,
+243,,UNIMPL,,,,
+244,,UNIMPL,,,,
+245,,UNIMPL,,,,
+246,,UNIMPL,,,,
+247,,UNIMPL,,,,
+248,,UNIMPL,,,,
+249,,UNIMPL,,,,
+250,minherit,STD NOLOCK,,"sys_minherit(void *addr, size_t len, int inherit)",,https://man.openbsd.org/OpenBSD-8.0/minherit.2
+251,rfork,OBSOL,,rfork,,https://man.openbsd.org/OpenBSD-8.0/rfork.2
+252,poll,STD NOLOCK,,"sys_poll(struct pollfd *fds, u_int nfds, int timeout)",,https://man.openbsd.org/OpenBSD-8.0/poll.2
+253,issetugid,STD NOLOCK,,sys_issetugid(void),,https://man.openbsd.org/OpenBSD-8.0/issetugid.2
+254,lchown,STD,,"sys_lchown(const char *path, uid_t uid, gid_t gid)",,https://man.openbsd.org/OpenBSD-8.0/lchown.2
+255,getsid,STD,,sys_getsid(pid_t pid),,https://man.openbsd.org/OpenBSD-8.0/getsid.2
+256,msync,STD,,"sys_msync(void *addr, size_t len, int flags)",,https://man.openbsd.org/OpenBSD-8.0/msync.2
+257,semctl35,OBSOL,,semctl35,,https://man.openbsd.org/OpenBSD-8.0/semctl35.2
+258,shmctl35,OBSOL,,shmctl35,,https://man.openbsd.org/OpenBSD-8.0/shmctl35.2
+259,msgctl35,OBSOL,,msgctl35,,https://man.openbsd.org/OpenBSD-8.0/msgctl35.2
+260,,UNIMPL,,,,
+261,,UNIMPL,,,,
+262,,UNIMPL,,,,
+263,pipe,STD NOLOCK,,sys_pipe(int *fdp),,https://man.openbsd.org/OpenBSD-8.0/pipe.2
+264,fhopen,STD,,"sys_fhopen(const fhandle_t *fhp, int flags)",,https://man.openbsd.org/OpenBSD-8.0/fhopen.2
+265,,UNIMPL,,,,
+266,,UNIMPL,,,,
+267,pad_preadv,OBSOL,,pad_preadv,,https://man.openbsd.org/OpenBSD-8.0/pad_preadv.2
+268,pad_pwritev,OBSOL,,pad_pwritev,,https://man.openbsd.org/OpenBSD-8.0/pad_pwritev.2
+269,kqueue,STD NOLOCK,,sys_kqueue(void),,https://man.openbsd.org/OpenBSD-8.0/kqueue.2
+270,kqueue1,STD NOLOCK,,sys_kqueue1(int flags),,https://man.openbsd.org/OpenBSD-8.0/kqueue1.2
+271,mlockall,STD,,sys_mlockall(int flags),,https://man.openbsd.org/OpenBSD-8.0/mlockall.2
+272,munlockall,STD,,sys_munlockall(void),,https://man.openbsd.org/OpenBSD-8.0/munlockall.2
+273,getpeereid,UNIMPL,,sys_getpeereid,,https://man.openbsd.org/OpenBSD-8.0/getpeereid.2
+274,extattrctl,UNIMPL,,sys_extattrctl,,https://man.openbsd.org/OpenBSD-8.0/extattrctl.2
+275,extattr_set_file,UNIMPL,,sys_extattr_set_file,,https://man.openbsd.org/OpenBSD-8.0/extattr_set_file.2
+276,extattr_get_file,UNIMPL,,sys_extattr_get_file,,https://man.openbsd.org/OpenBSD-8.0/extattr_get_file.2
+277,extattr_delete_file,UNIMPL,,sys_extattr_delete_file,,https://man.openbsd.org/OpenBSD-8.0/extattr_delete_file.2
+278,extattr_set_fd,UNIMPL,,sys_extattr_set_fd,,https://man.openbsd.org/OpenBSD-8.0/extattr_set_fd.2
+279,extattr_get_fd,UNIMPL,,sys_extattr_get_fd,,https://man.openbsd.org/OpenBSD-8.0/extattr_get_fd.2
+280,extattr_delete_fd,UNIMPL,,sys_extattr_delete_fd,,https://man.openbsd.org/OpenBSD-8.0/extattr_delete_fd.2
+281,getresuid,STD NOLOCK,,"sys_getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)",,https://man.openbsd.org/OpenBSD-8.0/getresuid.2
+282,setresuid,STD,,"sys_setresuid(uid_t ruid, uid_t euid, uid_t suid)",,https://man.openbsd.org/OpenBSD-8.0/setresuid.2
+283,getresgid,STD NOLOCK,,"sys_getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)",,https://man.openbsd.org/OpenBSD-8.0/getresgid.2
+284,setresgid,STD,,"sys_setresgid(gid_t rgid, gid_t egid, gid_t sgid)",,https://man.openbsd.org/OpenBSD-8.0/setresgid.2
+285,omquery,OBSOL,,sys_omquery,,https://man.openbsd.org/OpenBSD-8.0/omquery.2
+286,pad_mquery,OBSOL,,pad_mquery,,https://man.openbsd.org/OpenBSD-8.0/pad_mquery.2
+287,closefrom,STD NOLOCK,,sys_closefrom(int fd),,https://man.openbsd.org/OpenBSD-8.0/closefrom.2
+288,sigaltstack,STD,,"sys_sigaltstack(const struct sigaltstack *nss, struct sigaltstack *oss)",,https://man.openbsd.org/OpenBSD-8.0/sigaltstack.2
+289,shmget,STD,,"sys_shmget(key_t key, size_t size, int shmflg)",SYSVSHM,https://man.openbsd.org/OpenBSD-8.0/shmget.2
+290,semop,STD,,"sys_semop(int semid, struct sembuf *sops, size_t nsops)",SYSVSEM,https://man.openbsd.org/OpenBSD-8.0/semop.2
+291,t32_stat,OBSOL,,t32_stat,,https://man.openbsd.org/OpenBSD-8.0/t32_stat.2
+292,t32_fstat,OBSOL,,t32_fstat,,https://man.openbsd.org/OpenBSD-8.0/t32_fstat.2
+293,t32_lstat,OBSOL,,t32_lstat,,https://man.openbsd.org/OpenBSD-8.0/t32_lstat.2
+294,fhstat,STD,,"sys_fhstat(const fhandle_t *fhp, struct stat *sb)",,https://man.openbsd.org/OpenBSD-8.0/fhstat.2
+295,__semctl,STD,,"sys___semctl(int semid, int semnum, int cmd, union semun *arg)",SYSVSEM,https://man.openbsd.org/OpenBSD-8.0/__semctl.2
+296,shmctl,STD,,"sys_shmctl(int shmid, int cmd, struct shmid_ds *buf)",SYSVSHM,https://man.openbsd.org/OpenBSD-8.0/shmctl.2
+297,msgctl,STD,,"sys_msgctl(int msqid, int cmd, struct msqid_ds *buf)",SYSVMSG,https://man.openbsd.org/OpenBSD-8.0/msgctl.2
+298,sched_yield,STD NOLOCK,,sys_sched_yield(void),,https://man.openbsd.org/OpenBSD-8.0/sched_yield.2
+299,getthrid,STD NOLOCK,,sys_getthrid(void),,https://man.openbsd.org/OpenBSD-8.0/getthrid.2
+300,t32___thrsleep,OBSOL,,t32___thrsleep,,https://man.openbsd.org/OpenBSD-8.0/t32___thrsleep.2
+301,__thrwakeup,STD NOLOCK,,"sys___thrwakeup(const volatile void *ident, int n)",,https://man.openbsd.org/OpenBSD-8.0/__thrwakeup.2
+302,__threxit,STD,,sys___threxit(pid_t *notdead),,https://man.openbsd.org/OpenBSD-8.0/__threxit.2
+303,__thrsigdivert,STD NOLOCK,,"sys___thrsigdivert(sigset_t sigmask, siginfo_t *info, const struct timespec *timeout)",,https://man.openbsd.org/OpenBSD-8.0/__thrsigdivert.2
+304,__getcwd,STD,,"sys___getcwd(char *buf, size_t len)",,https://man.openbsd.org/OpenBSD-8.0/__getcwd.2
+305,adjfreq,STD NOLOCK,,"sys_adjfreq(const int64_t *freq, int64_t *oldfreq)",,https://man.openbsd.org/OpenBSD-8.0/adjfreq.2
+306,getfsstat53,OBSOL,,getfsstat53,,https://man.openbsd.org/OpenBSD-8.0/getfsstat53.2
+307,statfs53,OBSOL,,statfs53,,https://man.openbsd.org/OpenBSD-8.0/statfs53.2
+308,fstatfs53,OBSOL,,fstatfs53,,https://man.openbsd.org/OpenBSD-8.0/fstatfs53.2
+309,fhstatfs53,OBSOL,,fhstatfs53,,https://man.openbsd.org/OpenBSD-8.0/fhstatfs53.2
+310,setrtable,STD NOLOCK,,sys_setrtable(int rtableid),,https://man.openbsd.org/OpenBSD-8.0/setrtable.2
+311,getrtable,STD NOLOCK,,sys_getrtable(void),,https://man.openbsd.org/OpenBSD-8.0/getrtable.2
+312,t32_getdirentries,OBSOL,,t32_getdirentries,,https://man.openbsd.org/OpenBSD-8.0/t32_getdirentries.2
+313,faccessat,STD,,"sys_faccessat(int fd, const char *path, int amode, int flag)",,https://man.openbsd.org/OpenBSD-8.0/faccessat.2
+314,fchmodat,STD,,"sys_fchmodat(int fd, const char *path, mode_t mode, int flag)",,https://man.openbsd.org/OpenBSD-8.0/fchmodat.2
+315,fchownat,STD,,"sys_fchownat(int fd, const char *path, uid_t uid, gid_t gid, int flag)",,https://man.openbsd.org/OpenBSD-8.0/fchownat.2
+316,t32_fstatat,OBSOL,,t32_fstatat,,https://man.openbsd.org/OpenBSD-8.0/t32_fstatat.2
+317,linkat,STD,,"sys_linkat(int fd1, const char *path1, int fd2, const char *path2, int flag)",,https://man.openbsd.org/OpenBSD-8.0/linkat.2
+318,mkdirat,STD,,"sys_mkdirat(int fd, const char *path, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/mkdirat.2
+319,mkfifoat,STD,,"sys_mkfifoat(int fd, const char *path, mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/mkfifoat.2
+320,mknodat,STD,,"sys_mknodat(int fd, const char *path, mode_t mode, dev_t dev)",,https://man.openbsd.org/OpenBSD-8.0/mknodat.2
+321,openat,STD NOLOCK,,"sys_openat(int fd, const char *path, int flags, ... mode_t mode)",,https://man.openbsd.org/OpenBSD-8.0/openat.2
+322,readlinkat,STD,,"sys_readlinkat(int fd, const char *path, char *buf, size_t count)",,https://man.openbsd.org/OpenBSD-8.0/readlinkat.2
+323,renameat,STD,,"sys_renameat(int fromfd, const char *from, int tofd, const char *to)",,https://man.openbsd.org/OpenBSD-8.0/renameat.2
+324,symlinkat,STD,,"sys_symlinkat(const char *path, int fd, const char *link)",,https://man.openbsd.org/OpenBSD-8.0/symlinkat.2
+325,unlinkat,STD,,"sys_unlinkat(int fd, const char *path, int flag)",,https://man.openbsd.org/OpenBSD-8.0/unlinkat.2
+326,t32_utimensat,OBSOL,,t32_utimensat,,https://man.openbsd.org/OpenBSD-8.0/t32_utimensat.2
+327,t32_futimens,OBSOL,,t32_futimens,,https://man.openbsd.org/OpenBSD-8.0/t32_futimens.2
+328,__tfork51,OBSOL,,__tfork51,,https://man.openbsd.org/OpenBSD-8.0/__tfork51.2
+329,__set_tcb,STD NOLOCK,,sys___set_tcb(void *tcb),,https://man.openbsd.org/OpenBSD-8.0/__set_tcb.2
+330,__get_tcb,STD NOLOCK,,sys___get_tcb(void),,https://man.openbsd.org/OpenBSD-8.0/__get_tcb.2
