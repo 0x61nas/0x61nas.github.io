@@ -226,6 +226,7 @@
                             <div>Manual</div>
                         </div>
 
+                        {{ $r := .Registers }}
                         {{ range .Syscalls }}
 
                         <details class="tbls-entry">
@@ -246,6 +247,11 @@
                                 {{ if .Args }}
                                 <table>
                                     <tbody>
+                                        <tr>
+                                            {{ range $i, $_ := .Args }}
+                                            <td><code>%{{ index $r $i }}</code></td>
+                                            {{ end }}
+                                        </tr>
                                         <tr>
                                             {{ range .Args }}
                                             <td>{{ .Type }}</td>
