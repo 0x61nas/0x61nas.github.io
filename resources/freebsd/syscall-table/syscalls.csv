@@ -1,0 +1,563 @@
+number,name,types,audit,alias,signature,condition,man_url
+0,syscall,SYSMUX,AUE_NULL,,"sys_syscall(int number, ...)",,https://man.freebsd.org/cgi/man.cgi?query=syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+1,_exit,STD|CAPENABLED|NORETURN,AUE_EXIT,,sys__exit(int rval),,https://man.freebsd.org/cgi/man.cgi?query=_exit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+2,fork,STD|CAPENABLED,AUE_FORK,,sys_fork(void),,https://man.freebsd.org/cgi/man.cgi?query=fork&sektion=2&manpath=FreeBSD+15.0-RELEASE
+3,read,STD|CAPENABLED,AUE_READ,,"sys_read(int fd, void *buf, size_t nbyte)",,https://man.freebsd.org/cgi/man.cgi?query=read&sektion=2&manpath=FreeBSD+15.0-RELEASE
+4,write,STD|CAPENABLED,AUE_WRITE,,"sys_write(int fd, const void *buf, size_t nbyte)",,https://man.freebsd.org/cgi/man.cgi?query=write&sektion=2&manpath=FreeBSD+15.0-RELEASE
+5,open,STD,AUE_OPEN_RWTC,,"sys_open(const char *path, int flags, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=open&sektion=2&manpath=FreeBSD+15.0-RELEASE
+6,close,STD|CAPENABLED,AUE_CLOSE,,sys_close(int fd),,https://man.freebsd.org/cgi/man.cgi?query=close&sektion=2&manpath=FreeBSD+15.0-RELEASE
+7,wait4,STD|CAPENABLED,AUE_WAIT4,,"sys_wait4(int pid, int *status, int options, struct rusage *rusage)",,https://man.freebsd.org/cgi/man.cgi?query=wait4&sektion=2&manpath=FreeBSD+15.0-RELEASE
+8,creat,COMPAT,AUE_CREAT,,"sys_creat(const char *path, int mode)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=creat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+9,link,STD,AUE_LINK,,"sys_link(const char *path, const char *link)",,https://man.freebsd.org/cgi/man.cgi?query=link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+10,unlink,STD,AUE_UNLINK,,sys_unlink(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=unlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+11,execv,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=execv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+12,chdir,STD,AUE_CHDIR,,sys_chdir(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=chdir&sektion=2&manpath=FreeBSD+15.0-RELEASE
+13,fchdir,STD,AUE_FCHDIR,,sys_fchdir(int fd),,https://man.freebsd.org/cgi/man.cgi?query=fchdir&sektion=2&manpath=FreeBSD+15.0-RELEASE
+14,mknod,COMPAT11,AUE_MKNOD,,"sys_mknod(const char *path, int mode, uint32_t dev)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=mknod&sektion=2&manpath=FreeBSD+15.0-RELEASE
+15,chmod,STD,AUE_CHMOD,,"sys_chmod(const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=chmod&sektion=2&manpath=FreeBSD+15.0-RELEASE
+16,chown,STD,AUE_CHOWN,,"sys_chown(const char *path, int uid, int gid)",,https://man.freebsd.org/cgi/man.cgi?query=chown&sektion=2&manpath=FreeBSD+15.0-RELEASE
+17,break,STD|CAPENABLED,AUE_NULL,,sys_break(char *nsize),,https://man.freebsd.org/cgi/man.cgi?query=break&sektion=2&manpath=FreeBSD+15.0-RELEASE
+18,getfsstat,COMPAT4,AUE_GETFSSTAT,,"sys_getfsstat(struct ostatfs *buf, long bufsize, int mode)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=getfsstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+19,lseek,COMPAT|CAPENABLED,AUE_LSEEK,,"sys_lseek(int fd, long offset, int whence)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=lseek&sektion=2&manpath=FreeBSD+15.0-RELEASE
+20,getpid,STD|CAPENABLED,AUE_GETPID,,sys_getpid(void),,https://man.freebsd.org/cgi/man.cgi?query=getpid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+21,mount,STD,AUE_MOUNT,,"sys_mount(const char *type, const char *path, int flags, void *data)",,https://man.freebsd.org/cgi/man.cgi?query=mount&sektion=2&manpath=FreeBSD+15.0-RELEASE
+22,unmount,STD,AUE_UMOUNT,,"sys_unmount(const char *path, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=unmount&sektion=2&manpath=FreeBSD+15.0-RELEASE
+23,setuid,STD|CAPENABLED,AUE_SETUID,,sys_setuid(uid_t uid),,https://man.freebsd.org/cgi/man.cgi?query=setuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+24,getuid,STD|CAPENABLED,AUE_GETUID,,sys_getuid(void),,https://man.freebsd.org/cgi/man.cgi?query=getuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+25,geteuid,STD|CAPENABLED,AUE_GETEUID,,sys_geteuid(void),,https://man.freebsd.org/cgi/man.cgi?query=geteuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+26,ptrace,STD,AUE_PTRACE,,"sys_ptrace(int req, pid_t pid, caddr_t addr, int data)",,https://man.freebsd.org/cgi/man.cgi?query=ptrace&sektion=2&manpath=FreeBSD+15.0-RELEASE
+27,recvmsg,STD|CAPENABLED,AUE_RECVMSG,,"sys_recvmsg(int s, struct msghdr *msg, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=recvmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+28,sendmsg,STD|CAPENABLED,AUE_SENDMSG,,"sys_sendmsg(int s, const struct msghdr *msg, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=sendmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+29,recvfrom,STD|CAPENABLED,AUE_RECVFROM,,"sys_recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, __socklen_t *fromlenaddr)",,https://man.freebsd.org/cgi/man.cgi?query=recvfrom&sektion=2&manpath=FreeBSD+15.0-RELEASE
+30,accept,STD|CAPENABLED,AUE_ACCEPT,,"sys_accept(int s, struct sockaddr *name, __socklen_t *anamelen)",,https://man.freebsd.org/cgi/man.cgi?query=accept&sektion=2&manpath=FreeBSD+15.0-RELEASE
+31,getpeername,STD|CAPENABLED,AUE_GETPEERNAME,,"sys_getpeername(int fdes, struct sockaddr *asa, __socklen_t *alen)",,https://man.freebsd.org/cgi/man.cgi?query=getpeername&sektion=2&manpath=FreeBSD+15.0-RELEASE
+32,getsockname,STD|CAPENABLED,AUE_GETSOCKNAME,,"sys_getsockname(int fdes, struct sockaddr *asa, __socklen_t *alen)",,https://man.freebsd.org/cgi/man.cgi?query=getsockname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+33,access,STD,AUE_ACCESS,,"sys_access(const char *path, int amode)",,https://man.freebsd.org/cgi/man.cgi?query=access&sektion=2&manpath=FreeBSD+15.0-RELEASE
+34,chflags,STD,AUE_CHFLAGS,,"sys_chflags(const char *path, u_long flags)",,https://man.freebsd.org/cgi/man.cgi?query=chflags&sektion=2&manpath=FreeBSD+15.0-RELEASE
+35,fchflags,STD|CAPENABLED,AUE_FCHFLAGS,,"sys_fchflags(int fd, u_long flags)",,https://man.freebsd.org/cgi/man.cgi?query=fchflags&sektion=2&manpath=FreeBSD+15.0-RELEASE
+36,sync,STD|CAPENABLED,AUE_SYNC,,sys_sync(void),,https://man.freebsd.org/cgi/man.cgi?query=sync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+37,kill,STD|CAPENABLED,AUE_KILL,,"sys_kill(int pid, int signum)",,https://man.freebsd.org/cgi/man.cgi?query=kill&sektion=2&manpath=FreeBSD+15.0-RELEASE
+38,stat,COMPAT,AUE_STAT,,"sys_stat(const char *path, struct ostat *ub)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=stat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+39,getppid,STD|CAPENABLED,AUE_GETPPID,,sys_getppid(void),,https://man.freebsd.org/cgi/man.cgi?query=getppid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+40,lstat,COMPAT,AUE_LSTAT,,"sys_lstat(const char *path, struct ostat *ub)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=lstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+41,dup,STD|CAPENABLED,AUE_DUP,,sys_dup(u_int fd),,https://man.freebsd.org/cgi/man.cgi?query=dup&sektion=2&manpath=FreeBSD+15.0-RELEASE
+42,pipe,COMPAT10|CAPENABLED,AUE_PIPE,,sys_pipe(void),COMPAT_FREEBSD10,https://man.freebsd.org/cgi/man.cgi?query=pipe&sektion=2&manpath=FreeBSD+15.0-RELEASE
+43,getegid,STD|CAPENABLED,AUE_GETEGID,,sys_getegid(void),,https://man.freebsd.org/cgi/man.cgi?query=getegid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+44,profil,STD|CAPENABLED,AUE_PROFILE,,"sys_profil(char *samples, size_t size, size_t offset, u_int scale)",,https://man.freebsd.org/cgi/man.cgi?query=profil&sektion=2&manpath=FreeBSD+15.0-RELEASE
+45,ktrace,STD,AUE_KTRACE,,"sys_ktrace(const char *fname, int ops, int facs, int pid)",,https://man.freebsd.org/cgi/man.cgi?query=ktrace&sektion=2&manpath=FreeBSD+15.0-RELEASE
+46,sigaction,COMPAT|CAPENABLED,AUE_SIGACTION,,"sys_sigaction(int signum, struct osigaction *nsa, struct osigaction *osa)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigaction&sektion=2&manpath=FreeBSD+15.0-RELEASE
+47,getgid,STD|CAPENABLED,AUE_GETGID,,sys_getgid(void),,https://man.freebsd.org/cgi/man.cgi?query=getgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+48,sigprocmask,COMPAT|CAPENABLED,AUE_SIGPROCMASK,,"sys_sigprocmask(int how, osigset_t mask)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigprocmask&sektion=2&manpath=FreeBSD+15.0-RELEASE
+49,getlogin,STD|CAPENABLED,AUE_GETLOGIN,,"sys_getlogin(char *namebuf, u_int namelen)",,https://man.freebsd.org/cgi/man.cgi?query=getlogin&sektion=2&manpath=FreeBSD+15.0-RELEASE
+50,setlogin,STD,AUE_SETLOGIN,,sys_setlogin(const char *namebuf),,https://man.freebsd.org/cgi/man.cgi?query=setlogin&sektion=2&manpath=FreeBSD+15.0-RELEASE
+51,acct,STD,AUE_ACCT,,sys_acct(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=acct&sektion=2&manpath=FreeBSD+15.0-RELEASE
+52,sigpending,COMPAT|CAPENABLED,AUE_SIGPENDING,,sys_sigpending(void),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigpending&sektion=2&manpath=FreeBSD+15.0-RELEASE
+53,sigaltstack,STD|CAPENABLED,AUE_SIGALTSTACK,,"sys_sigaltstack(const struct sigaltstack *ss, struct sigaltstack *oss)",,https://man.freebsd.org/cgi/man.cgi?query=sigaltstack&sektion=2&manpath=FreeBSD+15.0-RELEASE
+54,ioctl,STD|CAPENABLED,AUE_IOCTL,,"sys_ioctl(int fd, u_long com, char *data)",,https://man.freebsd.org/cgi/man.cgi?query=ioctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+55,reboot,STD,AUE_REBOOT,,sys_reboot(int opt),,https://man.freebsd.org/cgi/man.cgi?query=reboot&sektion=2&manpath=FreeBSD+15.0-RELEASE
+56,revoke,STD,AUE_REVOKE,,sys_revoke(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=revoke&sektion=2&manpath=FreeBSD+15.0-RELEASE
+57,symlink,STD,AUE_SYMLINK,,"sys_symlink(const char *path, const char *link)",,https://man.freebsd.org/cgi/man.cgi?query=symlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+58,readlink,STD,AUE_READLINK,,"sys_readlink(const char *path, char *buf, size_t count)",,https://man.freebsd.org/cgi/man.cgi?query=readlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+59,execve,STD,AUE_EXECVE,,"sys_execve(const char *fname, char **argv, char **envv)",,https://man.freebsd.org/cgi/man.cgi?query=execve&sektion=2&manpath=FreeBSD+15.0-RELEASE
+60,umask,STD|CAPENABLED,AUE_UMASK,,sys_umask(mode_t newmask),,https://man.freebsd.org/cgi/man.cgi?query=umask&sektion=2&manpath=FreeBSD+15.0-RELEASE
+61,chroot,STD,AUE_CHROOT,,sys_chroot(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=chroot&sektion=2&manpath=FreeBSD+15.0-RELEASE
+62,fstat,COMPAT|CAPENABLED,AUE_FSTAT,,"sys_fstat(int fd, struct ostat *sb)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=fstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+63,getkerninfo,COMPAT,AUE_NULL,,"sys_getkerninfo(int op, opt(*size) char *where, size_t *size, int arg)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getkerninfo&sektion=2&manpath=FreeBSD+15.0-RELEASE
+64,getpagesize,COMPAT|CAPENABLED,AUE_NULL,,sys_getpagesize(void),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getpagesize&sektion=2&manpath=FreeBSD+15.0-RELEASE
+65,msync,STD|CAPENABLED,AUE_MSYNC,,"sys_msync(void *addr, size_t len, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=msync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+66,vfork,STD|CAPENABLED,AUE_VFORK,,sys_vfork(void),,https://man.freebsd.org/cgi/man.cgi?query=vfork&sektion=2&manpath=FreeBSD+15.0-RELEASE
+67,vread,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vread&sektion=2&manpath=FreeBSD+15.0-RELEASE
+68,vwrite,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vwrite&sektion=2&manpath=FreeBSD+15.0-RELEASE
+69,sbrk,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=sbrk&sektion=2&manpath=FreeBSD+15.0-RELEASE
+70,sstk,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=sstk&sektion=2&manpath=FreeBSD+15.0-RELEASE
+71,mmap,COMPAT|CAPENABLED,AUE_MMAP,,"sys_mmap(void *addr, int len, int prot, int flags, int fd, long pos)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=mmap&sektion=2&manpath=FreeBSD+15.0-RELEASE
+72,vadvise,COMPAT11,AUE_O_VADVISE,,sys_vadvise(int anom),COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=vadvise&sektion=2&manpath=FreeBSD+15.0-RELEASE
+73,munmap,STD|CAPENABLED,AUE_MUNMAP,,"sys_munmap(void *addr, size_t len)",,https://man.freebsd.org/cgi/man.cgi?query=munmap&sektion=2&manpath=FreeBSD+15.0-RELEASE
+74,mprotect,STD|CAPENABLED,AUE_MPROTECT,,"sys_mprotect(void *addr, size_t len, int prot)",,https://man.freebsd.org/cgi/man.cgi?query=mprotect&sektion=2&manpath=FreeBSD+15.0-RELEASE
+75,madvise,STD|CAPENABLED,AUE_MADVISE,,"sys_madvise(void *addr, size_t len, int behav)",,https://man.freebsd.org/cgi/man.cgi?query=madvise&sektion=2&manpath=FreeBSD+15.0-RELEASE
+76,vhangup,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vhangup&sektion=2&manpath=FreeBSD+15.0-RELEASE
+77,vlimit,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vlimit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+78,mincore,STD|CAPENABLED,AUE_MINCORE,,"sys_mincore(const void *addr, size_t len, char *vec)",,https://man.freebsd.org/cgi/man.cgi?query=mincore&sektion=2&manpath=FreeBSD+15.0-RELEASE
+79,getgroups,COMPAT14|CAPENABLED,AUE_GETGROUPS,,"sys_getgroups(int gidsetsize, gid_t *gidset)",COMPAT_FREEBSD14,https://man.freebsd.org/cgi/man.cgi?query=getgroups&sektion=2&manpath=FreeBSD+15.0-RELEASE
+80,setgroups,COMPAT14,AUE_SETGROUPS,,"sys_setgroups(int gidsetsize, const gid_t *gidset)",COMPAT_FREEBSD14,https://man.freebsd.org/cgi/man.cgi?query=setgroups&sektion=2&manpath=FreeBSD+15.0-RELEASE
+81,getpgrp,STD|CAPENABLED,AUE_GETPGRP,,sys_getpgrp(void),,https://man.freebsd.org/cgi/man.cgi?query=getpgrp&sektion=2&manpath=FreeBSD+15.0-RELEASE
+82,setpgid,STD,AUE_SETPGRP,,"sys_setpgid(int pid, int pgid)",,https://man.freebsd.org/cgi/man.cgi?query=setpgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+83,setitimer,STD|CAPENABLED,AUE_SETITIMER,,"sys_setitimer(int which, const struct itimerval *itv, struct itimerval *oitv)",,https://man.freebsd.org/cgi/man.cgi?query=setitimer&sektion=2&manpath=FreeBSD+15.0-RELEASE
+84,wait,COMPAT,AUE_WAIT4,,sys_wait(void),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=wait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+85,swapon,STD,AUE_SWAPON,,sys_swapon(const char *name),,https://man.freebsd.org/cgi/man.cgi?query=swapon&sektion=2&manpath=FreeBSD+15.0-RELEASE
+86,getitimer,STD|CAPENABLED,AUE_GETITIMER,,"sys_getitimer(int which, struct itimerval *itv)",,https://man.freebsd.org/cgi/man.cgi?query=getitimer&sektion=2&manpath=FreeBSD+15.0-RELEASE
+87,gethostname,COMPAT|CAPENABLED,AUE_SYSCTL,,"sys_gethostname(char *hostname, u_int len)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=gethostname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+88,sethostname,COMPAT,AUE_SYSCTL,,"sys_sethostname(char *hostname, u_int len)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sethostname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+89,getdtablesize,STD|CAPENABLED,AUE_GETDTABLESIZE,,sys_getdtablesize(void),,https://man.freebsd.org/cgi/man.cgi?query=getdtablesize&sektion=2&manpath=FreeBSD+15.0-RELEASE
+90,dup2,STD|CAPENABLED,AUE_DUP2,,"sys_dup2(u_int from, u_int to)",,https://man.freebsd.org/cgi/man.cgi?query=dup2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+91,,RESERVED,AUE_NULL,,,,
+92,fcntl,STD|CAPENABLED,AUE_FCNTL,,"sys_fcntl(int fd, int cmd, intptr_t arg)",,https://man.freebsd.org/cgi/man.cgi?query=fcntl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+93,select,STD|CAPENABLED,AUE_SELECT,,"sys_select(int nd, fd_set *in, fd_set *ou, fd_set *ex, struct timeval *tv)",,https://man.freebsd.org/cgi/man.cgi?query=select&sektion=2&manpath=FreeBSD+15.0-RELEASE
+94,,RESERVED,AUE_NULL,,,,
+95,fsync,STD|CAPENABLED,AUE_FSYNC,,sys_fsync(int fd),,https://man.freebsd.org/cgi/man.cgi?query=fsync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+96,setpriority,STD|CAPENABLED,AUE_SETPRIORITY,,"sys_setpriority(int which, int who, int prio)",,https://man.freebsd.org/cgi/man.cgi?query=setpriority&sektion=2&manpath=FreeBSD+15.0-RELEASE
+97,socket,STD|CAPENABLED,AUE_SOCKET,,"sys_socket(int domain, int type, int protocol)",,https://man.freebsd.org/cgi/man.cgi?query=socket&sektion=2&manpath=FreeBSD+15.0-RELEASE
+98,connect,STD,AUE_CONNECT,,"sys_connect(int s, const struct sockaddr *name, __socklen_t namelen)",,https://man.freebsd.org/cgi/man.cgi?query=connect&sektion=2&manpath=FreeBSD+15.0-RELEASE
+99,accept,COMPAT|CAPENABLED,AUE_ACCEPT,,"sys_accept(int s, struct sockaddr *name, __socklen_t *anamelen)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=accept&sektion=2&manpath=FreeBSD+15.0-RELEASE
+100,getpriority,STD|CAPENABLED,AUE_GETPRIORITY,,"sys_getpriority(int which, int who)",,https://man.freebsd.org/cgi/man.cgi?query=getpriority&sektion=2&manpath=FreeBSD+15.0-RELEASE
+101,send,COMPAT|CAPENABLED,AUE_SEND,,"sys_send(int s, const void *buf, int len, int flags)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=send&sektion=2&manpath=FreeBSD+15.0-RELEASE
+102,recv,COMPAT|CAPENABLED,AUE_RECV,,"sys_recv(int s, void *buf, int len, int flags)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=recv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+103,sigreturn,COMPAT|CAPENABLED,AUE_SIGRETURN,,sys_sigreturn(struct osigcontext *sigcntxp),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&manpath=FreeBSD+15.0-RELEASE
+104,bind,STD,AUE_BIND,,"sys_bind(int s, const struct sockaddr *name, __socklen_t namelen)",,https://man.freebsd.org/cgi/man.cgi?query=bind&sektion=2&manpath=FreeBSD+15.0-RELEASE
+105,setsockopt,STD|CAPENABLED,AUE_SETSOCKOPT,,"sys_setsockopt(int s, int level, int name, const void *val, __socklen_t valsize)",,https://man.freebsd.org/cgi/man.cgi?query=setsockopt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+106,listen,STD|CAPENABLED,AUE_LISTEN,,"sys_listen(int s, int backlog)",,https://man.freebsd.org/cgi/man.cgi?query=listen&sektion=2&manpath=FreeBSD+15.0-RELEASE
+107,vtimes,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vtimes&sektion=2&manpath=FreeBSD+15.0-RELEASE
+108,sigvec,COMPAT|CAPENABLED,AUE_NULL,,"sys_sigvec(int signum, struct sigvec *nsv, struct sigvec *osv)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigvec&sektion=2&manpath=FreeBSD+15.0-RELEASE
+109,sigblock,COMPAT|CAPENABLED,AUE_NULL,,sys_sigblock(int mask),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigblock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+110,sigsetmask,COMPAT|CAPENABLED,AUE_NULL,,sys_sigsetmask(int mask),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigsetmask&sektion=2&manpath=FreeBSD+15.0-RELEASE
+111,sigsuspend,COMPAT|CAPENABLED,AUE_NULL,,sys_sigsuspend(osigset_t mask),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigsuspend&sektion=2&manpath=FreeBSD+15.0-RELEASE
+112,sigstack,COMPAT|CAPENABLED,AUE_NULL,,"sys_sigstack(struct sigstack *nss, struct sigstack *oss)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sigstack&sektion=2&manpath=FreeBSD+15.0-RELEASE
+113,recvmsg,COMPAT|CAPENABLED,AUE_RECVMSG,,"sys_recvmsg(int s, struct omsghdr *msg, int flags)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=recvmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+114,sendmsg,COMPAT|CAPENABLED,AUE_SENDMSG,,"sys_sendmsg(int s, const struct omsghdr *msg, int flags)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sendmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+115,vtrace,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=vtrace&sektion=2&manpath=FreeBSD+15.0-RELEASE
+116,gettimeofday,STD|CAPENABLED,AUE_GETTIMEOFDAY,,"sys_gettimeofday(struct timeval *tp, struct timezone *tzp)",,https://man.freebsd.org/cgi/man.cgi?query=gettimeofday&sektion=2&manpath=FreeBSD+15.0-RELEASE
+117,getrusage,STD|CAPENABLED,AUE_GETRUSAGE,,"sys_getrusage(int who, struct rusage *rusage)",,https://man.freebsd.org/cgi/man.cgi?query=getrusage&sektion=2&manpath=FreeBSD+15.0-RELEASE
+118,getsockopt,STD|CAPENABLED,AUE_GETSOCKOPT,,"sys_getsockopt(int s, int level, int name, void *val, __socklen_t *avalsize)",,https://man.freebsd.org/cgi/man.cgi?query=getsockopt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+119,,RESERVED,AUE_NULL,,,,
+120,readv,STD|CAPENABLED,AUE_READV,,"sys_readv(int fd, const struct iovec *iovp, u_int iovcnt)",,https://man.freebsd.org/cgi/man.cgi?query=readv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+121,writev,STD|CAPENABLED,AUE_WRITEV,,"sys_writev(int fd, const struct iovec *iovp, u_int iovcnt)",,https://man.freebsd.org/cgi/man.cgi?query=writev&sektion=2&manpath=FreeBSD+15.0-RELEASE
+122,settimeofday,STD,AUE_SETTIMEOFDAY,,"sys_settimeofday(const struct timeval *tv, const struct timezone *tzp)",,https://man.freebsd.org/cgi/man.cgi?query=settimeofday&sektion=2&manpath=FreeBSD+15.0-RELEASE
+123,fchown,STD|CAPENABLED,AUE_FCHOWN,,"sys_fchown(int fd, int uid, int gid)",,https://man.freebsd.org/cgi/man.cgi?query=fchown&sektion=2&manpath=FreeBSD+15.0-RELEASE
+124,fchmod,STD|CAPENABLED,AUE_FCHMOD,,"sys_fchmod(int fd, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=fchmod&sektion=2&manpath=FreeBSD+15.0-RELEASE
+125,recvfrom,COMPAT|CAPENABLED,AUE_RECVFROM,,"sys_recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, __socklen_t *fromlenaddr)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=recvfrom&sektion=2&manpath=FreeBSD+15.0-RELEASE
+126,setreuid,STD|CAPENABLED,AUE_SETREUID,,"sys_setreuid(int ruid, int euid)",,https://man.freebsd.org/cgi/man.cgi?query=setreuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+127,setregid,STD|CAPENABLED,AUE_SETREGID,,"sys_setregid(int rgid, int egid)",,https://man.freebsd.org/cgi/man.cgi?query=setregid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+128,rename,STD,AUE_RENAME,,"sys_rename(const char *from, const char *to)",,https://man.freebsd.org/cgi/man.cgi?query=rename&sektion=2&manpath=FreeBSD+15.0-RELEASE
+129,truncate,COMPAT,AUE_TRUNCATE,,"sys_truncate(const char *path, long length)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=truncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+130,ftruncate,COMPAT|CAPENABLED,AUE_FTRUNCATE,,"sys_ftruncate(int fd, long length)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=ftruncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+131,flock,STD|CAPENABLED,AUE_FLOCK,,"sys_flock(int fd, int how)",,https://man.freebsd.org/cgi/man.cgi?query=flock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+132,mkfifo,STD,AUE_MKFIFO,,"sys_mkfifo(const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=mkfifo&sektion=2&manpath=FreeBSD+15.0-RELEASE
+133,sendto,STD|CAPENABLED,AUE_SENDTO,,"sys_sendto(int s, const void *buf, size_t len, int flags, const struct sockaddr *to, __socklen_t tolen)",,https://man.freebsd.org/cgi/man.cgi?query=sendto&sektion=2&manpath=FreeBSD+15.0-RELEASE
+134,shutdown,STD|CAPENABLED,AUE_SHUTDOWN,,"sys_shutdown(int s, int how)",,https://man.freebsd.org/cgi/man.cgi?query=shutdown&sektion=2&manpath=FreeBSD+15.0-RELEASE
+135,socketpair,STD|CAPENABLED,AUE_SOCKETPAIR,,"sys_socketpair(int domain, int type, int protocol, int *rsv)",,https://man.freebsd.org/cgi/man.cgi?query=socketpair&sektion=2&manpath=FreeBSD+15.0-RELEASE
+136,mkdir,STD,AUE_MKDIR,,"sys_mkdir(const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=mkdir&sektion=2&manpath=FreeBSD+15.0-RELEASE
+137,rmdir,STD,AUE_RMDIR,,sys_rmdir(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=rmdir&sektion=2&manpath=FreeBSD+15.0-RELEASE
+138,utimes,STD,AUE_UTIMES,,"sys_utimes(const char *path, const struct timeval *tptr)",,https://man.freebsd.org/cgi/man.cgi?query=utimes&sektion=2&manpath=FreeBSD+15.0-RELEASE
+139,sigreturn,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&manpath=FreeBSD+15.0-RELEASE
+140,adjtime,STD,AUE_ADJTIME,,"sys_adjtime(const struct timeval *delta, struct timeval *olddelta)",,https://man.freebsd.org/cgi/man.cgi?query=adjtime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+141,getpeername,COMPAT|CAPENABLED,AUE_GETPEERNAME,,"sys_getpeername(int fdes, struct sockaddr *asa, __socklen_t *alen)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getpeername&sektion=2&manpath=FreeBSD+15.0-RELEASE
+142,gethostid,COMPAT|CAPENABLED,AUE_SYSCTL,,sys_gethostid(void),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=gethostid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+143,sethostid,COMPAT,AUE_SYSCTL,,sys_sethostid(long hostid),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=sethostid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+144,getrlimit,COMPAT|CAPENABLED,AUE_GETRLIMIT,,"sys_getrlimit(u_int which, struct orlimit *rlp)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getrlimit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+145,setrlimit,COMPAT|CAPENABLED,AUE_SETRLIMIT,,"sys_setrlimit(u_int which, struct orlimit *rlp)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=setrlimit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+146,killpg,COMPAT,AUE_KILLPG,,"sys_killpg(int pgid, int signum)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=killpg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+147,setsid,STD|CAPENABLED,AUE_SETSID,,sys_setsid(void),,https://man.freebsd.org/cgi/man.cgi?query=setsid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+148,quotactl,STD,AUE_QUOTACTL,,"sys_quotactl(const char *path, int cmd, int uid, void *arg)",,https://man.freebsd.org/cgi/man.cgi?query=quotactl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+149,quota,COMPAT,AUE_O_QUOTA,,sys_quota(void),COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=quota&sektion=2&manpath=FreeBSD+15.0-RELEASE
+150,getsockname,COMPAT|CAPENABLED,AUE_GETSOCKNAME,,"sys_getsockname(int fdes, struct sockaddr *asa, __socklen_t *alen)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getsockname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+151-153,,RESERVED,AUE_NULL,,,,
+154,nlm_syscall,NOSTD,AUE_NULL,,"sys_nlm_syscall(int debug_level, int grace_period, int addr_count, char **addrs)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=nlm_syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+155,nfssvc,NOSTD,AUE_NFS_SVC,,"sys_nfssvc(int flag, void *argp)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=nfssvc&sektion=2&manpath=FreeBSD+15.0-RELEASE
+156,getdirentries,COMPAT|CAPENABLED,AUE_GETDIRENTRIES,,"sys_getdirentries(int fd, char *buf, u_int count, long *basep)",COMPAT_FREEBSD,https://man.freebsd.org/cgi/man.cgi?query=getdirentries&sektion=2&manpath=FreeBSD+15.0-RELEASE
+157,statfs,COMPAT4,AUE_STATFS,,"sys_statfs(const char *path, struct ostatfs *buf)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=statfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+158,fstatfs,COMPAT4|CAPENABLED,AUE_FSTATFS,,"sys_fstatfs(int fd, struct ostatfs *buf)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=fstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+159,,RESERVED,AUE_NULL,,,,
+160,lgetfh,STD,AUE_LGETFH,,"sys_lgetfh(const char *fname, struct fhandle *fhp)",,https://man.freebsd.org/cgi/man.cgi?query=lgetfh&sektion=2&manpath=FreeBSD+15.0-RELEASE
+161,getfh,STD,AUE_NFS_GETFH,,"sys_getfh(const char *fname, struct fhandle *fhp)",,https://man.freebsd.org/cgi/man.cgi?query=getfh&sektion=2&manpath=FreeBSD+15.0-RELEASE
+162,getdomainname,COMPAT4|CAPENABLED,AUE_SYSCTL,,"sys_getdomainname(char *domainname, int len)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=getdomainname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+163,setdomainname,COMPAT4,AUE_SYSCTL,,"sys_setdomainname(char *domainname, int len)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=setdomainname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+164,uname,COMPAT4,AUE_NULL,,sys_uname(struct utsname *name),COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=uname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+165,sysarch,STD|CAPENABLED,AUE_SYSARCH,,"sys_sysarch(int op, char *parms)",,https://man.freebsd.org/cgi/man.cgi?query=sysarch&sektion=2&manpath=FreeBSD+15.0-RELEASE
+166,rtprio,STD|CAPENABLED,AUE_RTPRIO,,"sys_rtprio(int function, pid_t pid, struct rtprio *rtp)",,https://man.freebsd.org/cgi/man.cgi?query=rtprio&sektion=2&manpath=FreeBSD+15.0-RELEASE
+167-168,,RESERVED,AUE_NULL,,,,
+169,semsys,NOSTD,AUE_SEMSYS,,"sys_semsys(int which, int a2, int a3, int a4, int a5)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=semsys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+170,msgsys,NOSTD,AUE_MSGSYS,,"sys_msgsys(int which, int a2, int a3, int a4, int a5, int a6)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgsys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+171,shmsys,NOSTD,AUE_SHMSYS,,"sys_shmsys(int which, int a2, int a3, int a4)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmsys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+172,,RESERVED,AUE_NULL,,,,
+173,pread,COMPAT6|CAPENABLED,AUE_PREAD,,"sys_pread(int fd, void *buf, size_t nbyte, int pad, off_t offset)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=pread&sektion=2&manpath=FreeBSD+15.0-RELEASE
+174,pwrite,COMPAT6|CAPENABLED,AUE_PWRITE,,"sys_pwrite(int fd, const void *buf, size_t nbyte, int pad, off_t offset)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=pwrite&sektion=2&manpath=FreeBSD+15.0-RELEASE
+175,setfib,STD,AUE_SETFIB,,sys_setfib(int fibnum),,https://man.freebsd.org/cgi/man.cgi?query=setfib&sektion=2&manpath=FreeBSD+15.0-RELEASE
+176,ntp_adjtime,STD,AUE_NTP_ADJTIME,,sys_ntp_adjtime(struct timex *tp),,https://man.freebsd.org/cgi/man.cgi?query=ntp_adjtime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+177-180,,RESERVED,AUE_NULL,,,,
+181,setgid,STD|CAPENABLED,AUE_SETGID,,sys_setgid(gid_t gid),,https://man.freebsd.org/cgi/man.cgi?query=setgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+182,setegid,STD|CAPENABLED,AUE_SETEGID,,sys_setegid(gid_t egid),,https://man.freebsd.org/cgi/man.cgi?query=setegid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+183,seteuid,STD|CAPENABLED,AUE_SETEUID,,sys_seteuid(uid_t euid),,https://man.freebsd.org/cgi/man.cgi?query=seteuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+184,lfs_bmapv,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=lfs_bmapv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+185,lfs_markv,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=lfs_markv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+186,lfs_segclean,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=lfs_segclean&sektion=2&manpath=FreeBSD+15.0-RELEASE
+187,lfs_segwait,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=lfs_segwait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+188,stat,COMPAT11,AUE_STAT,,"sys_stat(const char *path, struct freebsd11_stat *ub)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=stat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+189,fstat,COMPAT11|CAPENABLED,AUE_FSTAT,,"sys_fstat(int fd, struct freebsd11_stat *sb)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=fstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+190,lstat,COMPAT11,AUE_LSTAT,,"sys_lstat(const char *path, struct freebsd11_stat *ub)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=lstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+191,pathconf,STD,AUE_PATHCONF,,"sys_pathconf(const char *path, int name)",,https://man.freebsd.org/cgi/man.cgi?query=pathconf&sektion=2&manpath=FreeBSD+15.0-RELEASE
+192,fpathconf,STD|CAPENABLED,AUE_FPATHCONF,,"sys_fpathconf(int fd, int name)",,https://man.freebsd.org/cgi/man.cgi?query=fpathconf&sektion=2&manpath=FreeBSD+15.0-RELEASE
+193,,RESERVED,AUE_NULL,,,,
+194,getrlimit,STD|CAPENABLED,AUE_GETRLIMIT,,"sys_getrlimit(u_int which, struct rlimit *rlp)",,https://man.freebsd.org/cgi/man.cgi?query=getrlimit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+195,setrlimit,STD|CAPENABLED,AUE_SETRLIMIT,,"sys_setrlimit(u_int which, struct rlimit *rlp)",,https://man.freebsd.org/cgi/man.cgi?query=setrlimit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+196,getdirentries,COMPAT11|CAPENABLED,AUE_GETDIRENTRIES,,"sys_getdirentries(int fd, char *buf, u_int count, long *basep)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=getdirentries&sektion=2&manpath=FreeBSD+15.0-RELEASE
+197,mmap,COMPAT6|CAPENABLED,AUE_MMAP,,"sys_mmap(void *addr, size_t len, int prot, int flags, int fd, int pad, off_t pos)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=mmap&sektion=2&manpath=FreeBSD+15.0-RELEASE
+198,__syscall,SYSMUX,AUE_NULL,,"sys___syscall(int64_t number, ...)",,https://man.freebsd.org/cgi/man.cgi?query=__syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+199,lseek,COMPAT6|CAPENABLED,AUE_LSEEK,,"sys_lseek(int fd, int pad, off_t offset, int whence)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=lseek&sektion=2&manpath=FreeBSD+15.0-RELEASE
+200,truncate,COMPAT6,AUE_TRUNCATE,,"sys_truncate(const char *path, int pad, off_t length)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=truncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+201,ftruncate,COMPAT6|CAPENABLED,AUE_FTRUNCATE,,"sys_ftruncate(int fd, int pad, off_t length)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=ftruncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+202,__sysctl,STD|CAPENABLED,AUE_SYSCTL,,"sys___sysctl(const int *name, u_int namelen, void *old, size_t *oldlenp, const void *new, size_t newlen)",,https://man.freebsd.org/cgi/man.cgi?query=__sysctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+203,mlock,STD|CAPENABLED,AUE_MLOCK,,"sys_mlock(const void *addr, size_t len)",,https://man.freebsd.org/cgi/man.cgi?query=mlock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+204,munlock,STD|CAPENABLED,AUE_MUNLOCK,,"sys_munlock(const void *addr, size_t len)",,https://man.freebsd.org/cgi/man.cgi?query=munlock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+205,undelete,STD,AUE_UNDELETE,,sys_undelete(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=undelete&sektion=2&manpath=FreeBSD+15.0-RELEASE
+206,futimes,STD|CAPENABLED,AUE_FUTIMES,,"sys_futimes(int fd, const struct timeval *tptr)",,https://man.freebsd.org/cgi/man.cgi?query=futimes&sektion=2&manpath=FreeBSD+15.0-RELEASE
+207,getpgid,STD|CAPENABLED,AUE_GETPGID,,sys_getpgid(pid_t pid),,https://man.freebsd.org/cgi/man.cgi?query=getpgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+208,,RESERVED,AUE_NULL,,,,
+209,poll,STD|CAPENABLED,AUE_POLL,,"sys_poll(struct pollfd *fds, u_int nfds, int timeout)",,https://man.freebsd.org/cgi/man.cgi?query=poll&sektion=2&manpath=FreeBSD+15.0-RELEASE
+210,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+211,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+212,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+213,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+214,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+215,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+216,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+217,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+218,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+219,lkmnosys,NODEF|NOTSTATIC,AUE_NULL,lkmnosys,,,https://man.freebsd.org/cgi/man.cgi?query=lkmnosys&sektion=2&manpath=FreeBSD+15.0-RELEASE
+220,__semctl,COMPAT7|NOSTD,AUE_SEMCTL,,"sys___semctl(int semid, int semnum, int cmd, union semun_old *arg)",COMPAT_FREEBSD7 && loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=__semctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+221,semget,NOSTD,AUE_SEMGET,,"sys_semget(key_t key, int nsems, int semflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=semget&sektion=2&manpath=FreeBSD+15.0-RELEASE
+222,semop,NOSTD,AUE_SEMOP,,"sys_semop(int semid, struct sembuf *sops, size_t nsops)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=semop&sektion=2&manpath=FreeBSD+15.0-RELEASE
+223,semconfig,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=semconfig&sektion=2&manpath=FreeBSD+15.0-RELEASE
+224,msgctl,COMPAT7|NOSTD,AUE_MSGCTL,,"sys_msgctl(int msqid, int cmd, struct msqid_ds_old *buf)",COMPAT_FREEBSD7 && loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+225,msgget,NOSTD,AUE_MSGGET,,"sys_msgget(key_t key, int msgflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgget&sektion=2&manpath=FreeBSD+15.0-RELEASE
+226,msgsnd,NOSTD,AUE_MSGSND,,"sys_msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgsnd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+227,msgrcv,NOSTD,AUE_MSGRCV,,"sys_msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp, int msgflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgrcv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+228,shmat,NOSTD,AUE_SHMAT,,"sys_shmat(int shmid, const void *shmaddr, int shmflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+229,shmctl,COMPAT7|NOSTD,AUE_SHMCTL,,"sys_shmctl(int shmid, int cmd, struct shmid_ds_old *buf)",COMPAT_FREEBSD7 && loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+230,shmdt,NOSTD,AUE_SHMDT,,sys_shmdt(const void *shmaddr),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmdt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+231,shmget,NOSTD,AUE_SHMGET,,"sys_shmget(key_t key, size_t size, int shmflg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmget&sektion=2&manpath=FreeBSD+15.0-RELEASE
+232,clock_gettime,STD|CAPENABLED,AUE_NULL,,"sys_clock_gettime(clockid_t clock_id, struct timespec *tp)",,https://man.freebsd.org/cgi/man.cgi?query=clock_gettime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+233,clock_settime,STD,AUE_CLOCK_SETTIME,,"sys_clock_settime(clockid_t clock_id, const struct timespec *tp)",,https://man.freebsd.org/cgi/man.cgi?query=clock_settime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+234,clock_getres,STD|CAPENABLED,AUE_NULL,,"sys_clock_getres(clockid_t clock_id, struct timespec *tp)",,https://man.freebsd.org/cgi/man.cgi?query=clock_getres&sektion=2&manpath=FreeBSD+15.0-RELEASE
+235,ktimer_create,STD|CAPENABLED,AUE_NULL,,"sys_ktimer_create(clockid_t clock_id, struct sigevent *evp, int *timerid)",,https://man.freebsd.org/cgi/man.cgi?query=ktimer_create&sektion=2&manpath=FreeBSD+15.0-RELEASE
+236,ktimer_delete,STD|CAPENABLED,AUE_NULL,,sys_ktimer_delete(int timerid),,https://man.freebsd.org/cgi/man.cgi?query=ktimer_delete&sektion=2&manpath=FreeBSD+15.0-RELEASE
+237,ktimer_settime,STD|CAPENABLED,AUE_NULL,,"sys_ktimer_settime(int timerid, int flags, const struct itimerspec *value, struct itimerspec *ovalue)",,https://man.freebsd.org/cgi/man.cgi?query=ktimer_settime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+238,ktimer_gettime,STD|CAPENABLED,AUE_NULL,,"sys_ktimer_gettime(int timerid, struct itimerspec *value)",,https://man.freebsd.org/cgi/man.cgi?query=ktimer_gettime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+239,ktimer_getoverrun,STD|CAPENABLED,AUE_NULL,,sys_ktimer_getoverrun(int timerid),,https://man.freebsd.org/cgi/man.cgi?query=ktimer_getoverrun&sektion=2&manpath=FreeBSD+15.0-RELEASE
+240,nanosleep,STD|CAPENABLED,AUE_NULL,,"sys_nanosleep(const struct timespec *rqtp, struct timespec *rmtp)",,https://man.freebsd.org/cgi/man.cgi?query=nanosleep&sektion=2&manpath=FreeBSD+15.0-RELEASE
+241,ffclock_getcounter,STD,AUE_NULL,,sys_ffclock_getcounter(ffcounter *ffcount),,https://man.freebsd.org/cgi/man.cgi?query=ffclock_getcounter&sektion=2&manpath=FreeBSD+15.0-RELEASE
+242,ffclock_setestimate,STD,AUE_NULL,,sys_ffclock_setestimate(struct ffclock_estimate *cest),,https://man.freebsd.org/cgi/man.cgi?query=ffclock_setestimate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+243,ffclock_getestimate,STD,AUE_NULL,,sys_ffclock_getestimate(struct ffclock_estimate *cest),,https://man.freebsd.org/cgi/man.cgi?query=ffclock_getestimate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+244,clock_nanosleep,STD,AUE_NULL,,"sys_clock_nanosleep(clockid_t clock_id, int flags, const struct timespec *rqtp, struct timespec *rmtp)",,https://man.freebsd.org/cgi/man.cgi?query=clock_nanosleep&sektion=2&manpath=FreeBSD+15.0-RELEASE
+245-246,,RESERVED,AUE_NULL,,,,
+247,clock_getcpuclockid2,STD,AUE_NULL,,"sys_clock_getcpuclockid2(id_t id, int which, clockid_t *clock_id)",,https://man.freebsd.org/cgi/man.cgi?query=clock_getcpuclockid2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+248,ntp_gettime,STD|CAPENABLED,AUE_NULL,,sys_ntp_gettime(struct ntptimeval *ntvp),,https://man.freebsd.org/cgi/man.cgi?query=ntp_gettime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+249,,RESERVED,AUE_NULL,,,,
+250,minherit,STD|CAPENABLED,AUE_MINHERIT,,"sys_minherit(void *addr, size_t len, int inherit)",,https://man.freebsd.org/cgi/man.cgi?query=minherit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+251,rfork,STD|CAPENABLED,AUE_RFORK,,sys_rfork(int flags),,https://man.freebsd.org/cgi/man.cgi?query=rfork&sektion=2&manpath=FreeBSD+15.0-RELEASE
+252,openbsd_poll,OBSOL,AUE_POLL,,,,https://man.freebsd.org/cgi/man.cgi?query=openbsd_poll&sektion=2&manpath=FreeBSD+15.0-RELEASE
+253,issetugid,STD|CAPENABLED,AUE_ISSETUGID,,sys_issetugid(void),,https://man.freebsd.org/cgi/man.cgi?query=issetugid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+254,lchown,STD,AUE_LCHOWN,,"sys_lchown(const char *path, int uid, int gid)",,https://man.freebsd.org/cgi/man.cgi?query=lchown&sektion=2&manpath=FreeBSD+15.0-RELEASE
+255,aio_read,STD|CAPENABLED,AUE_AIO_READ,,sys_aio_read(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_read&sektion=2&manpath=FreeBSD+15.0-RELEASE
+256,aio_write,STD|CAPENABLED,AUE_AIO_WRITE,,sys_aio_write(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_write&sektion=2&manpath=FreeBSD+15.0-RELEASE
+257,lio_listio,STD|CAPENABLED,AUE_LIO_LISTIO,,"sys_lio_listio(int mode, struct aiocb * const *acb_list, int nent, struct sigevent *sig)",,https://man.freebsd.org/cgi/man.cgi?query=lio_listio&sektion=2&manpath=FreeBSD+15.0-RELEASE
+258-271,,RESERVED,AUE_NULL,,,,
+272,getdents,COMPAT11|CAPENABLED,AUE_O_GETDENTS,,"sys_getdents(int fd, char *buf, size_t count)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=getdents&sektion=2&manpath=FreeBSD+15.0-RELEASE
+273,,RESERVED,AUE_NULL,,,,
+274,lchmod,STD,AUE_LCHMOD,,"sys_lchmod(const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=lchmod&sektion=2&manpath=FreeBSD+15.0-RELEASE
+275,netbsd_lchown,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=netbsd_lchown&sektion=2&manpath=FreeBSD+15.0-RELEASE
+276,lutimes,STD,AUE_LUTIMES,,"sys_lutimes(const char *path, const struct timeval *tptr)",,https://man.freebsd.org/cgi/man.cgi?query=lutimes&sektion=2&manpath=FreeBSD+15.0-RELEASE
+277,netbsd_msync,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=netbsd_msync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+278,nstat,COMPAT11,AUE_STAT,,"sys_nstat(const char *path, struct nstat *ub)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=nstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+279,nfstat,COMPAT11,AUE_FSTAT,,"sys_nfstat(int fd, struct nstat *sb)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=nfstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+280,nlstat,COMPAT11,AUE_LSTAT,,"sys_nlstat(const char *path, struct nstat *ub)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=nlstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+281-288,,RESERVED,AUE_NULL,,,,
+289,preadv,STD|CAPENABLED,AUE_PREADV,,"sys_preadv(int fd, struct iovec *iovp, u_int iovcnt, off_t offset)",,https://man.freebsd.org/cgi/man.cgi?query=preadv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+290,pwritev,STD|CAPENABLED,AUE_PWRITEV,,"sys_pwritev(int fd, struct iovec *iovp, u_int iovcnt, off_t offset)",,https://man.freebsd.org/cgi/man.cgi?query=pwritev&sektion=2&manpath=FreeBSD+15.0-RELEASE
+291-296,,RESERVED,AUE_NULL,,,,
+297,fhstatfs,COMPAT4,AUE_FHSTATFS,,"sys_fhstatfs(const struct fhandle *u_fhp, struct ostatfs *buf)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=fhstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+298,fhopen,STD,AUE_FHOPEN,,"sys_fhopen(const struct fhandle *u_fhp, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=fhopen&sektion=2&manpath=FreeBSD+15.0-RELEASE
+299,fhstat,COMPAT11,AUE_FHSTAT,,"sys_fhstat(const struct fhandle *u_fhp, struct freebsd11_stat *sb)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=fhstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+300,modnext,STD,AUE_NULL,,sys_modnext(int modid),,https://man.freebsd.org/cgi/man.cgi?query=modnext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+301,modstat,STD,AUE_NULL,,"sys_modstat(int modid, struct module_stat *stat)",,https://man.freebsd.org/cgi/man.cgi?query=modstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+302,modfnext,STD,AUE_NULL,,sys_modfnext(int modid),,https://man.freebsd.org/cgi/man.cgi?query=modfnext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+303,modfind,STD,AUE_NULL,,sys_modfind(const char *name),,https://man.freebsd.org/cgi/man.cgi?query=modfind&sektion=2&manpath=FreeBSD+15.0-RELEASE
+304,kldload,STD,AUE_MODLOAD,,sys_kldload(const char *file),,https://man.freebsd.org/cgi/man.cgi?query=kldload&sektion=2&manpath=FreeBSD+15.0-RELEASE
+305,kldunload,STD,AUE_MODUNLOAD,,sys_kldunload(int fileid),,https://man.freebsd.org/cgi/man.cgi?query=kldunload&sektion=2&manpath=FreeBSD+15.0-RELEASE
+306,kldfind,STD,AUE_NULL,,sys_kldfind(const char *file),,https://man.freebsd.org/cgi/man.cgi?query=kldfind&sektion=2&manpath=FreeBSD+15.0-RELEASE
+307,kldnext,STD,AUE_NULL,,sys_kldnext(int fileid),,https://man.freebsd.org/cgi/man.cgi?query=kldnext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+308,kldstat,STD,AUE_NULL,,"sys_kldstat(int fileid, struct kld_file_stat *stat)",,https://man.freebsd.org/cgi/man.cgi?query=kldstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+309,kldfirstmod,STD,AUE_NULL,,sys_kldfirstmod(int fileid),,https://man.freebsd.org/cgi/man.cgi?query=kldfirstmod&sektion=2&manpath=FreeBSD+15.0-RELEASE
+310,getsid,STD|CAPENABLED,AUE_GETSID,,sys_getsid(pid_t pid),,https://man.freebsd.org/cgi/man.cgi?query=getsid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+311,setresuid,STD|CAPENABLED,AUE_SETRESUID,,"sys_setresuid(uid_t ruid, uid_t euid, uid_t suid)",,https://man.freebsd.org/cgi/man.cgi?query=setresuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+312,setresgid,STD|CAPENABLED,AUE_SETRESGID,,"sys_setresgid(gid_t rgid, gid_t egid, gid_t sgid)",,https://man.freebsd.org/cgi/man.cgi?query=setresgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+313,signanosleep,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=signanosleep&sektion=2&manpath=FreeBSD+15.0-RELEASE
+314,aio_return,STD|CAPENABLED,AUE_AIO_RETURN,,sys_aio_return(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_return&sektion=2&manpath=FreeBSD+15.0-RELEASE
+315,aio_suspend,STD|CAPENABLED,AUE_AIO_SUSPEND,,"sys_aio_suspend(const struct aiocb * const * aiocbp, int nent, const struct timespec *timeout)",,https://man.freebsd.org/cgi/man.cgi?query=aio_suspend&sektion=2&manpath=FreeBSD+15.0-RELEASE
+316,aio_cancel,STD|CAPENABLED,AUE_AIO_CANCEL,,"sys_aio_cancel(int fd, struct aiocb *aiocbp)",,https://man.freebsd.org/cgi/man.cgi?query=aio_cancel&sektion=2&manpath=FreeBSD+15.0-RELEASE
+317,aio_error,STD|CAPENABLED,AUE_AIO_ERROR,,sys_aio_error(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_error&sektion=2&manpath=FreeBSD+15.0-RELEASE
+318,aio_read,COMPAT6|CAPENABLED,AUE_AIO_READ,,sys_aio_read(struct oaiocb *aiocbp),COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=aio_read&sektion=2&manpath=FreeBSD+15.0-RELEASE
+319,aio_write,COMPAT6|CAPENABLED,AUE_AIO_WRITE,,sys_aio_write(struct oaiocb *aiocbp),COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=aio_write&sektion=2&manpath=FreeBSD+15.0-RELEASE
+320,lio_listio,COMPAT6|CAPENABLED,AUE_LIO_LISTIO,,"sys_lio_listio(int mode, struct oaiocb * const *acb_list, int nent, struct osigevent *sig)",COMPAT_FREEBSD6,https://man.freebsd.org/cgi/man.cgi?query=lio_listio&sektion=2&manpath=FreeBSD+15.0-RELEASE
+321,yield,STD|CAPENABLED|NOLIB,AUE_NULL,,sys_yield(void),,https://man.freebsd.org/cgi/man.cgi?query=yield&sektion=2&manpath=FreeBSD+15.0-RELEASE
+322,thr_sleep,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=thr_sleep&sektion=2&manpath=FreeBSD+15.0-RELEASE
+323,thr_wakeup,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=thr_wakeup&sektion=2&manpath=FreeBSD+15.0-RELEASE
+324,mlockall,STD|CAPENABLED,AUE_MLOCKALL,,sys_mlockall(int how),,https://man.freebsd.org/cgi/man.cgi?query=mlockall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+325,munlockall,STD|CAPENABLED,AUE_MUNLOCKALL,,sys_munlockall(void),,https://man.freebsd.org/cgi/man.cgi?query=munlockall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+326,__getcwd,STD,AUE_GETCWD,,"sys___getcwd(char *buf, size_t buflen)",,https://man.freebsd.org/cgi/man.cgi?query=__getcwd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+327,sched_setparam,STD|CAPENABLED,AUE_NULL,,"sys_sched_setparam(pid_t pid, const struct sched_param *param)",,https://man.freebsd.org/cgi/man.cgi?query=sched_setparam&sektion=2&manpath=FreeBSD+15.0-RELEASE
+328,sched_getparam,STD|CAPENABLED,AUE_NULL,,"sys_sched_getparam(pid_t pid, struct sched_param *param)",,https://man.freebsd.org/cgi/man.cgi?query=sched_getparam&sektion=2&manpath=FreeBSD+15.0-RELEASE
+329,sched_setscheduler,STD|CAPENABLED,AUE_NULL,,"sys_sched_setscheduler(pid_t pid, int policy, const struct sched_param *param)",,https://man.freebsd.org/cgi/man.cgi?query=sched_setscheduler&sektion=2&manpath=FreeBSD+15.0-RELEASE
+330,sched_getscheduler,STD|CAPENABLED,AUE_NULL,,sys_sched_getscheduler(pid_t pid),,https://man.freebsd.org/cgi/man.cgi?query=sched_getscheduler&sektion=2&manpath=FreeBSD+15.0-RELEASE
+331,sched_yield,STD|CAPENABLED,AUE_NULL,,sys_sched_yield(void),,https://man.freebsd.org/cgi/man.cgi?query=sched_yield&sektion=2&manpath=FreeBSD+15.0-RELEASE
+332,sched_get_priority_max,STD|CAPENABLED,AUE_NULL,,sys_sched_get_priority_max(int policy),,https://man.freebsd.org/cgi/man.cgi?query=sched_get_priority_max&sektion=2&manpath=FreeBSD+15.0-RELEASE
+333,sched_get_priority_min,STD|CAPENABLED,AUE_NULL,,sys_sched_get_priority_min(int policy),,https://man.freebsd.org/cgi/man.cgi?query=sched_get_priority_min&sektion=2&manpath=FreeBSD+15.0-RELEASE
+334,sched_rr_get_interval,STD|CAPENABLED,AUE_NULL,,"sys_sched_rr_get_interval(pid_t pid, struct timespec *interval)",,https://man.freebsd.org/cgi/man.cgi?query=sched_rr_get_interval&sektion=2&manpath=FreeBSD+15.0-RELEASE
+335,utrace,STD|CAPENABLED,AUE_NULL,,"sys_utrace(const void *addr, size_t len)",,https://man.freebsd.org/cgi/man.cgi?query=utrace&sektion=2&manpath=FreeBSD+15.0-RELEASE
+336,sendfile,COMPAT4|CAPENABLED,AUE_SENDFILE,,"sys_sendfile(int fd, int s, off_t offset, size_t nbytes, struct sf_hdtr *hdtr, off_t *sbytes, int flags)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=sendfile&sektion=2&manpath=FreeBSD+15.0-RELEASE
+337,kldsym,STD,AUE_NULL,,"sys_kldsym(int fileid, int cmd, void *data)",,https://man.freebsd.org/cgi/man.cgi?query=kldsym&sektion=2&manpath=FreeBSD+15.0-RELEASE
+338,jail,STD,AUE_JAIL,,sys_jail(struct jail *jail),,https://man.freebsd.org/cgi/man.cgi?query=jail&sektion=2&manpath=FreeBSD+15.0-RELEASE
+339,nnpfs_syscall,NOSTD|NOTSTATIC,AUE_NULL,,"sys_nnpfs_syscall(int operation, char *a_pathP, int a_opcode, void *a_paramsP, int a_followSymlinks)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=nnpfs_syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+340,sigprocmask,STD|CAPENABLED,AUE_SIGPROCMASK,,"sys_sigprocmask(int how, const sigset_t *set, sigset_t *oset)",,https://man.freebsd.org/cgi/man.cgi?query=sigprocmask&sektion=2&manpath=FreeBSD+15.0-RELEASE
+341,sigsuspend,STD|CAPENABLED,AUE_SIGSUSPEND,,sys_sigsuspend(const sigset_t *sigmask),,https://man.freebsd.org/cgi/man.cgi?query=sigsuspend&sektion=2&manpath=FreeBSD+15.0-RELEASE
+342,sigaction,COMPAT4|CAPENABLED,AUE_SIGACTION,,"sys_sigaction(int sig, const struct sigaction *act, struct sigaction *oact)",COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=sigaction&sektion=2&manpath=FreeBSD+15.0-RELEASE
+343,sigpending,STD|CAPENABLED,AUE_SIGPENDING,,sys_sigpending(sigset_t *set),,https://man.freebsd.org/cgi/man.cgi?query=sigpending&sektion=2&manpath=FreeBSD+15.0-RELEASE
+344,sigreturn,COMPAT4|CAPENABLED,AUE_SIGRETURN,,sys_sigreturn(const struct freebsd4_ucontext *sigcntxp),COMPAT_FREEBSD4,https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&manpath=FreeBSD+15.0-RELEASE
+345,sigtimedwait,STD|CAPENABLED,AUE_SIGWAIT,,"sys_sigtimedwait(const sigset_t *set, struct __siginfo *info, const struct timespec *timeout)",,https://man.freebsd.org/cgi/man.cgi?query=sigtimedwait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+346,sigwaitinfo,STD|CAPENABLED,AUE_NULL,,"sys_sigwaitinfo(const sigset_t *set, struct __siginfo *info)",,https://man.freebsd.org/cgi/man.cgi?query=sigwaitinfo&sektion=2&manpath=FreeBSD+15.0-RELEASE
+347,__acl_get_file,STD,AUE_ACL_GET_FILE,,"sys___acl_get_file(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_get_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+348,__acl_set_file,STD,AUE_ACL_SET_FILE,,"sys___acl_set_file(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_set_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+349,__acl_get_fd,STD|CAPENABLED,AUE_ACL_GET_FD,,"sys___acl_get_fd(int filedes, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_get_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+350,__acl_set_fd,STD|CAPENABLED,AUE_ACL_SET_FD,,"sys___acl_set_fd(int filedes, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_set_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+351,__acl_delete_file,STD,AUE_ACL_DELETE_FILE,,"sys___acl_delete_file(const char *path, __acl_type_t type)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_delete_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+352,__acl_delete_fd,STD|CAPENABLED,AUE_ACL_DELETE_FD,,"sys___acl_delete_fd(int filedes, __acl_type_t type)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_delete_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+353,__acl_aclcheck_file,STD,AUE_ACL_CHECK_FILE,,"sys___acl_aclcheck_file(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_aclcheck_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+354,__acl_aclcheck_fd,STD|CAPENABLED,AUE_ACL_CHECK_FD,,"sys___acl_aclcheck_fd(int filedes, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_aclcheck_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+355,extattrctl,STD,AUE_EXTATTRCTL,,"sys_extattrctl(const char *path, int cmd, const char *filename, int attrnamespace, const char *attrname)",,https://man.freebsd.org/cgi/man.cgi?query=extattrctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+356,extattr_set_file,STD,AUE_EXTATTR_SET_FILE,,"sys_extattr_set_file(const char *path, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_set_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+357,extattr_get_file,STD,AUE_EXTATTR_GET_FILE,,"sys_extattr_get_file(const char *path, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_get_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+358,extattr_delete_file,STD,AUE_EXTATTR_DELETE_FILE,,"sys_extattr_delete_file(const char *path, int attrnamespace, const char *attrname)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_delete_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+359,aio_waitcomplete,STD|CAPENABLED,AUE_AIO_WAITCOMPLETE,,"sys_aio_waitcomplete(struct aiocb **aiocbp, struct timespec *timeout)",,https://man.freebsd.org/cgi/man.cgi?query=aio_waitcomplete&sektion=2&manpath=FreeBSD+15.0-RELEASE
+360,getresuid,STD|CAPENABLED,AUE_GETRESUID,,"sys_getresuid(uid_t *ruid, uid_t *euid, uid_t *suid)",,https://man.freebsd.org/cgi/man.cgi?query=getresuid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+361,getresgid,STD|CAPENABLED,AUE_GETRESGID,,"sys_getresgid(gid_t *rgid, gid_t *egid, gid_t *sgid)",,https://man.freebsd.org/cgi/man.cgi?query=getresgid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+362,kqueue,STD|CAPENABLED,AUE_KQUEUE,,sys_kqueue(void),,https://man.freebsd.org/cgi/man.cgi?query=kqueue&sektion=2&manpath=FreeBSD+15.0-RELEASE
+363,kevent,COMPAT11|CAPENABLED,AUE_KEVENT,,"sys_kevent(int fd, const struct freebsd11_kevent *changelist, int nchanges, struct freebsd11_kevent *eventlist, int nevents, const struct timespec *timeout)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=kevent&sektion=2&manpath=FreeBSD+15.0-RELEASE
+364,__cap_get_proc,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_get_proc&sektion=2&manpath=FreeBSD+15.0-RELEASE
+365,__cap_set_proc,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_set_proc&sektion=2&manpath=FreeBSD+15.0-RELEASE
+366,__cap_get_fd,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_get_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+367,__cap_get_file,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_get_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+368,__cap_set_fd,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_set_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+369,__cap_set_file,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=__cap_set_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+370,,RESERVED,AUE_NULL,,,,
+371,extattr_set_fd,STD|CAPENABLED,AUE_EXTATTR_SET_FD,,"sys_extattr_set_fd(int fd, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_set_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+372,extattr_get_fd,STD|CAPENABLED,AUE_EXTATTR_GET_FD,,"sys_extattr_get_fd(int fd, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_get_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+373,extattr_delete_fd,STD|CAPENABLED,AUE_EXTATTR_DELETE_FD,,"sys_extattr_delete_fd(int fd, int attrnamespace, const char *attrname)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_delete_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+374,__setugid,STD,AUE_SETUGID,,sys___setugid(int flag),,https://man.freebsd.org/cgi/man.cgi?query=__setugid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+375,nfsclnt,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=nfsclnt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+376,eaccess,STD,AUE_EACCESS,,"sys_eaccess(const char *path, int amode)",,https://man.freebsd.org/cgi/man.cgi?query=eaccess&sektion=2&manpath=FreeBSD+15.0-RELEASE
+377,afs3_syscall,NOSTD|NOTSTATIC,AUE_NULL,,"sys_afs3_syscall(long syscall, long parm1, long parm2, long parm3, long parm4, long parm5, long parm6)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=afs3_syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+378,nmount,STD,AUE_NMOUNT,,"sys_nmount(struct iovec *iovp, unsigned int iovcnt, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=nmount&sektion=2&manpath=FreeBSD+15.0-RELEASE
+379,kse_exit,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_exit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+380,kse_wakeup,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_wakeup&sektion=2&manpath=FreeBSD+15.0-RELEASE
+381,kse_create,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_create&sektion=2&manpath=FreeBSD+15.0-RELEASE
+382,kse_thr_interrupt,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_thr_interrupt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+383,kse_release,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_release&sektion=2&manpath=FreeBSD+15.0-RELEASE
+384,__mac_get_proc,STD|CAPENABLED,AUE_NULL,,sys___mac_get_proc(struct mac *mac_p),,https://man.freebsd.org/cgi/man.cgi?query=__mac_get_proc&sektion=2&manpath=FreeBSD+15.0-RELEASE
+385,__mac_set_proc,STD|CAPENABLED,AUE_NULL,,sys___mac_set_proc(struct mac *mac_p),,https://man.freebsd.org/cgi/man.cgi?query=__mac_set_proc&sektion=2&manpath=FreeBSD+15.0-RELEASE
+386,__mac_get_fd,STD|CAPENABLED,AUE_NULL,,"sys___mac_get_fd(int fd, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_get_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+387,__mac_get_file,STD,AUE_NULL,,"sys___mac_get_file(const char *path_p, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_get_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+388,__mac_set_fd,STD|CAPENABLED,AUE_NULL,,"sys___mac_set_fd(int fd, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_set_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+389,__mac_set_file,STD,AUE_NULL,,"sys___mac_set_file(const char *path_p, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_set_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+390,kenv,STD,AUE_NULL,,"sys_kenv(int what, const char *name, char *value, int len)",,https://man.freebsd.org/cgi/man.cgi?query=kenv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+391,lchflags,STD,AUE_LCHFLAGS,,"sys_lchflags(const char *path, u_long flags)",,https://man.freebsd.org/cgi/man.cgi?query=lchflags&sektion=2&manpath=FreeBSD+15.0-RELEASE
+392,uuidgen,STD|CAPENABLED,AUE_NULL,,"sys_uuidgen(struct uuid *store, int count)",,https://man.freebsd.org/cgi/man.cgi?query=uuidgen&sektion=2&manpath=FreeBSD+15.0-RELEASE
+393,sendfile,STD|CAPENABLED,AUE_SENDFILE,,"sys_sendfile(int fd, int s, off_t offset, size_t nbytes, struct sf_hdtr *hdtr, off_t *sbytes, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=sendfile&sektion=2&manpath=FreeBSD+15.0-RELEASE
+394,mac_syscall,STD,AUE_NULL,,"sys_mac_syscall(const char *policy, int call, void *arg)",,https://man.freebsd.org/cgi/man.cgi?query=mac_syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+395,getfsstat,COMPAT11,AUE_GETFSSTAT,,"sys_getfsstat(struct freebsd11_statfs *buf, long bufsize, int mode)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=getfsstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+396,statfs,COMPAT11,AUE_STATFS,,"sys_statfs(const char *path, struct freebsd11_statfs *buf)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=statfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+397,fstatfs,COMPAT11|CAPENABLED,AUE_FSTATFS,,"sys_fstatfs(int fd, struct freebsd11_statfs *buf)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=fstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+398,fhstatfs,COMPAT11,AUE_FHSTATFS,,"sys_fhstatfs(const struct fhandle *u_fhp, struct freebsd11_statfs *buf)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=fhstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+399,,RESERVED,AUE_NULL,,,,
+400,ksem_close,NOSTD,AUE_SEMCLOSE,,sys_ksem_close(semid_t id),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_close&sektion=2&manpath=FreeBSD+15.0-RELEASE
+401,ksem_post,NOSTD,AUE_SEMPOST,,sys_ksem_post(semid_t id),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_post&sektion=2&manpath=FreeBSD+15.0-RELEASE
+402,ksem_wait,NOSTD,AUE_SEMWAIT,,sys_ksem_wait(semid_t id),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_wait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+403,ksem_trywait,NOSTD,AUE_SEMTRYWAIT,,sys_ksem_trywait(semid_t id),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_trywait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+404,ksem_init,NOSTD,AUE_SEMINIT,,"sys_ksem_init(semid_t *idp, unsigned int value)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_init&sektion=2&manpath=FreeBSD+15.0-RELEASE
+405,ksem_open,NOSTD,AUE_SEMOPEN,,"sys_ksem_open(semid_t *idp, const char *name, int oflag, mode_t mode, unsigned int value)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_open&sektion=2&manpath=FreeBSD+15.0-RELEASE
+406,ksem_unlink,NOSTD,AUE_SEMUNLINK,,sys_ksem_unlink(const char *name),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_unlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+407,ksem_getvalue,NOSTD,AUE_SEMGETVALUE,,"sys_ksem_getvalue(semid_t id, int *val)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_getvalue&sektion=2&manpath=FreeBSD+15.0-RELEASE
+408,ksem_destroy,NOSTD,AUE_SEMDESTROY,,sys_ksem_destroy(semid_t id),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_destroy&sektion=2&manpath=FreeBSD+15.0-RELEASE
+409,__mac_get_pid,STD,AUE_NULL,,"sys___mac_get_pid(pid_t pid, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_get_pid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+410,__mac_get_link,STD,AUE_NULL,,"sys___mac_get_link(const char *path_p, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_get_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+411,__mac_set_link,STD,AUE_NULL,,"sys___mac_set_link(const char *path_p, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_set_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+412,extattr_set_link,STD,AUE_EXTATTR_SET_LINK,,"sys_extattr_set_link(const char *path, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_set_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+413,extattr_get_link,STD,AUE_EXTATTR_GET_LINK,,"sys_extattr_get_link(const char *path, int attrnamespace, const char *attrname, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_get_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+414,extattr_delete_link,STD,AUE_EXTATTR_DELETE_LINK,,"sys_extattr_delete_link(const char *path, int attrnamespace, const char *attrname)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_delete_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+415,__mac_execve,STD,AUE_NULL,,"sys___mac_execve(const char *fname, char **argv, char **envv, struct mac *mac_p)",,https://man.freebsd.org/cgi/man.cgi?query=__mac_execve&sektion=2&manpath=FreeBSD+15.0-RELEASE
+416,sigaction,STD|CAPENABLED,AUE_SIGACTION,,"sys_sigaction(int sig, const struct sigaction *act, struct sigaction *oact)",,https://man.freebsd.org/cgi/man.cgi?query=sigaction&sektion=2&manpath=FreeBSD+15.0-RELEASE
+417,sigreturn,STD|CAPENABLED,AUE_SIGRETURN,,sys_sigreturn(const struct __ucontext *sigcntxp),,https://man.freebsd.org/cgi/man.cgi?query=sigreturn&sektion=2&manpath=FreeBSD+15.0-RELEASE
+418-420,,RESERVED,AUE_NULL,,,,
+421,getcontext,STD|CAPENABLED,AUE_NULL,,sys_getcontext(struct __ucontext *ucp),,https://man.freebsd.org/cgi/man.cgi?query=getcontext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+422,setcontext,STD|CAPENABLED,AUE_NULL,,sys_setcontext(const struct __ucontext *ucp),,https://man.freebsd.org/cgi/man.cgi?query=setcontext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+423,swapcontext,STD,AUE_NULL,,"sys_swapcontext(struct __ucontext *oucp, const struct __ucontext *ucp)",,https://man.freebsd.org/cgi/man.cgi?query=swapcontext&sektion=2&manpath=FreeBSD+15.0-RELEASE
+424,swapoff,COMPAT13,AUE_SWAPOFF,,sys_swapoff(const char *name),COMPAT_FREEBSD13,https://man.freebsd.org/cgi/man.cgi?query=swapoff&sektion=2&manpath=FreeBSD+15.0-RELEASE
+425,__acl_get_link,STD,AUE_ACL_GET_LINK,,"sys___acl_get_link(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_get_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+426,__acl_set_link,STD,AUE_ACL_SET_LINK,,"sys___acl_set_link(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_set_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+427,__acl_delete_link,STD,AUE_ACL_DELETE_LINK,,"sys___acl_delete_link(const char *path, __acl_type_t type)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_delete_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+428,__acl_aclcheck_link,STD,AUE_ACL_CHECK_LINK,,"sys___acl_aclcheck_link(const char *path, __acl_type_t type, struct acl *aclp)",,https://man.freebsd.org/cgi/man.cgi?query=__acl_aclcheck_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+429,sigwait,STD|CAPENABLED,AUE_SIGWAIT,,"sys_sigwait(const sigset_t *set, int *sig)",,https://man.freebsd.org/cgi/man.cgi?query=sigwait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+430,thr_create,STD|CAPENABLED,AUE_THR_CREATE,,"sys_thr_create(ucontext_t *ctx, long *id, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=thr_create&sektion=2&manpath=FreeBSD+15.0-RELEASE
+431,thr_exit,STD|CAPENABLED,AUE_THR_EXIT,,sys_thr_exit(long *state),,https://man.freebsd.org/cgi/man.cgi?query=thr_exit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+432,thr_self,STD|CAPENABLED,AUE_NULL,,sys_thr_self(long *id),,https://man.freebsd.org/cgi/man.cgi?query=thr_self&sektion=2&manpath=FreeBSD+15.0-RELEASE
+433,thr_kill,STD|CAPENABLED,AUE_THR_KILL,,"sys_thr_kill(long id, int sig)",,https://man.freebsd.org/cgi/man.cgi?query=thr_kill&sektion=2&manpath=FreeBSD+15.0-RELEASE
+434,_umtx_lock,COMPAT10,AUE_NULL,,sys__umtx_lock(struct umtx *umtx),COMPAT_FREEBSD10,https://man.freebsd.org/cgi/man.cgi?query=_umtx_lock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+435,_umtx_unlock,COMPAT10,AUE_NULL,,sys__umtx_unlock(struct umtx *umtx),COMPAT_FREEBSD10,https://man.freebsd.org/cgi/man.cgi?query=_umtx_unlock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+436,jail_attach,STD,AUE_JAIL_ATTACH,,sys_jail_attach(int jid),,https://man.freebsd.org/cgi/man.cgi?query=jail_attach&sektion=2&manpath=FreeBSD+15.0-RELEASE
+437,extattr_list_fd,STD|CAPENABLED,AUE_EXTATTR_LIST_FD,,"sys_extattr_list_fd(int fd, int attrnamespace, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_list_fd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+438,extattr_list_file,STD,AUE_EXTATTR_LIST_FILE,,"sys_extattr_list_file(const char *path, int attrnamespace, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_list_file&sektion=2&manpath=FreeBSD+15.0-RELEASE
+439,extattr_list_link,STD,AUE_EXTATTR_LIST_LINK,,"sys_extattr_list_link(const char *path, int attrnamespace, void *data, size_t nbytes)",,https://man.freebsd.org/cgi/man.cgi?query=extattr_list_link&sektion=2&manpath=FreeBSD+15.0-RELEASE
+440,kse_switchin,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kse_switchin&sektion=2&manpath=FreeBSD+15.0-RELEASE
+441,ksem_timedwait,NOSTD,AUE_SEMWAIT,,"sys_ksem_timedwait(semid_t id, const struct timespec *abstime)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=ksem_timedwait&sektion=2&manpath=FreeBSD+15.0-RELEASE
+442,thr_suspend,STD|CAPENABLED,AUE_NULL,,sys_thr_suspend(const struct timespec *timeout),,https://man.freebsd.org/cgi/man.cgi?query=thr_suspend&sektion=2&manpath=FreeBSD+15.0-RELEASE
+443,thr_wake,STD|CAPENABLED,AUE_NULL,,sys_thr_wake(long id),,https://man.freebsd.org/cgi/man.cgi?query=thr_wake&sektion=2&manpath=FreeBSD+15.0-RELEASE
+444,kldunloadf,STD,AUE_MODUNLOAD,,"sys_kldunloadf(int fileid, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=kldunloadf&sektion=2&manpath=FreeBSD+15.0-RELEASE
+445,audit,STD,AUE_AUDIT,,"sys_audit(const void *record, u_int length)",,https://man.freebsd.org/cgi/man.cgi?query=audit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+446,auditon,STD,AUE_AUDITON,,"sys_auditon(int cmd, void *data, u_int length)",,https://man.freebsd.org/cgi/man.cgi?query=auditon&sektion=2&manpath=FreeBSD+15.0-RELEASE
+447,getauid,STD|CAPENABLED,AUE_GETAUID,,sys_getauid(uid_t *auid),,https://man.freebsd.org/cgi/man.cgi?query=getauid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+448,setauid,STD|CAPENABLED,AUE_SETAUID,,sys_setauid(uid_t *auid),,https://man.freebsd.org/cgi/man.cgi?query=setauid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+449,getaudit,STD|CAPENABLED,AUE_GETAUDIT,,sys_getaudit(struct auditinfo *auditinfo),,https://man.freebsd.org/cgi/man.cgi?query=getaudit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+450,setaudit,STD|CAPENABLED,AUE_SETAUDIT,,sys_setaudit(struct auditinfo *auditinfo),,https://man.freebsd.org/cgi/man.cgi?query=setaudit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+451,getaudit_addr,STD|CAPENABLED,AUE_GETAUDIT_ADDR,,"sys_getaudit_addr(struct auditinfo_addr *auditinfo_addr, u_int length)",,https://man.freebsd.org/cgi/man.cgi?query=getaudit_addr&sektion=2&manpath=FreeBSD+15.0-RELEASE
+452,setaudit_addr,STD|CAPENABLED,AUE_SETAUDIT_ADDR,,"sys_setaudit_addr(struct auditinfo_addr *auditinfo_addr, u_int length)",,https://man.freebsd.org/cgi/man.cgi?query=setaudit_addr&sektion=2&manpath=FreeBSD+15.0-RELEASE
+453,auditctl,STD,AUE_AUDITCTL,,sys_auditctl(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=auditctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+454,_umtx_op,STD|CAPENABLED,AUE_NULL,,"sys__umtx_op(void *obj, int op, u_long val, void *uaddr1, void *uaddr2)",,https://man.freebsd.org/cgi/man.cgi?query=_umtx_op&sektion=2&manpath=FreeBSD+15.0-RELEASE
+455,thr_new,STD|CAPENABLED,AUE_THR_NEW,,"sys_thr_new(struct thr_param *param, int param_size)",,https://man.freebsd.org/cgi/man.cgi?query=thr_new&sektion=2&manpath=FreeBSD+15.0-RELEASE
+456,sigqueue,STD|CAPENABLED,AUE_NULL,,"sys_sigqueue(pid_t pid, int signum, void *value)",,https://man.freebsd.org/cgi/man.cgi?query=sigqueue&sektion=2&manpath=FreeBSD+15.0-RELEASE
+457,kmq_open,NOSTD,AUE_MQ_OPEN,,"sys_kmq_open(const char *path, int flags, mode_t mode, const struct mq_attr *attr)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_open&sektion=2&manpath=FreeBSD+15.0-RELEASE
+458,kmq_setattr,NOSTD|CAPENABLED,AUE_MQ_SETATTR,,"sys_kmq_setattr(int mqd, const struct mq_attr *attr, struct mq_attr *oattr)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_setattr&sektion=2&manpath=FreeBSD+15.0-RELEASE
+459,kmq_timedreceive,NOSTD|CAPENABLED,AUE_MQ_TIMEDRECEIVE,,"sys_kmq_timedreceive(int mqd, char *msg_ptr, size_t msg_len, unsigned *msg_prio, const struct timespec *abs_timeout)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_timedreceive&sektion=2&manpath=FreeBSD+15.0-RELEASE
+460,kmq_timedsend,NOSTD|CAPENABLED,AUE_MQ_TIMEDSEND,,"sys_kmq_timedsend(int mqd, const char *msg_ptr, size_t msg_len, unsigned msg_prio, const struct timespec *abs_timeout)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_timedsend&sektion=2&manpath=FreeBSD+15.0-RELEASE
+461,kmq_notify,NOSTD|CAPENABLED,AUE_MQ_NOTIFY,,"sys_kmq_notify(int mqd, const struct sigevent *sigev)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_notify&sektion=2&manpath=FreeBSD+15.0-RELEASE
+462,kmq_unlink,NOSTD,AUE_MQ_UNLINK,,sys_kmq_unlink(const char *path),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=kmq_unlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+463,abort2,STD|CAPENABLED,AUE_NULL,,"sys_abort2(const char *why, int nargs, void **args)",,https://man.freebsd.org/cgi/man.cgi?query=abort2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+464,thr_set_name,STD|CAPENABLED,AUE_NULL,,"sys_thr_set_name(long id, const char *name)",,https://man.freebsd.org/cgi/man.cgi?query=thr_set_name&sektion=2&manpath=FreeBSD+15.0-RELEASE
+465,aio_fsync,STD|CAPENABLED,AUE_AIO_FSYNC,,"sys_aio_fsync(int op, struct aiocb *aiocbp)",,https://man.freebsd.org/cgi/man.cgi?query=aio_fsync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+466,rtprio_thread,STD|CAPENABLED,AUE_RTPRIO,,"sys_rtprio_thread(int function, lwpid_t lwpid, struct rtprio *rtp)",,https://man.freebsd.org/cgi/man.cgi?query=rtprio_thread&sektion=2&manpath=FreeBSD+15.0-RELEASE
+467-470,,RESERVED,AUE_NULL,,,,
+471,sctp_peeloff,NOSTD|CAPENABLED,AUE_SCTP_PEELOFF,,"sys_sctp_peeloff(int sd, uint32_t name)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=sctp_peeloff&sektion=2&manpath=FreeBSD+15.0-RELEASE
+472,sctp_generic_sendmsg,NOSTD|CAPENABLED,AUE_SCTP_GENERIC_SENDMSG,,"sys_sctp_generic_sendmsg(int sd, void *msg, int mlen, const struct sockaddr *to, __socklen_t tolen, struct sctp_sndrcvinfo *sinfo, int flags)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=sctp_generic_sendmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+473,sctp_generic_sendmsg_iov,NOSTD|CAPENABLED,AUE_SCTP_GENERIC_SENDMSG_IOV,,"sys_sctp_generic_sendmsg_iov(int sd, struct iovec *iov, int iovlen, const struct sockaddr *to, __socklen_t tolen, struct sctp_sndrcvinfo *sinfo, int flags)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=sctp_generic_sendmsg_iov&sektion=2&manpath=FreeBSD+15.0-RELEASE
+474,sctp_generic_recvmsg,NOSTD|CAPENABLED,AUE_SCTP_GENERIC_RECVMSG,,"sys_sctp_generic_recvmsg(int sd, struct iovec *iov, int iovlen, struct sockaddr *from, __socklen_t *fromlenaddr, struct sctp_sndrcvinfo *sinfo, int *msg_flags)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=sctp_generic_recvmsg&sektion=2&manpath=FreeBSD+15.0-RELEASE
+475,pread,STD|CAPENABLED,AUE_PREAD,,"sys_pread(int fd, void *buf, size_t nbyte, off_t offset)",,https://man.freebsd.org/cgi/man.cgi?query=pread&sektion=2&manpath=FreeBSD+15.0-RELEASE
+476,pwrite,STD|CAPENABLED,AUE_PWRITE,,"sys_pwrite(int fd, const void *buf, size_t nbyte, off_t offset)",,https://man.freebsd.org/cgi/man.cgi?query=pwrite&sektion=2&manpath=FreeBSD+15.0-RELEASE
+477,mmap,STD|CAPENABLED,AUE_MMAP,,"sys_mmap(void *addr, size_t len, int prot, int flags, int fd, off_t pos)",,https://man.freebsd.org/cgi/man.cgi?query=mmap&sektion=2&manpath=FreeBSD+15.0-RELEASE
+478,lseek,STD|CAPENABLED,AUE_LSEEK,,"sys_lseek(int fd, off_t offset, int whence)",,https://man.freebsd.org/cgi/man.cgi?query=lseek&sektion=2&manpath=FreeBSD+15.0-RELEASE
+479,truncate,STD,AUE_TRUNCATE,,"sys_truncate(const char *path, off_t length)",,https://man.freebsd.org/cgi/man.cgi?query=truncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+480,ftruncate,STD|CAPENABLED,AUE_FTRUNCATE,,"sys_ftruncate(int fd, off_t length)",,https://man.freebsd.org/cgi/man.cgi?query=ftruncate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+481,thr_kill2,STD,AUE_THR_KILL2,,"sys_thr_kill2(pid_t pid, long id, int sig)",,https://man.freebsd.org/cgi/man.cgi?query=thr_kill2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+482,shm_open,COMPAT12|CAPENABLED,AUE_SHMOPEN,,"sys_shm_open(const char *path, int flags, mode_t mode)",COMPAT_FREEBSD12,https://man.freebsd.org/cgi/man.cgi?query=shm_open&sektion=2&manpath=FreeBSD+15.0-RELEASE
+483,shm_unlink,STD,AUE_SHMUNLINK,,sys_shm_unlink(const char *path),,https://man.freebsd.org/cgi/man.cgi?query=shm_unlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+484,cpuset,STD,AUE_NULL,,sys_cpuset(cpusetid_t *setid),,https://man.freebsd.org/cgi/man.cgi?query=cpuset&sektion=2&manpath=FreeBSD+15.0-RELEASE
+485,cpuset_setid,STD,AUE_NULL,,"sys_cpuset_setid(cpuwhich_t which, id_t id, cpusetid_t setid)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_setid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+486,cpuset_getid,STD,AUE_NULL,,"sys_cpuset_getid(cpulevel_t level, cpuwhich_t which, id_t id, cpusetid_t *setid)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_getid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+487,cpuset_getaffinity,STD|CAPENABLED,AUE_NULL,,"sys_cpuset_getaffinity(cpulevel_t level, cpuwhich_t which, id_t id, size_t cpusetsize, cpuset_t *mask)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_getaffinity&sektion=2&manpath=FreeBSD+15.0-RELEASE
+488,cpuset_setaffinity,STD|CAPENABLED,AUE_NULL,,"sys_cpuset_setaffinity(cpulevel_t level, cpuwhich_t which, id_t id, size_t cpusetsize, const cpuset_t *mask)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_setaffinity&sektion=2&manpath=FreeBSD+15.0-RELEASE
+489,faccessat,STD|CAPENABLED,AUE_FACCESSAT,,"sys_faccessat(int fd, const char *path, int amode, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=faccessat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+490,fchmodat,STD|CAPENABLED,AUE_FCHMODAT,,"sys_fchmodat(int fd, const char *path, mode_t mode, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=fchmodat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+491,fchownat,STD|CAPENABLED,AUE_FCHOWNAT,,"sys_fchownat(int fd, const char *path, uid_t uid, gid_t gid, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=fchownat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+492,fexecve,STD|CAPENABLED,AUE_FEXECVE,,"sys_fexecve(int fd, char **argv, char **envv)",,https://man.freebsd.org/cgi/man.cgi?query=fexecve&sektion=2&manpath=FreeBSD+15.0-RELEASE
+493,fstatat,COMPAT11|CAPENABLED,AUE_FSTATAT,,"sys_fstatat(int fd, const char *path, struct freebsd11_stat *buf, int flag)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=fstatat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+494,futimesat,STD|CAPENABLED,AUE_FUTIMESAT,,"sys_futimesat(int fd, const char *path, const struct timeval *times)",,https://man.freebsd.org/cgi/man.cgi?query=futimesat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+495,linkat,STD|CAPENABLED,AUE_LINKAT,,"sys_linkat(int fd1, const char *path1, int fd2, const char *path2, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=linkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+496,mkdirat,STD|CAPENABLED,AUE_MKDIRAT,,"sys_mkdirat(int fd, const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=mkdirat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+497,mkfifoat,STD|CAPENABLED,AUE_MKFIFOAT,,"sys_mkfifoat(int fd, const char *path, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=mkfifoat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+498,mknodat,COMPAT11|CAPENABLED,AUE_MKNODAT,,"sys_mknodat(int fd, const char *path, mode_t mode, uint32_t dev)",COMPAT_FREEBSD11,https://man.freebsd.org/cgi/man.cgi?query=mknodat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+499,openat,STD|CAPENABLED,AUE_OPENAT_RWTC,,"sys_openat(int fd, const char *path, int flag, mode_t mode)",,https://man.freebsd.org/cgi/man.cgi?query=openat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+500,readlinkat,STD|CAPENABLED,AUE_READLINKAT,,"sys_readlinkat(int fd, const char *path, char *buf, size_t bufsize)",,https://man.freebsd.org/cgi/man.cgi?query=readlinkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+501,renameat,STD|CAPENABLED,AUE_RENAMEAT,,"sys_renameat(int oldfd, const char *old, int newfd, const char *new)",,https://man.freebsd.org/cgi/man.cgi?query=renameat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+502,symlinkat,STD|CAPENABLED,AUE_SYMLINKAT,,"sys_symlinkat(const char *path1, int fd, const char *path2)",,https://man.freebsd.org/cgi/man.cgi?query=symlinkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+503,unlinkat,STD|CAPENABLED,AUE_UNLINKAT,,"sys_unlinkat(int fd, const char *path, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=unlinkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+504,posix_openpt,STD,AUE_POSIX_OPENPT,,sys_posix_openpt(int flags),,https://man.freebsd.org/cgi/man.cgi?query=posix_openpt&sektion=2&manpath=FreeBSD+15.0-RELEASE
+505,kgssapi,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=kgssapi&sektion=2&manpath=FreeBSD+15.0-RELEASE
+506,jail_get,STD,AUE_JAIL_GET,,"sys_jail_get(struct iovec *iovp, unsigned int iovcnt, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=jail_get&sektion=2&manpath=FreeBSD+15.0-RELEASE
+507,jail_set,STD,AUE_JAIL_SET,,"sys_jail_set(struct iovec *iovp, unsigned int iovcnt, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=jail_set&sektion=2&manpath=FreeBSD+15.0-RELEASE
+508,jail_remove,STD,AUE_JAIL_REMOVE,,sys_jail_remove(int jid),,https://man.freebsd.org/cgi/man.cgi?query=jail_remove&sektion=2&manpath=FreeBSD+15.0-RELEASE
+509,closefrom,COMPAT12|CAPENABLED,AUE_CLOSEFROM,,sys_closefrom(int lowfd),COMPAT_FREEBSD12,https://man.freebsd.org/cgi/man.cgi?query=closefrom&sektion=2&manpath=FreeBSD+15.0-RELEASE
+510,__semctl,NOSTD,AUE_SEMCTL,,"sys___semctl(int semid, int semnum, int cmd, union semun *arg)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=__semctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+511,msgctl,NOSTD,AUE_MSGCTL,,"sys_msgctl(int msqid, int cmd, struct msqid_ds *buf)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=msgctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+512,shmctl,NOSTD,AUE_SHMCTL,,"sys_shmctl(int shmid, int cmd, struct shmid_ds *buf)",loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=shmctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+513,lpathconf,STD,AUE_LPATHCONF,,"sys_lpathconf(const char *path, int name)",,https://man.freebsd.org/cgi/man.cgi?query=lpathconf&sektion=2&manpath=FreeBSD+15.0-RELEASE
+514,cap_new,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=cap_new&sektion=2&manpath=FreeBSD+15.0-RELEASE
+515,__cap_rights_get,STD|CAPENABLED,AUE_CAP_RIGHTS_GET,,"sys___cap_rights_get(int version, int fd, cap_rights_t *rightsp)",,https://man.freebsd.org/cgi/man.cgi?query=__cap_rights_get&sektion=2&manpath=FreeBSD+15.0-RELEASE
+516,cap_enter,STD|CAPENABLED,AUE_CAP_ENTER,,sys_cap_enter(void),,https://man.freebsd.org/cgi/man.cgi?query=cap_enter&sektion=2&manpath=FreeBSD+15.0-RELEASE
+517,cap_getmode,STD|CAPENABLED,AUE_CAP_GETMODE,,sys_cap_getmode(u_int *modep),,https://man.freebsd.org/cgi/man.cgi?query=cap_getmode&sektion=2&manpath=FreeBSD+15.0-RELEASE
+518,pdfork,STD|CAPENABLED,AUE_PDFORK,,"sys_pdfork(int *fdp, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=pdfork&sektion=2&manpath=FreeBSD+15.0-RELEASE
+519,pdkill,STD|CAPENABLED,AUE_PDKILL,,"sys_pdkill(int fd, int signum)",,https://man.freebsd.org/cgi/man.cgi?query=pdkill&sektion=2&manpath=FreeBSD+15.0-RELEASE
+520,pdgetpid,STD|CAPENABLED,AUE_PDGETPID,,"sys_pdgetpid(int fd, pid_t *pidp)",,https://man.freebsd.org/cgi/man.cgi?query=pdgetpid&sektion=2&manpath=FreeBSD+15.0-RELEASE
+521,,RESERVED,AUE_NULL,,,,
+522,pselect,STD|CAPENABLED,AUE_SELECT,,"sys_pselect(int nd, fd_set *in, fd_set *ou, fd_set *ex, const struct timespec *ts, const sigset_t *sm)",,https://man.freebsd.org/cgi/man.cgi?query=pselect&sektion=2&manpath=FreeBSD+15.0-RELEASE
+523,getloginclass,STD|CAPENABLED,AUE_GETLOGINCLASS,,"sys_getloginclass(char *namebuf, size_t namelen)",,https://man.freebsd.org/cgi/man.cgi?query=getloginclass&sektion=2&manpath=FreeBSD+15.0-RELEASE
+524,setloginclass,STD,AUE_SETLOGINCLASS,,sys_setloginclass(const char *namebuf),,https://man.freebsd.org/cgi/man.cgi?query=setloginclass&sektion=2&manpath=FreeBSD+15.0-RELEASE
+525,rctl_get_racct,STD,AUE_NULL,,"sys_rctl_get_racct(const void *inbufp, size_t inbuflen, void *outbufp, size_t outbuflen)",,https://man.freebsd.org/cgi/man.cgi?query=rctl_get_racct&sektion=2&manpath=FreeBSD+15.0-RELEASE
+526,rctl_get_rules,STD,AUE_NULL,,"sys_rctl_get_rules(const void *inbufp, size_t inbuflen, void *outbufp, size_t outbuflen)",,https://man.freebsd.org/cgi/man.cgi?query=rctl_get_rules&sektion=2&manpath=FreeBSD+15.0-RELEASE
+527,rctl_get_limits,STD,AUE_NULL,,"sys_rctl_get_limits(const void *inbufp, size_t inbuflen, void *outbufp, size_t outbuflen)",,https://man.freebsd.org/cgi/man.cgi?query=rctl_get_limits&sektion=2&manpath=FreeBSD+15.0-RELEASE
+528,rctl_add_rule,STD,AUE_NULL,,"sys_rctl_add_rule(const void *inbufp, size_t inbuflen, void *outbufp, size_t outbuflen)",,https://man.freebsd.org/cgi/man.cgi?query=rctl_add_rule&sektion=2&manpath=FreeBSD+15.0-RELEASE
+529,rctl_remove_rule,STD,AUE_NULL,,"sys_rctl_remove_rule(const void *inbufp, size_t inbuflen, void *outbufp, size_t outbuflen)",,https://man.freebsd.org/cgi/man.cgi?query=rctl_remove_rule&sektion=2&manpath=FreeBSD+15.0-RELEASE
+530,posix_fallocate,STD|CAPENABLED,AUE_POSIX_FALLOCATE,,"sys_posix_fallocate(int fd, off_t offset, off_t len)",,https://man.freebsd.org/cgi/man.cgi?query=posix_fallocate&sektion=2&manpath=FreeBSD+15.0-RELEASE
+531,posix_fadvise,STD|CAPENABLED,AUE_POSIX_FADVISE,,"sys_posix_fadvise(int fd, off_t offset, off_t len, int advice)",,https://man.freebsd.org/cgi/man.cgi?query=posix_fadvise&sektion=2&manpath=FreeBSD+15.0-RELEASE
+532,wait6,STD,AUE_WAIT6,,"sys_wait6(idtype_t idtype, id_t id, int *status, int options, struct __wrusage *wrusage, struct __siginfo *info)",,https://man.freebsd.org/cgi/man.cgi?query=wait6&sektion=2&manpath=FreeBSD+15.0-RELEASE
+533,cap_rights_limit,STD|CAPENABLED,AUE_CAP_RIGHTS_LIMIT,,"sys_cap_rights_limit(int fd, cap_rights_t *rightsp)",,https://man.freebsd.org/cgi/man.cgi?query=cap_rights_limit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+534,cap_ioctls_limit,STD|CAPENABLED,AUE_CAP_IOCTLS_LIMIT,,"sys_cap_ioctls_limit(int fd, const u_long *cmds, size_t ncmds)",,https://man.freebsd.org/cgi/man.cgi?query=cap_ioctls_limit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+535,cap_ioctls_get,STD|CAPENABLED,AUE_CAP_IOCTLS_GET,,"sys_cap_ioctls_get(int fd, u_long *cmds, size_t maxcmds)",,https://man.freebsd.org/cgi/man.cgi?query=cap_ioctls_get&sektion=2&manpath=FreeBSD+15.0-RELEASE
+536,cap_fcntls_limit,STD|CAPENABLED,AUE_CAP_FCNTLS_LIMIT,,"sys_cap_fcntls_limit(int fd, uint32_t fcntlrights)",,https://man.freebsd.org/cgi/man.cgi?query=cap_fcntls_limit&sektion=2&manpath=FreeBSD+15.0-RELEASE
+537,cap_fcntls_get,STD|CAPENABLED,AUE_CAP_FCNTLS_GET,,"sys_cap_fcntls_get(int fd, uint32_t *fcntlrightsp)",,https://man.freebsd.org/cgi/man.cgi?query=cap_fcntls_get&sektion=2&manpath=FreeBSD+15.0-RELEASE
+538,bindat,STD|CAPENABLED,AUE_BINDAT,,"sys_bindat(int fd, int s, const struct sockaddr *name, __socklen_t namelen)",,https://man.freebsd.org/cgi/man.cgi?query=bindat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+539,connectat,STD|CAPENABLED,AUE_CONNECTAT,,"sys_connectat(int fd, int s, const struct sockaddr *name, __socklen_t namelen)",,https://man.freebsd.org/cgi/man.cgi?query=connectat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+540,chflagsat,STD|CAPENABLED,AUE_CHFLAGSAT,,"sys_chflagsat(int fd, const char *path, u_long flags, int atflag)",,https://man.freebsd.org/cgi/man.cgi?query=chflagsat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+541,accept4,STD|CAPENABLED,AUE_ACCEPT,,"sys_accept4(int s, struct sockaddr *name, __socklen_t *anamelen, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=accept4&sektion=2&manpath=FreeBSD+15.0-RELEASE
+542,pipe2,STD|CAPENABLED,AUE_PIPE,,"sys_pipe2(int *fildes, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=pipe2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+543,aio_mlock,STD,AUE_AIO_MLOCK,,sys_aio_mlock(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_mlock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+544,procctl,STD,AUE_PROCCTL,,"sys_procctl(idtype_t idtype, id_t id, int com, void *data)",,https://man.freebsd.org/cgi/man.cgi?query=procctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+545,ppoll,STD|CAPENABLED,AUE_POLL,,"sys_ppoll(struct pollfd *fds, u_int nfds, const struct timespec *ts, const sigset_t *set)",,https://man.freebsd.org/cgi/man.cgi?query=ppoll&sektion=2&manpath=FreeBSD+15.0-RELEASE
+546,futimens,STD|CAPENABLED,AUE_FUTIMES,,"sys_futimens(int fd, const struct timespec *times)",,https://man.freebsd.org/cgi/man.cgi?query=futimens&sektion=2&manpath=FreeBSD+15.0-RELEASE
+547,utimensat,STD|CAPENABLED,AUE_FUTIMESAT,,"sys_utimensat(int fd, const char *path, const struct timespec *times, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=utimensat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+548,numa_getaffinity,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=numa_getaffinity&sektion=2&manpath=FreeBSD+15.0-RELEASE
+549,numa_setaffinity,OBSOL,AUE_NULL,,,,https://man.freebsd.org/cgi/man.cgi?query=numa_setaffinity&sektion=2&manpath=FreeBSD+15.0-RELEASE
+550,fdatasync,STD|CAPENABLED,AUE_FSYNC,,sys_fdatasync(int fd),,https://man.freebsd.org/cgi/man.cgi?query=fdatasync&sektion=2&manpath=FreeBSD+15.0-RELEASE
+551,fstat,STD|CAPENABLED,AUE_FSTAT,,"sys_fstat(int fd, struct stat *sb)",,https://man.freebsd.org/cgi/man.cgi?query=fstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+552,fstatat,STD|CAPENABLED,AUE_FSTATAT,,"sys_fstatat(int fd, const char *path, struct stat *buf, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=fstatat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+553,fhstat,STD,AUE_FHSTAT,,"sys_fhstat(const struct fhandle *u_fhp, struct stat *sb)",,https://man.freebsd.org/cgi/man.cgi?query=fhstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+554,getdirentries,STD|CAPENABLED,AUE_GETDIRENTRIES,,"sys_getdirentries(int fd, char *buf, size_t count, off_t *basep)",,https://man.freebsd.org/cgi/man.cgi?query=getdirentries&sektion=2&manpath=FreeBSD+15.0-RELEASE
+555,statfs,STD,AUE_STATFS,,"sys_statfs(const char *path, struct statfs *buf)",,https://man.freebsd.org/cgi/man.cgi?query=statfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+556,fstatfs,STD|CAPENABLED,AUE_FSTATFS,,"sys_fstatfs(int fd, struct statfs *buf)",,https://man.freebsd.org/cgi/man.cgi?query=fstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+557,getfsstat,STD,AUE_GETFSSTAT,,"sys_getfsstat(struct statfs *buf, long bufsize, int mode)",,https://man.freebsd.org/cgi/man.cgi?query=getfsstat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+558,fhstatfs,STD,AUE_FHSTATFS,,"sys_fhstatfs(const struct fhandle *u_fhp, struct statfs *buf)",,https://man.freebsd.org/cgi/man.cgi?query=fhstatfs&sektion=2&manpath=FreeBSD+15.0-RELEASE
+559,mknodat,STD|CAPENABLED,AUE_MKNODAT,,"sys_mknodat(int fd, const char *path, mode_t mode, dev_t dev)",,https://man.freebsd.org/cgi/man.cgi?query=mknodat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+560,kevent,STD|CAPENABLED,AUE_KEVENT,,"sys_kevent(int fd, const struct kevent *changelist, int nchanges, struct kevent *eventlist, int nevents, const struct timespec *timeout)",,https://man.freebsd.org/cgi/man.cgi?query=kevent&sektion=2&manpath=FreeBSD+15.0-RELEASE
+561,cpuset_getdomain,STD|CAPENABLED,AUE_NULL,,"sys_cpuset_getdomain(cpulevel_t level, cpuwhich_t which, id_t id, size_t domainsetsize, domainset_t *mask, int *policy)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_getdomain&sektion=2&manpath=FreeBSD+15.0-RELEASE
+562,cpuset_setdomain,STD|CAPENABLED,AUE_NULL,,"sys_cpuset_setdomain(cpulevel_t level, cpuwhich_t which, id_t id, size_t domainsetsize, domainset_t *mask, int policy)",,https://man.freebsd.org/cgi/man.cgi?query=cpuset_setdomain&sektion=2&manpath=FreeBSD+15.0-RELEASE
+563,getrandom,STD|CAPENABLED,AUE_NULL,,"sys_getrandom(void *buf, size_t buflen, unsigned int flags)",,https://man.freebsd.org/cgi/man.cgi?query=getrandom&sektion=2&manpath=FreeBSD+15.0-RELEASE
+564,getfhat,STD,AUE_NULL,,"sys_getfhat(int fd, char *path, struct fhandle *fhp, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=getfhat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+565,fhlink,STD,AUE_NULL,,"sys_fhlink(struct fhandle *fhp, const char *to)",,https://man.freebsd.org/cgi/man.cgi?query=fhlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+566,fhlinkat,STD,AUE_NULL,,"sys_fhlinkat(struct fhandle *fhp, int tofd, const char *to,)",,https://man.freebsd.org/cgi/man.cgi?query=fhlinkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+567,fhreadlink,STD,AUE_NULL,,"sys_fhreadlink(struct fhandle *fhp, char *buf, size_t bufsize)",,https://man.freebsd.org/cgi/man.cgi?query=fhreadlink&sektion=2&manpath=FreeBSD+15.0-RELEASE
+568,funlinkat,STD|CAPENABLED,AUE_UNLINKAT,,"sys_funlinkat(int dfd, const char *path, int fd, int flag)",,https://man.freebsd.org/cgi/man.cgi?query=funlinkat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+569,copy_file_range,STD|CAPENABLED,AUE_NULL,,"sys_copy_file_range(int infd, off_t *inoffp, int outfd, off_t *outoffp, size_t len, unsigned int flags)",,https://man.freebsd.org/cgi/man.cgi?query=copy_file_range&sektion=2&manpath=FreeBSD+15.0-RELEASE
+570,__sysctlbyname,STD|CAPENABLED,AUE_SYSCTL,,"sys___sysctlbyname(const char *name, size_t namelen, void *old, size_t *oldlenp, void *new, size_t newlen)",,https://man.freebsd.org/cgi/man.cgi?query=__sysctlbyname&sektion=2&manpath=FreeBSD+15.0-RELEASE
+571,shm_open2,STD|CAPENABLED,AUE_SHMOPEN,,"sys_shm_open2(const char *path, int flags, mode_t mode, int shmflags, const char *name)",,https://man.freebsd.org/cgi/man.cgi?query=shm_open2&sektion=2&manpath=FreeBSD+15.0-RELEASE
+572,shm_rename,STD,AUE_SHMRENAME,,"sys_shm_rename(const char *path_from, const char *path_to, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=shm_rename&sektion=2&manpath=FreeBSD+15.0-RELEASE
+573,sigfastblock,STD|CAPENABLED,AUE_NULL,,"sys_sigfastblock(int cmd, void *ptr)",,https://man.freebsd.org/cgi/man.cgi?query=sigfastblock&sektion=2&manpath=FreeBSD+15.0-RELEASE
+574,__realpathat,STD,AUE_REALPATHAT,,"sys___realpathat(int fd, const char *path, char *buf, size_t size, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=__realpathat&sektion=2&manpath=FreeBSD+15.0-RELEASE
+575,close_range,STD|CAPENABLED,AUE_CLOSERANGE,,"sys_close_range(u_int lowfd, u_int highfd, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=close_range&sektion=2&manpath=FreeBSD+15.0-RELEASE
+576,rpctls_syscall,NOSTD,AUE_NULL,,sys_rpctls_syscall(uint64_t socookie),loadable kernel module,https://man.freebsd.org/cgi/man.cgi?query=rpctls_syscall&sektion=2&manpath=FreeBSD+15.0-RELEASE
+577,__specialfd,STD|CAPENABLED,AUE_SPECIALFD,,"sys___specialfd(int type, const void *req, size_t len)",,https://man.freebsd.org/cgi/man.cgi?query=__specialfd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+578,aio_writev,STD|CAPENABLED,AUE_AIO_WRITEV,,sys_aio_writev(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_writev&sektion=2&manpath=FreeBSD+15.0-RELEASE
+579,aio_readv,STD|CAPENABLED,AUE_AIO_READV,,sys_aio_readv(struct aiocb *aiocbp),,https://man.freebsd.org/cgi/man.cgi?query=aio_readv&sektion=2&manpath=FreeBSD+15.0-RELEASE
+580,fspacectl,STD|CAPENABLED,AUE_FSPACECTL,,"sys_fspacectl(int fd, int cmd, const struct spacectl_range *rqsr, int flags, struct spacectl_range *rmsr,)",,https://man.freebsd.org/cgi/man.cgi?query=fspacectl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+581,sched_getcpu,STD|CAPENABLED,AUE_NULL,,sys_sched_getcpu(void),,https://man.freebsd.org/cgi/man.cgi?query=sched_getcpu&sektion=2&manpath=FreeBSD+15.0-RELEASE
+582,swapoff,STD,AUE_SWAPOFF,,"sys_swapoff(const char *name, u_int flags,)",,https://man.freebsd.org/cgi/man.cgi?query=swapoff&sektion=2&manpath=FreeBSD+15.0-RELEASE
+583,kqueuex,STD|CAPENABLED,AUE_KQUEUE,,sys_kqueuex(u_int flags),,https://man.freebsd.org/cgi/man.cgi?query=kqueuex&sektion=2&manpath=FreeBSD+15.0-RELEASE
+584,membarrier,STD|CAPENABLED,AUE_NULL,,"sys_membarrier(int cmd, unsigned flags, int cpu_id)",,https://man.freebsd.org/cgi/man.cgi?query=membarrier&sektion=2&manpath=FreeBSD+15.0-RELEASE
+585,timerfd_create,STD|CAPENABLED,AUE_TIMERFD,,"sys_timerfd_create(int clockid, int flags)",,https://man.freebsd.org/cgi/man.cgi?query=timerfd_create&sektion=2&manpath=FreeBSD+15.0-RELEASE
+586,timerfd_gettime,STD|CAPENABLED,AUE_TIMERFD,,"sys_timerfd_gettime(int fd, struct itimerspec *curr_value)",,https://man.freebsd.org/cgi/man.cgi?query=timerfd_gettime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+587,timerfd_settime,STD|CAPENABLED,AUE_TIMERFD,,"sys_timerfd_settime(int fd, int flags, const struct itimerspec *new_value, struct itimerspec *old_value)",,https://man.freebsd.org/cgi/man.cgi?query=timerfd_settime&sektion=2&manpath=FreeBSD+15.0-RELEASE
+588,kcmp,STD,AUE_NULL,,"sys_kcmp(pid_t pid1, pid_t pid2, int type, uintptr_t idx1, uintptr_t idx2)",,https://man.freebsd.org/cgi/man.cgi?query=kcmp&sektion=2&manpath=FreeBSD+15.0-RELEASE
+589,getrlimitusage,STD|CAPENABLED,AUE_NULL,,"sys_getrlimitusage(u_int which, int flags, rlim_t *res)",,https://man.freebsd.org/cgi/man.cgi?query=getrlimitusage&sektion=2&manpath=FreeBSD+15.0-RELEASE
+590,fchroot,STD,AUE_NULL,,sys_fchroot(int fd),,https://man.freebsd.org/cgi/man.cgi?query=fchroot&sektion=2&manpath=FreeBSD+15.0-RELEASE
+591,setcred,STD|CAPENABLED,AUE_SETCRED,,"sys_setcred(u_int flags, const struct setcred *wcred, size_t size)",,https://man.freebsd.org/cgi/man.cgi?query=setcred&sektion=2&manpath=FreeBSD+15.0-RELEASE
+592,exterrctl,STD|CAPENABLED,AUE_NULL,,"sys_exterrctl(u_int op, u_int flags, void *ptr)",,https://man.freebsd.org/cgi/man.cgi?query=exterrctl&sektion=2&manpath=FreeBSD+15.0-RELEASE
+593,inotify_add_watch_at,STD|CAPENABLED,AUE_INOTIFY,,"sys_inotify_add_watch_at(int fd, int dfd, const char *path, uint32_t mask)",,https://man.freebsd.org/cgi/man.cgi?query=inotify_add_watch_at&sektion=2&manpath=FreeBSD+15.0-RELEASE
+594,inotify_rm_watch,STD|CAPENABLED,AUE_INOTIFY,,"sys_inotify_rm_watch(int fd, int wd)",,https://man.freebsd.org/cgi/man.cgi?query=inotify_rm_watch&sektion=2&manpath=FreeBSD+15.0-RELEASE
+595,getgroups,STD|CAPENABLED,AUE_GETGROUPS,,"sys_getgroups(int gidsetsize, gid_t *gidset)",,https://man.freebsd.org/cgi/man.cgi?query=getgroups&sektion=2&manpath=FreeBSD+15.0-RELEASE
+596,setgroups,STD,AUE_SETGROUPS,,"sys_setgroups(int gidsetsize, const gid_t *gidset)",,https://man.freebsd.org/cgi/man.cgi?query=setgroups&sektion=2&manpath=FreeBSD+15.0-RELEASE
+597,jail_attach_jd,STD,AUE_JAIL_ATTACH,,sys_jail_attach_jd(int fd),,https://man.freebsd.org/cgi/man.cgi?query=jail_attach_jd&sektion=2&manpath=FreeBSD+15.0-RELEASE
+598,jail_remove_jd,STD,AUE_JAIL_REMOVE,,sys_jail_remove_jd(int fd),,https://man.freebsd.org/cgi/man.cgi?query=jail_remove_jd&sektion=2&manpath=FreeBSD+15.0-RELEASE

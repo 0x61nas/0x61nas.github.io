@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Title }} </title>
+    <meta name="author" content="Anas Elgarhy">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A searchable FreeBSD system call table for the {{ .Arch }} architecture, with arguments, types and links to the manual pages.">
+
+    <link rel="canonical" href="{{ .PageURL }}">
+    <link href="screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+    <style>
+        #content {
+            width: 900px;
+            margin: 0 auto;
+        }
+        body>header {
+            text-align: center;
+        }
+        header {
+            margin: 0 auto;
+            padding: 0;
+        }
+        header div {
+            max-width: 350px;
+            padding: 0 10px;
+            margin: 0 auto;
+        }
+        header img {
+            max-width: 100%;
+        }
+        .tbls-filter {
+            text-align: right;
+        }
+        .tbls-filter input {
+            height: 26px;
+            width: 200px;
+            font-size: 0.9em;
+            vertical-align: bottom;
+        }
+        .tbls-table {
+            font-family: PT Sans, Helvetica Neue, Arial, sans-serif;
+            width: 100%;
+        }
+        .tbls-row {
+            display: grid;
+            grid-template-columns: 8% 22% 26% 44%;
+            padding: 3px 10px;
+            align-items: center;
+        }
+        .tbls-header {
+            border: 1px solid #aaa;
+            font-weight: bold;
+            padding-left: 25px;
+        }
+        .tbls-entry {
+            border-bottom: 1px solid #aaa;
+        }
+        .tbls-entry summary {
+            cursor: pointer;
+            padding: 3px 0;
+        }
+        .tbls-entry summary .tbls-row {
+            display: inline-grid;
+            width: calc(100% - 25px);
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+        .tbls-entry[open] summary {
+            border-bottom: 1px solid #aaa;
+        }
+        .tbls-arguments {
+            padding: 10px;
+        }
+        .tbls-arguments table {
+            width: 100%;
+            border: 1px solid #aaa;
+            margin: 0;
+            border-collapse: collapse;
+        }
+        .tbls-arguments table td {
+            border-right: 1px solid #aaa;
+            border-left: 1px solid #aaa;
+            padding: 3px 10px;
+        }
+        .tbls-arguments table tr:first-child td {
+            font-weight: bold;
+        }
+        .tbls-match {
+            font-weight: bold;
+        }
+        .tbls-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .tbls-type {
+            display: inline-block;
+            font-size: 0.95em;
+            font-weight: bold;
+            font-family: PT Sans, Helvetica Neue, Arial, sans-serif;
+            white-space: nowrap;
+            color: #222;
+        }
+        .tbls-legend {
+            margin: 12px 0;
+        }
+        .tbls-legend ul {
+            margin: 6px 0;
+            padding-left: 22px;
+        }
+        .tbls-legend li {
+            font-size: 0.9em;
+            margin: 2px 0;
+        }
+        .tbls-note {
+            color: #555;
+            font-size: 0.9em;
+        }
+        .tbls-signature {
+            margin: 0 0 8px 0;
+            font-family: monospace;
+        }
+        .tbls-plain {
+            margin: 0;
+        }
+        .tbls-caveat {
+            border: 1px solid #aaa;
+            padding: 8px 12px;
+            margin: 12px 0;
+        }
+        .tbls-caveat pre {
+            overflow-x: auto;
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./fuzzy.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterInput = document.querySelector('.tbls-filter input');
+            const entries = Array.from(document.querySelectorAll('.tbls-entry'));
+
+            if(filterInput) {
+                filterInput.addEventListener('input', function (e) {
+                    const query = e.target.value;
+
+                    entries.forEach(entry => entry.removeAttribute('open'));
+
+                    if (!query) {
+                        entries.forEach(entry => {
+                            entry.style.display = '';
+                            const nameDiv = entry.querySelector('.syscall-name');
+                            nameDiv.innerHTML = nameDiv.textContent;
+                        });
+                        return;
+                    }
+
+                    const results = fuzzy.filter(query, entries, {
+                        pre: '<span class="tbls-match">',
+                        post: '</span>',
+                        extract: function (el) {
+                            return el.querySelector('.syscall-name').textContent;
+                        }
+                    });
+
+                    entries.forEach(entry => entry.style.display = 'none');
+
+                    results.forEach(result => {
+                        const entry = result.original;
+                        entry.style.display = '';
+                        entry.querySelector('.syscall-name').innerHTML = result.string;
+                    });
+                });
+            }
+        });
+    </script>
+
+    <div id="main">
+        <div id="content">
+            <div>
+                <article role="article">
+                    <h1 class="entry-title">Searchable FreeBSD Syscall Table <small>{{ .Arch }}</small></h1>
+
+                    <p>Derived from <a href="{{ .SourceURL }}"><code>sys/kern/syscalls.master</code></a>
+                    (FreeBSD {{ .Version }}, <code>releng/{{ .Version }}</code>). The file is ABI-common, so the
+                    syscall list is the same on every architecture; only the registers differ. See the
+                    <a href="{{ .ABIRefURL }}">{{ .ABIRefName }}</a>.</p>
+
+                    <p>This table is available for
+                    <a href="/resources/freebsd/syscall-table/x86_64/"><code>X86-64</code></a>,
+                    <a href="/resources/freebsd/syscall-table/arm64/"><code>ARM64</code></a>, and
+                    <a href="/resources/freebsd/syscall-table/riscv64/"><code>RISCV64</code></a>.</p>
+
+                    <p>On FreeBSD you <em>can</em> issue syscalls directly from assembly: number in
+                    <code>{{ .SyscallReg }}</code>, arguments in
+                    {{ range $i, $r := .Registers }}{{ if $i }}, {{ end }}<code>{{ $r }}</code>{{ end }}, result in
+                    <code>{{ .ReturnReg }}</code> (carry flag set and error number in <code>{{ .ReturnReg }}</code> on
+                    error). <strong>Click a row</strong> for arguments and details; filter with the box below, Ctrl+F, or
+                    grab the <a href="./syscalls.csv" download><code>CSV</code></a>.</p>
+
+                    <div class="tbls-legend">
+                        <p><strong>Type field values</strong> (a syscall can have more than one, separated by
+                        <code>|</code>):</p>
+                        <ul>
+                            {{ range .TypeLegend }}
+                            <li><span class="tbls-type">{{ .Name }}</span> &mdash; {{ .Desc }}</li>
+                            {{ end }}
+                        </ul>
+                    </div>
+
+                    <p class="tbls-filter">Filter: <input type="text"></p>
+
+                    <div class="tbls-table">
+                        <div class="tbls-row tbls-header">
+                            <div>{{ .SyscallReg }}</div>
+                            <div>Name</div>
+                            <div>Type</div>
+                            <div>Manual</div>
+                        </div>
+
+                        {{ range .Syscalls }}
+
+                        <details class="tbls-entry">
+                            <summary>
+                                <div class="tbls-row">
+                                    <div>{{ .Number }}</div>
+                                    <div class="syscall-name">{{ if .Name }}{{ .Name }}{{ else }}<em>reserved</em>{{ end }}</div>
+                                    <div class="tbls-types">
+                                        {{ range .Types }}<span class="tbls-type">{{ . }}</span> {{ end }}
+                                    </div>
+                                    <div>{{ if .Name }}<a href="{{ .ManURL }}" target="_blank">{{ .Name }}(2)</a>{{ end }}</div>
+                                </div>
+                            </summary>
+
+                            <div class="tbls-arguments">
+                                {{ if .HasProto }}
+                                <p class="tbls-signature">{{ .Ret }} <strong>{{ .Entry }}</strong>( {{ .ArgsDisplay }} );</p>
+                                {{ if .Args }}
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            {{ range .Args }}
+                                            <td>{{ .Type }}</td>
+                                            {{ end }}
+                                        </tr>
+                                        <tr>
+                                            {{ range .Args }}
+                                            <td>{{ .Name }}</td>
+                                            {{ end }}
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {{ else }}
+                                <p class="tbls-plain">No arguments</p>
+                                {{ end }}
+                                {{ else }}
+                                <p class="tbls-plain">{{ if .Comment }}<code>{{ .Comment }}</code>{{ else }}Reserved / no further information{{ end }}</p>
+                                {{ end }}
+                                <p class="tbls-note">
+                                    {{ if .Alias }}Alias: <code>{{ .Alias }}</code>. {{ end }}
+                                    {{ if .Condition }}Only built with <code>{{ .Condition }}</code>. {{ end }}
+                                    {{ if .Audit }}Audit event: <code>{{ .Audit }}</code>. {{ end }}
+                                    {{ if .HasProto }}Kernel entry: <code>{{ .Entry }}</code>. {{ end }}
+                                    {{ if .Name }}Manual: <a href="{{ .ManURL }}" target="_blank">{{ .Name }}(2)</a>{{ end }}
+                                </p>
+                            </div>
+                        </details>
+
+                        {{ end }}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="image">
+    <script src="/pic.js"></script>
+    </div>
+
+</body>
+</html>
