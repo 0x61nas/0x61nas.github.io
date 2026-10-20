@@ -249,7 +249,7 @@
                                     <tbody>
                                         <tr>
                                             {{ range $i, $_ := .Args }}
-                                            <td><code>%{{ index $r $i }}</code></td>
+                                            <td><code>{{ if lt $i (len $r) }}%{{ index $r $i }}{{ else }}stack{{ end }}</code></td>
                                             {{ end }}
                                         </tr>
                                         <tr>
